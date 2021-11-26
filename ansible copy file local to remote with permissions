@@ -1,0 +1,13 @@
+                                                    
+---
+- name: CheckMK local checks
+  hosts: all
+  tasks:
+     - name: distribute checks
+       become: true
+       copy:
+        src: /root/test
+        dest: /usr/lib/check_mk_agent/local
+        owner: root
+        group: root
+        mode: 0755
