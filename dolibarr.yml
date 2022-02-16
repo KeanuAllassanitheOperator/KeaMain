@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+    mariadb:
+        image: mariadb:latest
+        environment:
+            MYSQL_USER: dolibarr
+            MYSQL_PASSWORD: admin123
+            MYSQL_ROOT_PASSWORD: admin123
+            MYSQL_DATABASE: dolibarr
+        restart: unless-stopped
+        volumes:
+            - /data/db:/var/lib/mysql:rw
+
+    web:
+        image: tuxgasy/dolibarr
+        restart: unless-stopped
+        environment:
+            DOLI_DB_HOST: mariadb
+            DOLI_DB_USER: dolibarr
+            DOLI_DB_PASSWORD: admin123
+            DOLI_DB_NAME: dolibarr
+            DOLI_ADMIN_LOGIN: "admin"
+            DOLI_ADMIN_PASSWORD: "admin123"
+            DOLI_URL_ROOT: 'http://localhost'
+            PHP_INI_DATE_TIMEZONE: 'Europe/Berlin'
+        ports:
+            - "8088:80"
+        links:
+            - mariadb
