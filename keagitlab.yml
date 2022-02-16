@@ -8,6 +8,13 @@ services:
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'http://localhost'
+        gitlab_rails['rack_attack_git_basic_auth'] = {
+          'enabled' => true,
+          'ip_whitelist' => ["127.0.0.1"],
+          'maxretry' => 10, # Limit the number of Git HTTP authentication attempts per IP
+          'findtime' => 60, # Reset the auth attempt counter per IP after 60 seconds
+          'bantime' => 3600 # Ban an IP for one hour (3600s) after too many auth attempts
+        }
     ports:
       - '8083:80'
       - '8443:443'
