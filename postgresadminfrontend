@@ -10,7 +10,7 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: admin123
     volumes:
-      - local_pgdata:/var/lib/postgresql/data
+      - /local_pgdata:/var/lib/postgresql/data
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin4_container
@@ -21,7 +21,7 @@ services:
       PGADMIN_DEFAULT_EMAIL: kallassani@megabit.net
       PGADMIN_DEFAULT_PASSWORD: admin123
     volumes:
-      - pgadmin-data:/var/lib/pgadmin
+      - /pgadmin-data:/var/lib/pgadmin
 
 volumes:
   local_pgdata:
