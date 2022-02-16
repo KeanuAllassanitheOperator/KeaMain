@@ -10,9 +10,9 @@ services:
             MYSQL_DATABASE: dolibarr
         restart: unless-stopped
         volumes:
-            - /data/db:/var/lib/mysql:rw
+            - /dolibarrdata/db:/var/lib/mysql:rw
 
-    web:
+    dolibarrweb:
         image: tuxgasy/dolibarr
         restart: unless-stopped
         environment:
@@ -28,3 +28,4 @@ services:
             - "8088:80"
         links:
             - mariadb
+
