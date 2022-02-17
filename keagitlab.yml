@@ -15,6 +15,7 @@ services:
           'findtime' => 60, # Reset the auth attempt counter per IP after 60 seconds
           'bantime' => 3600 # Ban an IP for one hour (3600s) after too many auth attempts
         }
+        gitlab_rails['initial_root_password'] = "admin123" 
     ports:
       - '8083:80'
       - '8443:443'
