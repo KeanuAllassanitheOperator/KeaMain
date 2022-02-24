@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  iobroker:
+    container_name: iobroker
+    image: buanet/iobroker:latest
+    hostname: iobroker
+    restart: always
+    ports:
+      - "8099:8081"
+    volumes:
+      - iobrokerdata:/opt/iobroker
+volumes:
+  iobrokerdata:
