@@ -1,4 +1,4 @@
-https://github.com/mailcow/mailcow-dockerized
+https://github.com/mailcow/mailcow-dockerized Open Source Mailserver Lösung, wo die einzelnen Komponenten in verschiedenen Docker Container laufen.
 Mailcow docker compose file ist hier hinterlegt und mit einem shellscript lädt man sich die einzelnen container runter. Diese Shellscript ist generate_config.sh. Updaten geht mit Shellscript update.sh
 https://www.bennetrichter.de/en/tutorials/mailcow-dockerized/#:~:text=Mailcow%20Installation&text=Connect%20to%20your%20root%20server,with%20the%20command%20apt%20update%20.
 Link zur mailcow anleitung
