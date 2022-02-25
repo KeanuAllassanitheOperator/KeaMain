@@ -1,0 +1,2 @@
+docker container run -dit -p 8080:5000 --tmpfs /opt/omd/sites/cmk/tmp:uid=1000,gid=1000 -v monitoring:/omd/sites --name monitoring 
+-v cmk_etc:/etc/checkmk --restart always checkmk/check-mk-raw:2.0.0-latest
