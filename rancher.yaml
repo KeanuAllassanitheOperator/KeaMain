@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  rancher:
+    image: rancher/server:latest
+    restart: unless-stopped
+    ports:
+      - '8080:8080'
+    volumes:
+      - rancher-data:/var/lib/rancher
+    privileged: true
+volumes:
+  rancher-data:
