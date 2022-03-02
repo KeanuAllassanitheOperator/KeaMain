@@ -1,0 +1,12 @@
+version: "3.5"
+
+services:
+  grafana8:
+    image: grafana/grafana:latest
+    container_name: grafana8
+
+    volumes:
+      - /home/huupv/docker/grafana/data:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    restart: always
