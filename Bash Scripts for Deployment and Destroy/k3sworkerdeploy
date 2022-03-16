@@ -11,4 +11,4 @@ if [[ $status == 0 ]] ; then
 else
  echo "IP not reachable"
 fi
-roo
+
