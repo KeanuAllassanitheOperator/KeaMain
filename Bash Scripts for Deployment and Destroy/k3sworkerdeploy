@@ -1,0 +1,14 @@
+#!/bin/bash
+read -p "Enter a Controller IP " IP
+echo $IP
+ping -c1 -W1 -q $IP &>/dev/null
+status=$( echo $? )
+if [[ $status == 0 ]] ; then
+    scp -i .ssh/k3skey root@$IP:/var/lib/rancher/k3s/server/node-token /root/k3scontrollertoken
+    NODE_TOKEN=$(cat k3scontrollertoken)
+    curl -sfL https://get.k3s.io | K3S_URL=https://$IP:6443 K3S_TOKEN=$NODE_TOKEN sh -
+    echo "K3s worker joined to Controller $IP"
+else
+ echo "IP not reachable"
+fi
+roo
