@@ -1,2 +1,2 @@
-!/bin/bash
+#!/bin/bash
 k3s kubectl delete ns portainer
