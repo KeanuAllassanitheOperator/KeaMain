@@ -1,0 +1,29 @@
+sudo cp /etc/fail2ban/jail.{conf,local}
+cat << EOF > jail.local
+[DEFAULT]
+ bantime = 24h
+ ignoreip = 127.0.0.1/8 xxx.xxx.xxx.xxx
+ ignoreself = true
+
+ [sshd]
+ enabled = true
+ port = 22
+ filter = sshd
+ logpath = /var/log/auth.log
+ maxretry = 3
+# detect password authentication failures
+[apache]
+enabled  = true
+filter   = apache-auth
+action   = iptables-multiport[name=auth, port="http,https"]
+logpath  = /var/log/fail2ban.log
+bantime  = 80000h
+maxretry = 3
+EOF
+
+systemctl restart fail2ban
+
+systemctl status fail2ban
+fail2ban-client status sshd
+
+echo "Finished. Fail2ban installed"
