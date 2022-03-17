@@ -3,28 +3,7 @@ kubectl apply -n portainer -f https://raw.githubusercontent.com/portainer/k8s/ma
 sleep 3
 # Ingress kommt irgendwann
 //kubectl apply -f portaineringress.yaml 
-# Mit Apache als reverseproxy ich weiß ich mogle :D
-apt install apache2 -y 
-a2enmod proxy
-service apache2 restart
-cat <<EOF > /etc/apache2/sites-enabled/portainer.conf
-    <VirtualHost *:80>
-        ProxyPreserveHost On
-        
-        # Servers to proxy the connection, or;
-        # List of application servers:
-        # Usage:
-        # ProxyPass / http://[IP Addr.]:[port]/
-        # ProxyPassReverse / http://[IP Addr.]:[port]/
-        # Example: 
-        ProxyPass / http://0.0.0.0:30777/
-        ProxyPassReverse / http://0.0.0.0:30777/
-        
-        ServerName localhost
-    </VirtualHost>
-    EOF
-service apache2 restart
 PortainerIP=$(k3s kubectl describe pods -n portainer | grep Node: | awk -F '  +' '{print $2}')
 Hostname=$(hostname)
 IPMaster=$(hostname -I | cut -d' ' -f1)
-echo "Portainer deployed on K3s Cluster with Controller Host $Hostname/$IPMaster and running on Host $PortainerIP"
+echo "Portainer deployed on K3s Cluster with Controller Host $Hostname/$IPMaster and running reachable on $PortainerIP:30779"
