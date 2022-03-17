@@ -1,2 +1,4 @@
 #!/bin/bash
 k3s kubectl delete ns portainer
+IPMaster=$(hostname -I | cut -d' ' -f1)
+echo "Portainer deleted on Controller Host $IPMaster"
