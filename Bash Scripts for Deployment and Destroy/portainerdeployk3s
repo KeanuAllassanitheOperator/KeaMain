@@ -2,7 +2,6 @@
 kubectl apply -n portainer -f https://raw.githubusercontent.com/portainer/k8s/master/deploy/manifests/portainer/portainer.yaml
 sleep 3
 kubectl apply -f portaineringress.yaml 
-kubectl apply -f  traefikdeploy.yaml
 PortainerIP=$(k3s kubectl describe pods -n portainer | grep Node: | awk -F '  +' '{print $2}')
 Hostname=$(hostname)
 IPMaster=$(hostname -I | cut -d' ' -f1)
