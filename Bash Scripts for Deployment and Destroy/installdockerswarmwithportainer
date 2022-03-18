@@ -1,0 +1,15 @@
+#!/bin/bash
+IP=$(hostname -I | cut -d' ' -f1)
+sudo apt update
+sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io
+sudo usermod -aG docker $USER
+sudo docker swarm init --advertise-addr $IP
+sudo apt install docker-compose
+sudo systemctl status docker
+echo "Docker is installed and Swarm initialized on $IP as Manager"
+sudo docker stack deploy portainer -c portainer-agent-stack.yml
+echo "Portainer is installed and is reachable on $IP:9001"
