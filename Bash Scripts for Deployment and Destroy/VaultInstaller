@@ -1,0 +1,63 @@
+#!/bin/bash
+# Installation Script for the Secret and Encryption Management System for Dev Ops Environments Vault
+read -p "Enter a Vault Version " version
+sudo apt install wget unzip
+wget https://releases.hashicorp.com/vault/$version/vault_${version}_linux_amd64.zip
+unzip vault_${version}_linux_amd64.zip
+sudo mv vault /usr/bin/
+sudo mkdir /etc/vault/
+sudo mkdir -p /var/lib/vault/data
+cat << EOF > /etc/vault/config.hcl
+disable_cache = true
+disable_mlock = true
+ui = true
+listener "tcp" {
+   address          = "0.0.0.0:8200"
+   tls_disable      = 1
+    
+}
+storage "file" {
+   path  = "/var/lib/vault/data"
+ }
+api_addr         = "http://0.0.0.0:8200"
+max_lease_ttl         = "10h"
+default_lease_ttl    = "10h"
+cluster_name         = "vault"
+raw_storage_endpoint     = true
+disable_sealwrap     = true
+disable_printable_check = true
+EOF
+cat << EOF > /etc/systemd/system/vault.service
+[Unit]
+Description="HashiCorp Vault - A tool for managing secrets"
+Documentation=https://www.vaultproject.io/docs/
+Requires=network-online.target
+After=network-online.target
+ConditionFileNotEmpty=/etc/vault/config.hcl
+
+[Service]
+ProtectSystem=full
+ProtectHome=read-only
+PrivateTmp=yes
+PrivateDevices=yes
+SecureBits=keep-caps
+AmbientCapabilities=CAP_IPC_LOCK
+NoNewPrivileges=yes
+ExecStart=/usr/bin/vault server -config=/etc/vault/config.hcl
+ExecReload=/bin/kill --signal HUP 
+KillMode=process
+KillSignal=SIGINT
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+StartLimitBurst=3
+LimitNOFILE=6553
+
+[Install]
+WantedBy=multi-user.target
+EOF
+sudo systemctl daemon-reload
+sudo systemctl start vault
+sudo systemctl enable vault
+sudo systemctl status vault
+echo "Vault installed and listening on Port 8200"
