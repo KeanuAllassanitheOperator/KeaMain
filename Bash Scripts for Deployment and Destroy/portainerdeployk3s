@@ -1,9 +1,8 @@
 #!/bin/bash
-kubectl apply -n portainer -f https://raw.githubusercontent.com/portainer/k8s/master/deploy/manifests/portainer/portainer.yaml
+kubectl apply -n portainer -f https://raw.githubusercontent.com/portainer/k8s/master/deploy/manifests/portainer/portainer-lb.yaml
 sleep 3
-# Ingress kommt irgendwann
-//kubectl apply -f portaineringress.yaml 
 PortainerIP=$(k3s kubectl describe pods -n portainer | grep Node: | awk -F '  +' '{print $2}')
 Hostname=$(hostname)
 IPMaster=$(hostname -I | cut -d' ' -f1)
-echo "Portainer deployed on K3s Cluster with Controller Host $Hostname/$IPMaster and is reachable on $PortainerIP:30779"
+echo "Portainer deployed on K3s Cluster with Controller Host $Hostname/$IPMaster and running on Host $PortainerIP and Port 9000 and 9443"
+
