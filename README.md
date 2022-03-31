@@ -5,3 +5,4 @@ TO DO:
 - Backup von Storage
 - NFS weiter ausbauen
 - und noch vieles mehr
+- Git Clone Repos pullen und Dateien uploaden
