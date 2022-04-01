@@ -10,7 +10,7 @@ Storage:
 
 Sicherheit: 
 - Secret Management (Vault), davon Secrets pullen
-
+- SnyK Code Vuln Scanner
 Networking: 
 - Load Balancing
 
