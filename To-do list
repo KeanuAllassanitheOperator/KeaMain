@@ -4,9 +4,9 @@ TO DO:
 - Secret Management (Vault), davon Secrets pullen
 - Backup von Storage
 - NFS weiter ausbauen
-- und noch vieles mehr
 - Git Clone Repos pullen und Dateien uploaden, Down - und Uploadautomatisierung
 - Oxdized als Docker Lösung und Deployment vllt auch Kubernetes?
 - Docker Oxidized, jeder Kunde eine eigene Instanz
 - eigene für die Router Daten
 - Bau einer Pipeline 
+- und noch vieles mehr
