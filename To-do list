@@ -19,5 +19,6 @@ Für Oxidized, wenn wir das mal irgendwann automatisch deployen:
 - Oxdized als Docker Lösung und Deployment vllt auch Kubernetes?
 - Docker Oxidized, jeder Kunde eine eigene Instanz
 - eigene für die Router Daten
+- Dockerfile für Oxidized schreiben
 
 - und noch vieles mehr
