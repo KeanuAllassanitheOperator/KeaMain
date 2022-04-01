@@ -1,12 +1,23 @@
 TO DO:
-- Volumenplanung
-- Load Balancing
-- Secret Management (Vault), davon Secrets pullen
+Für die Basic Infrastructure
+- Git Clone Repos pullen und Dateien uploaden, Down - und Uploadautomatisierung
+- Bau einer Pipeline 
+
+Storage: 
 - Backup von Storage
 - NFS weiter ausbauen
-- Git Clone Repos pullen und Dateien uploaden, Down - und Uploadautomatisierung
+- Volumenplanung
+
+Sicherheit: 
+- Secret Management (Vault), davon Secrets pullen
+
+Networking: 
+- Load Balancing
+
+
+Für Oxidized, wenn wir das mal irgendwann automatisch deployen:
 - Oxdized als Docker Lösung und Deployment vllt auch Kubernetes?
 - Docker Oxidized, jeder Kunde eine eigene Instanz
 - eigene für die Router Daten
-- Bau einer Pipeline 
+
 - und noch vieles mehr
