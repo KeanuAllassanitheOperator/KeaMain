@@ -1,6 +1,6 @@
 TO DO:
 Für die Basic Infrastructure
-- Git Clone Repos pullen und Dateien uploaden, Down - und Uploadautomatisierung (eigene Gitlab Instanz gehostet)
+- Git Clone Repos pullen und Dateien uploaden, Down - und Uploadautomatisierung (eigene Gitlab Instanz gehostet) und Gitlab Installer Bash Script
 - Bau einer Pipeline 
 
 Storage: 
