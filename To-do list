@@ -16,6 +16,7 @@ Networking:
 
 Anwendung:
 K0s auf K3s forken
+https://github.com/btwiuse/k0s-on-k3s
 
 Für Oxidized, wenn wir das mal irgendwann automatisch deployen:
 - Oxdized als Docker Lösung und Deployment vllt auch Kubernetes?
