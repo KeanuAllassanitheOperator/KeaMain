@@ -14,6 +14,8 @@ Sicherheit:
 Networking: 
 - Load Balancing
 
+Anwendung:
+K0s auf K3s forken
 
 Für Oxidized, wenn wir das mal irgendwann automatisch deployen:
 - Oxdized als Docker Lösung und Deployment vllt auch Kubernetes?
