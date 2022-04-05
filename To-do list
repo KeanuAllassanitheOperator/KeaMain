@@ -10,9 +10,14 @@ Storage:
 
 Sicherheit: 
 - Secret Management (Vault), davon Secrets pullen
-- SnyK Code Vuln Scanner
+- Snyk Code Vuln Scanner
+
 Networking: 
 - Load Balancing
+
+Logging und Monitoring:
+- Loki (Logging für Kubernetes)
+- CheckMK 
 
 Anwendung:
 K0s auf K3s forken
