@@ -1,0 +1,4 @@
+git clone https://github.com/muebel/gestioip-docker-compose 
+cd gestioip-docker-compose
+Variablen vom .env-File lokal in docker-compose reinschreiben
+dann docker-compose up -d im aktuellen Verzeichnis
