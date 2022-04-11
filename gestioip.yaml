@@ -1,0 +1,52 @@
+version: "3.3"
+
+services:
+
+  gip-mysql:
+    image: mysql:5
+    container_name: gip-mysql
+    networks:
+      gip-net:
+        ipv4_address: 10.20.0.3
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: c3rlb3nz
+      MYSQL_DATABASE: gestioip
+      MYSQL_USER: gestioip
+      MYSQL_PASSWORD: c3rlb3nz
+    volumes:
+        - ./mysql:/docker-entrypoint-initdb.d
+        - ./mysql/data/var/lib/mysql
+
+  gip:
+    image: gestioip/gestioip:3570
+    container_name: gip
+    networks:
+      gip-net:
+        ipv4_address: 10.20.0.2
+    restart: always
+    environment:
+      DB_HOST: 10.20.0.3
+      DB_PORT: 3306
+      DB_SSID: gestioip
+      DB_USER: gestioip
+      DB_PASSWORD: c3rlb3nz
+    #  BCK_USER_DISABLED: no
+      BCK_USER: megabit
+      BCK_USER_PASS: c3rlb3nz
+     # USE_SSL: no
+      SERVER_NAME: 10.20.0.2
+    volumes:
+        - ./apache/certs:/etc/apache2/ssl/certs
+        - ./apache/keys:/etc/apache2/ssl/keys
+        - ./apache/conf:/usr/share/gestioip/etc/apache
+    ports:
+        - 8081:80
+
+networks:
+  gip-net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.20.0.0/24
