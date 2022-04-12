@@ -30,5 +30,6 @@ Für Oxidized, wenn wir das mal irgendwann automatisch deployen:
 - Docker Oxidized, jeder Kunde eine eigene Instanz
 - eigene für die Router Daten
 - Dockerfile für Oxidized schreiben
-
+- Oxidized docker kompatibel kriegen und Container bereitstellen
+- checkmk oxidized plugin testen
 - und noch vieles mehr
