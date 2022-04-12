@@ -2,6 +2,8 @@ TO DO:
 Für die Basic Infrastructure
 - Git Clone Repos pullen und Dateien uploaden, Down - und Uploadautomatisierung (eigene Gitlab Instanz gehostet) und Gitlab Installer Bash Script
 - Bau einer Pipeline 
+- Ansible zur Konfigurationsautomatisierung (
+- Terraform zur Infrastruktur Automatisierung
 
 Storage: 
 - Backup von Storage
@@ -18,12 +20,12 @@ Networking:
 Logging und Monitoring:
 - Loki (Logging für Kubernetes)
 - CheckMK 
-- Grafana 
+- Grafana https://tanka.dev/ is ne gute Anleitung zur Grafana Integration in Kubernetes Umgebungen
 
 Anwendung:
 K0s auf K3s forken
 https://github.com/btwiuse/k0s-on-k3s
-https://tanka.dev/ 
+
 
 Für Oxidized, wenn wir das mal irgendwann automatisch deployen:
 - Oxdized als Docker Lösung und Deployment vllt auch Kubernetes?
