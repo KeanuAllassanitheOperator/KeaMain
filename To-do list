@@ -18,6 +18,7 @@ Networking:
 Logging und Monitoring:
 - Loki (Logging für Kubernetes)
 - CheckMK 
+- Grafana 
 
 Anwendung:
 K0s auf K3s forken
