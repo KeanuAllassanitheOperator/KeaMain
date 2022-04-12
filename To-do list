@@ -23,7 +23,6 @@ Logging und Monitoring:
 Anwendung:
 K0s auf K3s forken
 https://github.com/btwiuse/k0s-on-k3s
-https://docs.symbiosis.host/guides/volumes Symbiosis Beta anschauen
 https://tanka.dev/ grafana tanka anschaun
 
 Für Oxidized, wenn wir das mal irgendwann automatisch deployen:
