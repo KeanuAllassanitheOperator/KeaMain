@@ -1,6 +1,6 @@
 # Gibt einen Boolean zurück, ob das Verzeichnis existiert
 $PathExists =  Test-Path -Path "C:\NPSRadiusBak"
-if ($PathExists = false) {
+if ($PathExists = $false) {
     cd c: 
     mkdir NPSRadiusBak
  }
