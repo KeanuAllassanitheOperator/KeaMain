@@ -1,0 +1,20 @@
+# Gibt einen Boolean zurück, ob das Verzeichnis existiert
+$PathExists =  Test-Path -Path "C:\NPSRadiusBak"
+if ($PathExists = false) {
+    cd c: 
+    mkdir NPSRadiusBak
+ }
+Export-NpsConfiguration -Path C:\NPSRadiusBak\Radiusconf.xml
+# Die Radius Server gespeichert als Liste Hostnamen eintragen
+$NPSDestServer =  @('dc', 'dc', 'dc')
+# Iteriere durch jeden Host und prüfe die Errecibarkeit. Wenn ja kopieren, wenn nein dann fortfahren und auf die erreichenden Hosts kopieren
+foreach ($i in $NPSDestServer) {
+     $thehost = Test-Connection -ComputerName $i -Count 1
+     if ($thehost.ResponseTime =! 0) { 
+       Copy-Item -path C:\NPSRadiusBak\Radiusconf.xml -destination \\$i\C$\NPSRadiusBak\Radiusconf.xml
+       Invoke-Command -ComputerName $i -ScriptBlock {Import-NPSConfiguration -Path C:\NPSRadiusBak\Radiusconf.xml}
+
+   } else {
+     continue 
+  }   
+}
