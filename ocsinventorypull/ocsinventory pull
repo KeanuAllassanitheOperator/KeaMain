@@ -1,0 +1,4 @@
+git clone https://github.com/OCSInventory-NG/OCSInventory-Docker-Image
+cd OCSInventory-Docker-Image/2.9
+docker-compose up -d 
+Folgendes Aufrufen: http://IP des Hosts:(Port vom Container ocsinventory-server)/ocsreports
