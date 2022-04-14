@@ -7,7 +7,7 @@ if ($PathExists = $false) {
 Export-NpsConfiguration -Path C:\NPSRadiusBak\Radiusconf.xml
 # Die Radius Server gespeichert als Liste Hostnamen eintragen
 $NPSDestServer =  @('dc', 'dc', 'dc')
-# Iteriere durch jeden Host und prüfe die Errecibarkeit. Wenn ja kopieren, wenn nein dann fortfahren und auf die erreichenden Hosts kopieren
+# Iteriere durch jeden Host und prüfe die Erreichbarkeit. Wenn ja kopieren, wenn nein dann fortfahren und auf die erreichenden Hosts kopieren
 foreach ($i in $NPSDestServer) {
      $thehost = Test-Connection -ComputerName $i -Count 1
      if ($thehost.ResponseTime =! 0) { 
