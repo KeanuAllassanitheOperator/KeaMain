@@ -5,4 +5,5 @@ PortainerIP=$(k3s kubectl describe pods -n portainer | grep Node: | awk -F '  +'
 Hostname=$(hostname)
 IPMaster=$(hostname -I | cut -d' ' -f1)
 echo "Portainer deployed on K3s Cluster with Controller Host $Hostname/$IPMaster and running on Host $PortainerIP and Port 9000 and 9443"
-
+curl -L https://downloads.portainer.io/agent-stack-ce211.yml -o agent-stack.yml && docker stack deploy --compose-file=agent-stack.yml portainer-agent
+echo "Portainer Agents are deployed for retrieving all Informations about the Docker Swarm Cluster. Please Add in Enviroments under Portainer a Site to see your Docker Nodes and Containers on the Hosts $Hostname/$IPMaster"
