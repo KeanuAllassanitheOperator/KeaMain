@@ -1,5 +1,6 @@
 #!/bin/bash
 k3s kubectl delete ns portainer
 IPMaster=$(hostname -I | cut -d' ' -f1)
-docker service rm portainer_agent
+docker service rm portainer-agent_agent
+
 echo "Portainer deleted on Controller Host $IPMaster"
