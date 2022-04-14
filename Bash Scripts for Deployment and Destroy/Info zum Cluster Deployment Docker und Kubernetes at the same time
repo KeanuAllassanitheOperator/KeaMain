@@ -1,0 +1,10 @@
+1) Skript runterladen (Portainerdeployk3s)
+2) Skript laufen lassen (Es wird k3s installiert mit einer portainer Instanz, die mit Load Balancing agiert. Außerdem werden noch Portainer-agents installiert, um eine Docker Swarm Umgebung zu haben, die man sich anschauen kann. Vorraussetzung sind ein Docker Host mit Swarm)
+3) Portainer einrichten
+4) Unter Environments gehen folgende Schritte tun:
+1. Add Environment
+2. Docker Swarm auswählen bei Information. Kommando braucht nicht kopiert werden, da ich dieses schon im Skript ausführe
+3. Namen eintragen
+Environment URL: Die IP eures DockerKubernetesHosts mit Port 9001, um die Infos via Agents abzurufen. 9001 ist der Standardport für die PortainerAgents
+
+Wenn Ihr euer Cluster löschen wollt, dann bitte das Skript PortainerDeletionK3s downloaden
