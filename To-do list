@@ -21,6 +21,8 @@ Logging und Monitoring:
 - Loki (Logging für Kubernetes)
 - CheckMK 
 - Grafana https://tanka.dev/ is ne gute Anleitung zur Grafana Integration in Kubernetes Umgebungen
+Grafana Docs https://grafana.com/docs/
+- entweder mit checkmk oder prometheus verbindeb, um Datenquellen zu haben und Werte zu haben, die sehr schön dargestellt werden. Ggf Skalierung
 
 Anwendung:
 K0s auf K3s forken
