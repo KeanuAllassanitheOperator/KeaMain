@@ -1,4 +1,7 @@
 TO DO:
+Für Megabit und deren Kunden:
+- Powershell typische Windows Aufgaben automatisieren 
+- Webhosting Konzept von uns auf Docker Basis mit Rene (Pilotprojekt)
 Für die Basic Infrastructure
 - Git Clone Repos pullen und Dateien uploaden, Down - und Uploadautomatisierung (eigene Gitlab Instanz gehostet) und Gitlab Installer Bash Script
 - Bau einer Pipeline 
