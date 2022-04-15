@@ -35,4 +35,4 @@ services:
       MYSQL_PASSWORD: 'npm'
     volumes:
       - ./data/mysql:/var/lib/mysql
-root@h2932366:~#
+
