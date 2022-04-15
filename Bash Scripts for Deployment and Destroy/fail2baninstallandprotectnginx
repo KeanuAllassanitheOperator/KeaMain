@@ -23,25 +23,7 @@ port    = http,https
 bantime = 1440m
 findtime = 1440m
 maxretry = 0
-[nginx-403]
-enabled = true
-port     = http,https
-filter = nginx-403
-action = iptables-allports
-logpath = %(nginx_access_log)s
-bantime = 1440m # 1 day
-findtime = 1440m # 1 day
-maxretry = 4
 
-[nginx-404]
-enabled = true
-port     = http,https
-filter = nginx-404
-action = iptables-allports
-logpath = %(nginx_access_log)s
-bantime = 1440m # 1 day
-findtime = 1440m # 1 day
-maxretry = 5
 
 [nginx-noagent]
 enabled = true
