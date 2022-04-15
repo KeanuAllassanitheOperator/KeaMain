@@ -1,6 +1,6 @@
-# docker.registry
+# 
 
-our own registry for docker images!
+our own registry for all automating scripts and files to deploy scalable and comfortable IT Infrastructures 
 
 ## Getting started
 
