@@ -1,0 +1,143 @@
+[DEFAULT]
+ bantime = 24h
+ ignoreip = 127.0.0.1/8 xxx.xxx.xxx.xxx
+ ignoreself = true
+
+ [sshd]
+ enabled = true
+ port = 22
+ filter = sshd
+ logpath = /var/log/auth.log
+ maxretry = 3
+ bantime = 99999h
+
+[webexploits]
+enabled   = false
+logpath = %(nginx_access_log)s
+filter = webexploits
+port    = http,https
+bantime = 1440m
+findtime = 1440m
+maxretry = 0
+[nginx-403]
+enabled = true
+port     = http,https
+filter = nginx-403
+action = iptables-allports
+logpath = %(nginx_access_log)s
+bantime = 1440m # 1 day
+findtime = 1440m # 1 day
+maxretry = 4
+
+[nginx-404]
+enabled = true
+port     = http,https
+filter = nginx-404
+action = iptables-allports
+logpath = %(nginx_access_log)s
+bantime = 1440m # 1 day
+findtime = 1440m # 1 day
+maxretry = 30 # <--- monitor and adjust, all servers are different.
+
+[nginx-noagent]
+enabled = true
+port     = http,https
+filter = nginx-noagent
+action = iptables-allports
+logpath = %(nginx_access_log)s
+bantime = 1440m # 1 day
+findtime = 1440m # 1 day
+maxretry = 3
+
+[nginx-noauth]
+enabled = true
+filter = nginx-noauth
+action = iptables-allports
+logpath = %(nginx_error_log)s
+bantime = 1440m # 1 day
+findtime = 1440m # 1 day
+maxretry = 5
+
+[nginx-no-x-spam]
+enabled = true
+filter = nginx-no-x-spam
+action = iptables-allports
+logpath = %(nginx_access_log)s
+bantime = 1440m # 1 day
+findtime = 1440m # 1 day
+maxretry = 5
+
+[nginx-noscript]
+enabled = true
+action = iptables-allports
+filter = nginx-noscript
+logpath = %(nginx_access_log)s
+bantime = 1440m # 1 day
+findtime = 1440m # 1 day
+maxretry = 3
+
+[nginx-noproxy]
+enabled = true
+action = iptables-allports
+filter = nginx-noproxy
+logpath = %(nginx_access_log)s
+bantime = 1440m # 1 day
+findtime = 1440m # 1 day
+maxretry = 0
+
+[nginx-nowordpress]
+enabled = true
+action = iptables-allports
+filter = nginx-nowordpress
+logpath = %(nginx_access_log)s
+bantime = 1440m # 1 day
+findtime = 1440m # 1 day
+maxretry = 3
+
+[nginx-http-auth]
+enabled = true
+action = iptables-allports
+filter = nginx-http-auth
+logpath = %(nginx_access_log)s
+bantime = 1440m # 1 day
+findtime = 1440m # 1 day
+maxretry = 0
+
+[nginx-limit-req]
+enabled = true
+action = iptables-allports
+filter = nginx-limit-req
+logpath = %(nginx_access_log)s
+bantime = 1440m # 1 day
+findtime = 1440m # 1 day
+maxretry = 0
+
+[nginx-botsearch]
+enabled = true
+action = iptables-allports
+filter = nginx-botsearch
+logpath = %(nginx_access_log)s
+bantime = 1440m # 1 day
+findtime = 1440m # 1 day
+maxretry = 0
+
+[portscan-block]
+enabled = true
+action = iptables-allports
+filter = portscan-block
+logpath = /var/log/ufw.log  <--- this has to be direct to your UFW logs.
+bantime = 1440m # 1 day
+findtime = 1440m # 1 day
+maxretry = 5
+
+[nginx-badbots]
+
+enabled = true
+port = http,https
+filter = nginx-badbots
+failregex = ^<HOST> -.*"(GET|POST|HEAD).*HTTP.*" 437
+ignoreregex =
+backend = auto
+logpath = /var/log/nginx/access_bad.log
+bantime = 259200
+maxretry= 1
