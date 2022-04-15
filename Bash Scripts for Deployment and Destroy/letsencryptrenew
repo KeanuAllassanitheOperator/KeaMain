@@ -1,0 +1,2 @@
+#certbot --nginx -d www.allassani.de -d wiki.allassani.de -d mailsundc.allassani.de
+certbot certonly  --force-renew  -d www.allassani.de -d wiki.allassani.de -d mailsundc.allassani.de
