@@ -15,6 +15,30 @@ cat << EOF > /etc/fail2ban/jail.local
  maxretry = 3
  bantime = 99999h
 
+[dovecot]
+
+enabled         = true
+port            = pop3,pop3s,imap,imaps,submission,465,sieve
+logpath         = /var/log/mail.log
+filter          = dovecot
+maxretry        = 3
+findtime        = 1200
+bantime         = 21600
+action          = iptables-allports
+
+
+[postfix]
+
+enabled         = true
+mode            = more
+port            = smtp,465,submission
+logpath         = /var/log/mail.log
+filter          = postfix
+maxretry        = 3
+findtime        = 1200
+bantime         = 21600
+action          = iptables-allports
+
 [webexploits]
 enabled   = false
 logpath = %(nginx_access_log)s
