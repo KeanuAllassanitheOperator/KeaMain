@@ -9,4 +9,4 @@ Remove-WindowsFeature    RSAT-ADLDS
 Remove-Item  -Path cert:\LocalMachine\My\Thumbprint from your certificate -DeleteKey
 Uninstall-WindowsFeature ADCS-Cert-Authority -IncludeManagementTools
 Uninstall-ADDSDomainController -LastDomainControllerInDomain -LocalAdministratorPassword (ConvertTo-SecureString -AsPlainText "passwordfromyou" -Force) -RemoveApplicationPartitions
-Remove-WindowsFeature AD-Domain-Services
+Uninstall-WindowsFeature AD-Domain-Services
