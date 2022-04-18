@@ -15,7 +15,7 @@ Add-WindowsFeature RSAT-ADDS
 Add-WindowsFeature RSAT-AD-AdminCenter
 Add-WindowsFeature   RSAT-ADDS-Tools
 Add-WindowsFeature    RSAT-ADLDS
-Install-ADDSDomainController -DomainName "keadc.local" -DelegatedAdministratorAccountName "Keanu" -DatabasePath "C:\Windows\NTDS"  -InstallDNS:$true -LogPath "C:\Windows\NTDS" -NoRebootOnCompletion:$false -SYSVOLPath "C:\Windows\SYSVOL"-Force:$true -SafeModeAdministratorPassword $(convertto-securestring -string "adamopel7#" -asplaintext -force)
+Install-ADDSDomainController -DomainName "keadc.local" -DelegatedAdministratorAccountName "Keanu" -DatabasePath "C:\Windows\NTDS"  -InstallDNS:$true -LogPath "C:\Windows\NTDS" -NoRebootOnCompletion:$false -SYSVOLPath "C:\Windows\SYSVOL"-Force:$true -SafeModeAdministratorPassword $(convertto-securestring -string "YourAdminPassword" -asplaintext -force)
 Install-WindowsFeature ADCS-Cert-Authority -IncludeManagementTools
 Install-ADcsCertificationAuthority -CAType "StandaloneRootCA" –CACommonName “KeaDCCert” –CADistinguishedNameSuffix “DC=keadc,DC=local” –CryptoProviderName “RSA#Microsoft Software Key Storage Provider” -KeyLength 4096 –HashAlgorithmName SHA1 –ValidityPeriod Years –ValidityPeriodUnits 10 –DatabaseDirectory “C:\windows\system32\certLog” –LogDirectory “c:\windows\system32\CertLog” –Force
 Restart-Computer
