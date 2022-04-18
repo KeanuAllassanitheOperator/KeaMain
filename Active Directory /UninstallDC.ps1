@@ -1,3 +1,4 @@
+# DomainController Deinstllation klappt nicht :(
 Remove-WindowsFeature ADRMS 
 Remove-WindowsFeature  ADLDS 
 Remove-WindowsFeature  ADFS-Federation
