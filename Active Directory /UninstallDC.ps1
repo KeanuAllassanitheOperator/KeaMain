@@ -7,5 +7,5 @@ Remove-WindowsFeature RSAT-AD-AdminCenter
 Remove-WindowsFeature   RSAT-ADDS-Tools
 Remove-WindowsFeature    RSAT-ADLDS
 Uninstall-WindowsFeature ADCS-Cert-Authority -IncludeManagementTools
-Uninstall-ADDSDomainController -LastDomainControllerInDomain -LocalAdministratorPassword (ConvertTo-SecureString -AsPlainText "adamopel7#" -Force) -RemoveApplicationPartitions
+Uninstall-ADDSDomainController -LastDomainControllerInDomain -LocalAdministratorPassword (ConvertTo-SecureString -AsPlainText "YourAdminPassword" -Force) -RemoveApplicationPartitions
 Restart-Computer
