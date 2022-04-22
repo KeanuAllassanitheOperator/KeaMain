@@ -5,7 +5,7 @@ services:
     image: nextcloud:latest
     restart: unless-stopped
     ports:
-      - 80:80
+      - 8090:80
     environment:
       - MYSQL_HOST=mysql
       - MYSQL_DATABASE=nextcloud
