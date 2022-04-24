@@ -15,3 +15,4 @@ E:\Setup.exe /PrepareAD /OrganizationName:”KeaDC” /IAcceptExchangeServerLice
 E:\Setup.exe /PrepareAllDomains /IAcceptExchangeServerLicenseTerms
 E:\setup.exe /Mode:Install /OrganizationName:”KeaDC” /IacceptexchangeServerLicenseTerms /Role:Mailbox /DBFilePath:"C:\Exchange\Data\MDB\EX2019-DB01.edb" /LogFolderPath:"C:\Exchange\Data\LOGS" /MdbName:"EX2019-DB01"
 Restart-Computer
+
