@@ -1,3 +1,4 @@
-- Powershell Skripte (Verzeichnisse Scripts und Certs erzeugen auf mehreren Servern), (automatisch ein zertfikat exportieren) (importieren eines -Certs zu der jewiligen GPO) 
-- Allgemeine AD, Exchange und Windows Aufgaben automatisieren
-- Kunden Windows Server mit Powershell automatisieren mit einigen Skripten
+-  Prüfen, welche Strukturebenen vom AD und DC installiert werden (darf nicht zu alt sein)
+- Saubere DC Deinstallation und Herabstufung
+- Allgemeine AD, Exchange und Windows Aufgaben automatisieren (Veeam und Mailstore auch)
+- Kunden Windows Server mit Powershell automatisieren mit einigen Skripten (gitlab Anbindung intern)
