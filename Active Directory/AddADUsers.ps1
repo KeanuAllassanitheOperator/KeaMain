@@ -1,7 +1,7 @@
 #Listenobjekt oder Datei
 Add-type -AssemblyName System.Web
 
-$liste = @('')
+$liste = @('Javier', 'Ingrid' 'Holger')
 
 foreach ($i in $liste) { 
 $password = [System.Web.Security.Membership]::GeneratePassword(12,1)
