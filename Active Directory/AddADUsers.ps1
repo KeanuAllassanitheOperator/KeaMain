@@ -1,6 +1,11 @@
-﻿#Listenobjekt oder Datei#
+#Listenobjekt oder Datei
+Add-type -AssemblyName System.Web
+
 $liste = @('')
+
 foreach ($i in $liste) { 
-New-ADUser -Name $i -AccountPassword $pw -Passwordneverexpires $true -Enabled $true
+$password = [System.Web.Security.Membership]::GeneratePassword(12,1)
+New-ADUser -Name $i -AccountPassword $password -Passwordneverexpires $true -Enabled $true
 Add-ADGroupMember -Identity "Domänen-Admins" -Members $domainuser
+Write-Host  $i + " " + $password  
 }
