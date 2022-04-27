@@ -4,7 +4,7 @@ Windows:
 - Saubere DC Deinstallation und Herabstufung
 - Allgemeine AD, Exchange und Windows Aufgaben automatisieren (Veeam und Mailstore auch)
 - Kunden Windows Server mit Powershell automatisieren mit einigen Skripten (gitlab Anbindung intern)
-
+- Sauberes Deinstallieren von Veeam, Mailstore und Exchange und AD und DC
 
 
 - Workflow automatisieren
