@@ -1,0 +1,46 @@
+TO DO:
+- Workflow automatisieren
+- Pulumi anschauen
+- Ansible Windows Client Automatisierung
+Für Megabit und deren Kunden:
+- Powershell typische Windows Aufgaben automatisieren 
+- Eigene Gitlab Instanz im Kundennetzen, Um flexibel Auf Powershell Änderungen zu reagieren und Diese Zur Lokalen Gitlab Instanz uploaded Kann. Dort verwalte Ich Und Downloade Meine PS Scripte zu den Windows Servern 
+- Webhosting Konzept von uns auf Docker Basis mit Rene (Pilotprojekt) MIT Load BALANCING UND letsencrypt 
+Für die Basic Infrastructure
+- Git Clone Repos pullen und Dateien uploaden, Down - und Uploadautomatisierung (eigene Gitlab Instanz gehostet) und Gitlab Installer Bash Script
+- Bau einer Pipeline 
+- Ansible zur Konfigurationsautomatisierung (
+- Terraform zur Infrastruktur Automatisierung
+- extrem flexible auf Änderungen reagieren
+Storage: 
+- Backup von Storage
+- NFS weiter ausbauen
+- Volumenplanung
+
+Sicherheit: 
+- Secret Management (Vault), davon Secrets pullen
+- Snyk Code Vuln Scanner
+
+Networking: 
+- Load Balancing
+
+Logging und Monitoring:
+- Loki (Logging für Kubernetes)
+- CheckMK 
+- Grafana https://tanka.dev/ is ne gute Anleitung zur Grafana Integration in Kubernetes Umgebungen
+Grafana Docs https://grafana.com/docs/
+- entweder mit checkmk oder prometheus verbinden, um Datenquellen zu haben und Werte zu haben, die sehr schön dargestellt werden. Ggf Skalierung
+- https://docs.checkmk.com/latest/de/grafana.html Grafana mit CheckMk verbinden
+Anwendung:
+K0s auf K3s forken
+https://github.com/btwiuse/k0s-on-k3s
+
+
+Für Oxidized, wenn wir das mal irgendwann automatisch deployen:
+- Oxdized als Docker Lösung und Deployment vllt auch Kubernetes?
+- Docker Oxidized, jeder Kunde eine eigene Instanz
+- eigene für die Router Daten
+- Dockerfile für Oxidized schreiben
+- Oxidized docker kompatibel kriegen und Container bereitstellen
+- checkmk oxidized plugin testen
+- und noch vieles mehr
