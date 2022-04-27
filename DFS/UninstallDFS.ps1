@@ -1,2 +1,2 @@
-Uninstall-WindowsFeature -Name FS-DFS-Namespace, FS-DFS-Replication –IncludeManagementTools
-Restart-Computer
+Uninstall-WindowsFeature -Name FS-DFS-Namespace, FS-DFS-Replication –IncludeManagementTools -Remove
+
