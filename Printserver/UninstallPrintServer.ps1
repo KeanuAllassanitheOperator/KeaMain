@@ -1,2 +1,2 @@
-Uninstall-WindowsFeature -Name Print-Server -IncludeManagementTools -Remove
-Uninstall-WindowsFeature -Name Print-Internet -IncludeManagementTools -Remove
+Remove-WindowsFeature -Name Print-Server -IncludeManagementTools 
+Remove-WindowsFeature -Name Print-Internet -IncludeManagementTools 
