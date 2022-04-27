@@ -1,2 +1,2 @@
- Uninstall-WindowsFeature Remote-Desktop-Services -Remove
+Remove-WindowsFeature Remote-Desktop-Services -Remove
  
