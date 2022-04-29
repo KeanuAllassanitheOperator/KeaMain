@@ -1,0 +1,14 @@
+---
+- name: Portainer Deploymnet for k0s Cluster
+  hosts: ControllerIPK0s
+  tasks:
+    - name: Deploy Portainer on k0s Master
+      shell: | 
+        kubectl apply -n portainer -f https://raw.githubusercontent.com/portainer/k8s/master/deploy/manifests/portainer/portainer-lb.yaml
+        PortainerIP=$(k3s kubectl describe pods -n portainer | grep Node: | awk -F '  +' '{print $2}')
+        Hostname=$(hostname)
+        IPMaster=$(hostname -I | cut -d' ' -f1)
+        echo "Portainer deployed on K3s Cluster with Controller Host $Hostname/$IPMaster and running on Port 9000 and 9443"
+      register: command_output
+    - debug: 
+             var: command_output.stdout_lines
