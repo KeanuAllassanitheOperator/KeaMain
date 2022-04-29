@@ -1,0 +1,12 @@
+---
+- name: Portainer Deletion for k0s Cluster
+  hosts: 172.16.17.219
+  tasks:
+    - name: Destroy Portainer on k0s Master
+      shell: | 
+         k3s kubectl delete ns portainer
+         IPMaster=$(hostname -I | cut -d' ' -f1)
+         echo "Portainer deleted on Controller Host $IPMaster"
+      register: command_output
+    - debug: 
+             var: command_output.stdout_lines 
