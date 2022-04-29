@@ -10,7 +10,7 @@ Windows:
 - Axigen Email Automatisierung anlegen von mehreren Konten z.B
 
 - Pulumi virtuelle Maschinen erstellen. Man braucht allerdings einen Ressorucenpool, da die Funktion von Pulumi um VM zu erstellen dies erwartet als Übergabeparameter. Müssen uns das mal genauer anschauen, ob man einen kreiert.
-
+- Ansible Pub Key verteilen
 - Workflow automatisieren
 - Pulumi anschauen
 - Ansible Windows Client Automatisierung
