@@ -6,10 +6,11 @@ Windows:
 - Kunden Windows Server mit Powershell automatisieren mit einigen Skripten (gitlab Anbindung intern)
 - Sauberes Deinstallieren von Veeam, Mailstore und Exchange und AD und DC
 
-
+- Ansible Pub Key verteilen 
 - Workflow automatisieren
 - Pulumi anschauen
 - Ansible Windows Client Automatisierung
+
 Für Megabit und deren Kunden:
 - Powershell typische Windows Aufgaben automatisieren 
 - Eigene Gitlab Instanz im Kundennetzen, Um flexibel Auf Powershell Änderungen zu reagieren und Diese Zur Lokalen Gitlab Instanz uploaded Kann. Dort verwalte Ich Und Downloade Meine PS Scripte zu den Windows Servern 
