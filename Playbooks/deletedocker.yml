@@ -1,0 +1,10 @@
+---
+- name: Delete Docker 
+  hosts: ControllerIPK0s
+  tasks:
+    - name: Delete Docker
+      shell: | 
+        sudo apt-get purge -y docker-engine docker docker.io docker-ce docker-ce-cli docker-compose
+      register: command_output
+    - debug: 
+             var: command_output.stdout_lines 
