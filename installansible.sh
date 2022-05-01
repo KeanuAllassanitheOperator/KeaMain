@@ -14,7 +14,7 @@ ansible --version
 sudo apt install -y nodejs npm
 sudo npm install npm --global
 wget https://github.com/ansible/awx/archive/17.1.0.zip
-sudo unzip 17.1.0.zip
+unzip 17.1.0.zip
 cd awx-17.1.0/installer
 DecryptKey=$( pwgen -N 1 -s 30)
 sed 's/# admin_password=password/admin_password=ansible1234#/g'
