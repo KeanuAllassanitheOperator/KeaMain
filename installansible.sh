@@ -17,7 +17,7 @@ wget https://github.com/ansible/awx/archive/17.1.0.zip
 unzip 17.1.0.zip
 cd awx-17.1.0/installer
 DecryptKey=$( pwgen -N 1 -s 30)
-sed 's/# admin_password=password/admin_password=ansible1234#/g'
-sed 's/secret_key=awxsecret/secret_key=$DecryptKey/g'
+sed 's/# admin_password=password/admin_password=ansible1234#/g' inventory
+sed 's/secret_key=awxsecret/secret_key=$DecryptKey/g' inventory
 ansible-playbook -i inventory install.yml
 sudo systemctl status docker
