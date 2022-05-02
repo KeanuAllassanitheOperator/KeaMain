@@ -5,6 +5,8 @@ Megabit Virtualisierungsstruktur:
 https://docs.ansible.com/ansible/latest/collections/community/vmware/vmware_host_facts_module.html
 - Mergen von Konfigen
 
+- ArgoCD anschauen
+
 Windows: 
 -  Prüfen, welche Strukturebenen vom AD und DC installiert werden (darf nicht zu alt sein)
 - Saubere DC Deinstallation und Herabstufung
