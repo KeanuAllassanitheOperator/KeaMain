@@ -6,3 +6,4 @@ sudo apt install vagrant -y
 sudo apt install ruby-dev build-essential libmysqlclient-dev rubygems -y
 gem install nokogiri --platform=ruby
 vagrant plugin install vagrant-vsphere vagrant-env
+sudo ansible-galaxy collection install kubernetes.core
