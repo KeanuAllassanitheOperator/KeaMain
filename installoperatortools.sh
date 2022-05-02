@@ -6,7 +6,6 @@ sudo apt install vagrant -y
 sudo apt install ruby-dev build-essential libmysqlclient-dev rubygems -y
 gem install nokogiri --platform=ruby
 vagrant plugin install vagrant-vsphere vagrant-env
-sudo ansible-galaxy collection install
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 sudo ansible-galaxy collection install community.vmware ansible.windows kubernetes.core community.windows
 sudo apt install nfs-kernel-server
