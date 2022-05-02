@@ -1,7 +1,7 @@
 TO DO:
 
 Megabit Virtualisierungsstruktur:
-- alle Hostnames und IPs vom Vcenter sammeln per Skript und in ein ssh known hosts file packen für ansible 
+- alle Hostnames und IPs vom Vcenter sammeln per Skript und in ein ssh known hosts file packen für ansible (Nutzung der Vcenter Vmware API)
 
 Windows: 
 -  Prüfen, welche Strukturebenen vom AD und DC installiert werden (darf nicht zu alt sein)
