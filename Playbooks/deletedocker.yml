@@ -4,7 +4,7 @@
   tasks:
     - name: Delete Docker
       shell: | 
-        sudo apt-get purge -y docker-engine docker docker.io docker-ce docker-ce-cli docker-compose
+        sudo apt-get purge -y docker-engine docker docker.io docker-ce docker-ce-cli docker-compose containerd.io
       register: command_output
     - debug: 
              var: command_output.stdout_lines 
