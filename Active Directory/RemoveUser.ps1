@@ -1,7 +1,3 @@
-$liste = @('')
+$User = Read-Host("Welchen User wollen Sie löschen? ")
+Remove-ADUser -Identity $User 
 
-foreach ($i in $liste) {
-
-Remove-ADUser -Identity $i
-
-}
