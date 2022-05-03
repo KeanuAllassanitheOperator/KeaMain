@@ -1,11 +1,8 @@
-#Listenobjekt oder Datei
 Add-type -AssemblyName System.Web
-
-$liste = @('Javier', 'Ingrid' 'Holger')
-
-foreach ($i in $liste) { 
+$Username = Read-Host("Neuer Benutzer: ") 
+$Group = Read-Host("Welche Gruppe? ")
 $password = [System.Web.Security.Membership]::GeneratePassword(12,1)
-New-ADUser -Name $i -AccountPassword $password -Passwordneverexpires $true -Enabled $true
-Add-ADGroupMember -Identity "Domänen-Admins" -Members $domainuser
-Write-Host  $i + " " + $password  
-}
+New-ADUser -Name $Username -AccountPassword $password -Passwordneverexpires $true -Enabled $true
+Add-ADGroupMember -Identity $Group -Members $Username
+Write-Host  $Username + " " + $password  
+
