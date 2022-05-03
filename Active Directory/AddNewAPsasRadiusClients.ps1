@@ -1,9 +1,5 @@
 # Liste der IPS von den APs
-$listeap = @('')
+$ap = Read-Host ("Name des Access Points")
 $secret = 
-$listeip = @('')
-foreach ($a in $listeap) {
- foreach ($i in $listeip) {
 New-NpsRadiusClient -Address $i -Name $a -SharedSecret $secret
- }
-}
+Get-NpsRadiusClient
