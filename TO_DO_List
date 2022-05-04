@@ -2,7 +2,7 @@ TO DO:
 
 Ideen für Deployments:
 AD mit Exchange 2 Windows Server
-k3s Cluster wie k0s
+k3s mit docker Cluster 
 Operator Host eine VM
 
 Megabit Virtualisierungsstruktur:
