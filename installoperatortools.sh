@@ -1,6 +1,7 @@
 #!/bin/bash
 sudo apt install git -y
 sudo apt install ansible -y
+sudo apt install sshpass -y
 sudo mkdir ansible-playbooks
 sudo apt install vagrant -y
 sudo apt install toilet -y 
