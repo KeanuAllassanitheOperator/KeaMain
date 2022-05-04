@@ -4,7 +4,7 @@ Ideen für Deployments:
 AD mit Exchange 2 Windows Server
 k3s mit docker Cluster 
 Operator Host eine VM
-
+- Datenbanken in dynamsichen Umgebungen wie Docker und Kubernetes
 Megabit Virtualisierungsstruktur:
 - alle Hostnames und IPs vom Vcenter sammeln per Skript und in ein ssh known hosts file packen für ansible (Nutzung der Vcenter Vmware API)
 https://docs.ansible.com/ansible/latest/collections/community/vmware/vmware_host_facts_module.html
