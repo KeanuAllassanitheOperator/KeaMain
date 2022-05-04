@@ -18,3 +18,5 @@ sudo ansible-galaxy collection install community.vmware ansible.windows kubernet
 sudo apt install nfs-kernel-server
 echo "/srv/nfs/kubedata*(rw,sync,no_subtree_check,no_root_squash,no_all_squash,insecure)" > /etc/exports
 touch ~/.ssh/known_hosts
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
