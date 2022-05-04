@@ -2,7 +2,7 @@ TO DO:
 
 Ideen für Deployments:
 AD mit Exchange 2 Windows Server
-k3s mit docker Cluster 
+Docker Swarm Cluster mit Portainer  
 Operator Host eine VM
 - Datenbanken in dynamsichen Umgebungen wie Docker und Kubernetes
 Megabit Virtualisierungsstruktur:
