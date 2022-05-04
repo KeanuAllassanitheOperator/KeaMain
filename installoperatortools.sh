@@ -7,6 +7,11 @@ sudo apt install toilet -y
 sudo apt install ruby-dev build-essential libmysqlclient-dev rubygems -y
 gem install nokogiri --platform=ruby
 vagrant plugin install vagrant-env vagrant-vsphere
+VER=$(curl -s https://api.github.com/repos/k0sproject/k0sctl/releases/latest|grep tag_name | cut -d '"' -f 4)
+wget https://github.com/k0sproject/k0sctl/releases/download/${VER}/k0sctl-linux-x64 -O k0sctl
+sudo chmod +x k0sctl
+sudo cp k0sctl /usr/local/bin/ /bin
+sudo sh -c 'k0sctl completion >/etc/bash_completion.d/k0sctl'
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 sudo ansible-galaxy collection install community.vmware ansible.windows kubernetes.core community.windows
 sudo apt install nfs-kernel-server
