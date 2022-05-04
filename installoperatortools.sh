@@ -17,4 +17,4 @@ curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 sudo ansible-galaxy collection install community.vmware ansible.windows kubernetes.core community.windows
 sudo apt install nfs-kernel-server
 echo "/srv/nfs/kubedata*(rw,sync,no_subtree_check,no_root_squash,no_all_squash,insecure)" > /etc/exports
-
+touch ~/.ssh/known_hosts
