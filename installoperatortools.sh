@@ -21,3 +21,5 @@ echo "/srv/nfs/kubedata*(rw,sync,no_subtree_check,no_root_squash,no_all_squash,i
 touch ~/.ssh/known_hosts
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+sudo mkdir /srv/nfs
+sudo mkdir /srv/nfs/kubedata
