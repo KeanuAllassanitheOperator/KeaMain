@@ -14,7 +14,7 @@ Virtualisierungsstruktur:
 https://docs.ansible.com/ansible/latest/collections/community/vmware/vmware_host_facts_module.html
 - Mergen von Konfigen
 
-- ArgoCD anschauen
+
 
 Windows: 
 -  Prüfen, welche Strukturebenen vom AD und DC installiert werden (darf nicht zu alt sein)
@@ -42,7 +42,7 @@ Für die Basic Infrastructure
 - extrem flexible auf Änderungen reagieren
 Storage: 
 - Backup von Storage
-- NFS weiter ausbauen
+- NFS weiter ausbauen (VMs als NFS Server für Kubernetes Cluster)
 - Volumenplanung
 
 Sicherheit: 
@@ -56,7 +56,7 @@ Logging und Monitoring:
 - Loki (Logging für Kubernetes)
 - Grafana https://tanka.dev/ is ne gute Anleitung zur Grafana Integration in Kubernetes Umgebungen
 Grafana Docs https://grafana.com/docs/
-- entweder mit checkmk oder prometheus verbinden, um Datenquellen zu haben und Werte zu haben, die sehr schön dargestellt werden. Ggf Skalierung
+- mit prometheus verbinden, um Datenquellen zu haben und Werte zu haben, die sehr schön dargestellt werden. Ggf Skalierung
 
 
 Für Oxidized, wenn wir das mal irgendwann automatisch deployen:
