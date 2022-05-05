@@ -1,3 +1,6 @@
-$Group = Read-Host("Welche AD Gruppe wollen Sie löschen? ")
-Remove-ADGroup -Identity $Group
+$Group = @('')
+foreach $i in $Group {
+Remove-ADGroup -Identity $i
+
+}
 
