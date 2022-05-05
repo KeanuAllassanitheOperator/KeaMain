@@ -1,6 +1,6 @@
 #https://docs.microsoft.com/en-us/exchange/plan-and-deploy/deploy-new-installations/unattended-installs?view=exchserver-2019 #für mehre Optionen bei dem Setup.exe Command je nach Anwendungsfall
 Invoke-WebRequest -OutFile "C:\vc_redist.x64.exe" https://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x64.exe 
-Start-Process "C:\vc_redist.x64.exe" -ArgumentList "/passive" -wait -Passthru
+C:\vc_redist.x64.exe /install /quiet /norestart
 del C:\vc_redist.x64.exe
 #Invoke-WebRequest -OutFile "C:\UcmaRuntimeSetup.exe" https://download.microsoft.com/download/D/F/F/#DFFB3570-3264-4E01-BB9B-0EFDA4F9354F/UcmaRuntimeSetup.exe
 #Start-Process "C:\UcmaRuntimeSetup.exe" -ArgumentList "/passive" -wait -Passthru
