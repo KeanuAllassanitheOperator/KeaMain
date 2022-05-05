@@ -23,4 +23,6 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 sudo mkdir /srv/nfs
 sudo mkdir /srv/nfs/kubedata
+sudo apt install pip 
+pip install PyYAML
 helm plugin install https://github.com/databus23/helm-diff
