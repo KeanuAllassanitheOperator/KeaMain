@@ -1,5 +1,5 @@
 $RemoveRadClient = @('')
 foreach $i in $RemoveRadClient {
-Remove-NpsRadiusClient -Namei
+Remove-NpsRadiusClient -Name $i
 }
 Get-NpsRadiusClient
