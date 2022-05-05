@@ -1,3 +1,5 @@
-$RemoveRadClient = Read-Host("Welchen RadiusClient wollen Sie entfernen? ")
-Remove-NpsRadiusClient -Name $RemoveRadClient
+$RemoveRadClient = @('')
+foreach $i in $RemoveRadClient {
+Remove-NpsRadiusClient -Namei
+}
 Get-NpsRadiusClient
