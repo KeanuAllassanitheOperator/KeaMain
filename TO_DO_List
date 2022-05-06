@@ -18,8 +18,6 @@ https://docs.ansible.com/ansible/latest/collections/community/vmware/vmware_host
 
 
 Windows: 
--  Prüfen, welche Strukturebenen vom AD und DC installiert werden (darf nicht zu alt sein)
-- Saubere DC Deinstallation und Herabstufung
 - Allgemeine AD, Exchange und Windows Aufgaben automatisieren (Veeam und Mailstore auch)
 - Kunden Windows Server mit Powershell automatisieren mit einigen Skripten (gitlab Anbindung intern)
 - Sauberes Deinstallieren von Veeam, Mailstore und Exchange und AD und DC
