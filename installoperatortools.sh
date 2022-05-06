@@ -26,6 +26,9 @@ sudo mkdir /srv/nfs/kubedata
 sudo apt install pip 
 pip install PyYAML
 helm plugin install https://github.com/databus23/helm-diff
+
 # Values manipulieren und auf chart anpassen und in das richtige verzeichnis packen für neue Microservices, damit die Daten davon persistent gespeichert werden
 helm repo add reponame repourl
 helm show values chart >> /tmp/chartname.values
+mv to chart directory with playbooks 
+storageClassName anpassen auf den Namen nfs-client
