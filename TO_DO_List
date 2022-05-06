@@ -1,5 +1,5 @@
 TO DO:
-
+- Storage für k0s pv und pvc und Load Balancing
 Ideen für Deployments:
 AD mit Exchange 2 Windows Server 
 Operator Host eine VM
