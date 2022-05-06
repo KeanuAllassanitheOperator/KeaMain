@@ -9,6 +9,7 @@ Megabit
 - Eigene Images 
 - Kompose Konverten in Kubernetes docker compose
 - SShKeygen auf Deployment als Auth
+- Git Authentifizierung einrichten
 Virtualisierungsstruktur:
 - alle Hostnames und IPs vom Vcenter sammeln per Skript und in ein ssh known hosts file packen für ansible (Nutzung der Vcenter Vmware API)
 https://docs.ansible.com/ansible/latest/collections/community/vmware/vmware_host_facts_module.html
