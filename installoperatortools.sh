@@ -26,3 +26,5 @@ sudo mkdir /srv/nfs/kubedata
 sudo apt install pip 
 pip install PyYAML
 helm plugin install https://github.com/databus23/helm-diff
+# Values manipulieren und auf chart anpassen
+helm show values prometheus-community/kube-prometheus-stack >> /tmp/kube-prometheus-stack.values
