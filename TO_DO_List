@@ -1,4 +1,5 @@
 TO DO:
+- apt mark hold skript, um Versionen von Software beizubehalten
 - irgendwann von vagrant auf ansible umsteigen um damit vms zu deployen
 - Storage für k0s pv und pvc und Load Balancing
 Ideen für Deployments:
