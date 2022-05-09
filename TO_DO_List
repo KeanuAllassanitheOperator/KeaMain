@@ -3,6 +3,7 @@ TO DO:
 - unhold für staging
 - irgendwann von vagrant auf ansible umsteigen um damit vms zu deployen
 - Storage für k0s pv und pvc und Load Balancing
+- NFS SERVER Als Separate VMs Und Die Mit Veeam Backupen 
 Ideen für Deployments:
 AD mit Exchange 2 Windows Server 
 Operator Host eine VM
