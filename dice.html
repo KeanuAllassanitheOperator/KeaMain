@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+   <script src="JavaScript/jquery-1.6.1.min.js" type="text/javascript"></script>
+</head>
+<body>
+
+<style>
+body {
+  background-image: url('https://mh-1-bildagentur.panthermedia.net/media/previews/0010000000/10538000/~w%C3%BCrfel---gl%C3%BCcksspiel_10538527_high.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+<script language="JavaScript">
+  var dice = {
+  sides: 6,
+  roll: function () {
+    var randomNumber = Math.floor(Math.random() * this.sides) + 1;
+    var placeholder = document.getElementById('dicenumber');
+    document.dicenumber.value = number;
+    return randomNumber;
+  }
+
+}
+ 
+ 
+</script>
+        <center><div>
+        <h1>Roll the Dice and win</h1>
+
+       <button type="button" onclick="DiceRoll()" class="button2">Würfeln</button><br /><br/>
+      <input type="text" name="dicenumber" id="dicenumber" size="5" readonly="readonly">
+       <div></center>
+
+</body>
+</html>
