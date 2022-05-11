@@ -1,4 +1,5 @@
 TO DO:
+
 - apt mark hold skript, um Versionen von Software beizubehalten
 - unhold für staging
 - irgendwann von vagrant auf ansible umsteigen um damit vms zu deployen
@@ -42,11 +43,12 @@ Für die Basic Infrastructure
 - Ansible zur Konfigurationsautomatisierung (
 - Terraform zur Infrastruktur Automatisierung
 - extrem flexible auf Änderungen reagieren
-Storage: 
+
+Storage und Backup: 
 - Backup von Storage
 - NFS weiter ausbauen (VMs als NFS Server für Kubernetes Cluster)
 - Volumenplanung
-
+- https://helpcenter.veeam.com/docs/backup/kasten_integration/overview.html?ver=110 Kasten K10 with Veeam Kasten K10 Kubernetes Object Backup Solution
 Sicherheit: 
 - Secret Management (Vault), davon Secrets pullen
 - Snyk Code Vuln Scanner
