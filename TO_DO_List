@@ -1,5 +1,5 @@
 TO DO:
-
+- Google Ki Chip Tensorflow. Evtl schauen, wie dadurch Kubernetes Workflows verbessert werden oder integriert werden kann
 - apt mark hold skript, um Versionen von Software beizubehalten
 - unhold für staging
 - irgendwann von vagrant auf ansible umsteigen um damit vms zu deployen
