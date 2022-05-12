@@ -34,3 +34,5 @@ helm show values chart >> /tmp/chartname.values
 mv to chart directory with playbooks 
 storageClassName anpassen auf den Namen nfs-client
 # Am besten immer auf musterbeispiele der anderen micorservices sich das abschaun
+
+touch ~/.bash_aliases && echo "alias k='kubectl'" > ~/.bash_aliases
