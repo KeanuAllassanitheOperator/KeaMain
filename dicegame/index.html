@@ -1,0 +1,81 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <center><h1>Roll with the Dice a 6 and Win</h1></center>
+
+<style>
+
+
+body {
+  background-image: url('https://mh-1-bildagentur.panthermedia.net/media/previews/0010000000/10538000/~w%C3%BCrfel---gl%C3%BCcksspiel_10538527_high.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+button {
+  background-color: rgb(82, 186, 179);
+  border-radius: 6px;
+  border: none;
+  color: rgb(255, 255, 255);
+  padding: 10px;
+  text-transform: uppercase;
+  width: 200px;
+  cursor: pointer;
+}
+
+.number {
+  height: 100px;
+  width: 100px;
+  padding: 50px;
+  margin: 50px auto;
+  border: 1px solid gray;
+  border-radius: 10px;
+  font-size:80px;
+}
+input[type=text] {
+  width: 20%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+</style>
+
+</head>
+<body>
+
+    <center><button class="roller" onclick="counter=10;rollTheDice()">Würfeln</button><center></br>
+    <h2 class="number"></h2>
+    <input type="text" name="rollcount" id="rollcount" size="40" readonly="readonly">
+</body>
+
+<script>
+var rollcount = 0;
+function rollTheDice() {
+        var dicesides = 6;
+        var x = Math.floor(Math.random()*dicesides) + 1;
+        document.querySelector(".number").innerHTML = x;
+        if (--counter>0) setTimeout(rollTheDice, 100);
+  if (counter == 0) {
+     rollcount++;
+   }
+  if (x != 6 && counter == 0) {
+    document.getElementById("rollcount").value = "Roll Tries: " + rollcount;
+  } else if (x == 6 && counter == 0 && rollcount == 1) {
+     document.getElementById("rollcount").value = "You needed 1 Try! Excellent!";
+     rollcount = 0;
+
+   } else if (x == 6 && counter == 0 && rollcount > 1 ) {
+     document.getElementById("rollcount").value = "You needed " + rollcount + " Tries! Congratulations!";
+     rollcount = 0;
+   }
+}
+
+
+</script>
+
+</html>
