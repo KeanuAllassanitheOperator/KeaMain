@@ -1,0 +1,27 @@
+---
+- hosts: webserver
+  remote_user: root
+  tasks:
+   - shell: |
+        for i in $( ls -1 /var/www | grep "\." );do touch /tmp/vhost$i; done
+           
+     register: cmd
+
+   - debug:
+       msg: "{{ cmd.stdout }}"
+
+
+   - name: "Copy CheckMKScript"
+     copy: 
+       src: /home/..
+       dest: /usr/lib/---
+       owner: root
+       group: root
+       mode: 0700
+  
+   - shell: |
+        bash /usr/lib/blub
+     register: cmd
+
+   - debug:
+       msg: "{{ cmd.stdout }}"
