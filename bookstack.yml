@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/bookstack anleitung und konfiguration des containers zu bookstack
 ---
 version: "2"
 services:
