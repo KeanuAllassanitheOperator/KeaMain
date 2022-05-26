@@ -1,11 +1,11 @@
 #!/bin/bash
 
-  output=/tmp/output-checkmk.txt
+  output=/etc/output-checkmk.txt
   echo -n "0 \"AnzahlderZugriffeaufVHostsProMinute\" " > $output
   anzahl=0
   for vhost in $( ls -1 /var/www | grep "\." ); do
     #echo $i
-    hf=/tmp/vhost$vhost  # alte anzahl get requests
+    hf=/etc/vhost$vhost  # alte anzahl get requests
     AAL=/var/www/$vhost/logs/access.log
     z=$(cat $AAL | grep -c GET)
     difftime=$(( $(date +%s) - $(stat -c %Y $hf) ))
