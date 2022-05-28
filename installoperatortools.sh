@@ -40,5 +40,5 @@ touch ~/.bash_aliases && echo "alias k='kubectl'" > ~/.bash_aliases
 sudo apt install jq 
 ansible-galaxy collection install tribe29.checkmk
 sudo apt-get install yamllint
-
+ansible-galaxy collection install community.mysql
 
