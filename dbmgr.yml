@@ -1,0 +1,84 @@
+---
+# DB User anlegen funktioniert nicht muss separat gemacht werden
+- hosts: "{{ lookup('env', 'srchost') }}"
+  remote_user: root
+  
+  tasks:
+  - name: Copy .my.cnf for mysql operations
+    copy:
+      src: .my.cnf
+      dest: /root
+      owner: root
+      group: root
+      mode: 0600
+ 
+  - name: Dump database from vhost
+    shell:
+       "mysqldump {{ lookup('env', 'DB') }} > {{ lookup('env', 'DB') }}.sql"
+    register: cmd
+
+  - debug:
+       msg: "{{ cmd.stdout }}"
+ 
+     
+  - name: "Copy DBDump to Ansible Host"
+    fetch:
+       src: "/root/{{ lookup('env', 'DB') }}.sql"
+       dest: /tmp/
+       flat: yes
+   
+
+
+
+- hosts: "{{ lookup('env', 'desthost') }}"
+  remote_user: root
+  
+  tasks:
+  - name: Copy .my.cnf for mysql operations
+    copy:
+      src: .my.cnf
+      dest: /root
+      owner: root
+      group: root
+      mode: 0600
+ 
+  - name: Source .dbenv to load variables on Bash and Create a new database for vhost
+    shell: 
+       "mysql -e 'Create Database IF NOT EXISTS '{{ lookup('env', 'DB') }}';'"
+    register: cmd
+  
+  - debug:
+       msg: "{{ cmd.stdout }}"
+    tags: createdb
+
+  - name: Create database user with password and privilege him to db
+    become: true 
+    shell: |
+        #"mysql -e "Create User '{{ lookup('env', 'DBUSER') }}'@'localhost' IDENTIFIED BY '{{ lookup('env', 'DBPW') }}';""
+        #"mysql -e 'GRANT ALL PRIVILEGES ON {{ lookup('env', 'DB') }}.* TO '{{ lookup('env', 'DBUSER') }}'@'localhost';'"
+        # mysql -e 'FLUSH PRIVILEGES;'
+    register: cmd
+
+  - debug:
+        msg: "{{ cmd.stdout }}"
+    tags: db
+
+  - name: "Copy DBDump to Target Host"
+    copy:
+       src: "/tmp/{{ lookup('env', 'DB') }}.sql"
+       dest: /root
+       owner: root
+       group: root
+       mode: 0644
+      # remote_src: yes
+ 
+  - name: Import database from vhost to Target Host
+    shell:
+       "mysql {{ lookup('env', 'DB') }} < {{ lookup('env', 'DB') }}.sql"
+    register: cmd
+
+  - debug:
+       msg: "{{ cmd.stdout }}"
+
+   
+      

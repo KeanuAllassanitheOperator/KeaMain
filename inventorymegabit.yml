@@ -1,0 +1,16 @@
+[webserver]
+cms03.megabit.net ansible_port=22 ansible_host=cms03.megabit.net ansible_user=root ansible_ssh_private_key_file=/home/rne/.ssh/ansiblekey  
+cms04.megabit.net ansible_port=22 ansible_host=cms04.megabit.net ansible_user=root ansible_ssh_private_key_file=/home/rne/.ssh/ansiblekey
+cms05.megabit.net ansible_port=22 ansible_host=cms05.megabit.net ansible_user=root ansible_ssh_private_key_file=/home/rne/.ssh/ansiblekey
+cms07.megabit.net ansible_port=22 ansible_host=cms07.megabit.net ansible_user=root ansible_ssh_private_key_file=/home/rne/.ssh/ansiblekey
+cms08.megabit.net ansible_port=22 ansible_host=cms08.megabit.net ansible_user=root ansible_ssh_private_key_file=/home/rne/.ssh/ansiblekey
+web05.megabit.net ansible_port=22 ansible_host=web05.megabit.net ansible_user=root ansible_ssh_private_key_file=/home/rne/.ssh/ansiblekey
+web06.megabit.net ansible_port=22 ansible_host=web06.megabit.net ansible_user=root ansible_ssh_private_key_file=/home/rne/.ssh/ansiblekey
+web07.megabit.net ansible_port=22 ansible_host=web07.megabit.net ansible_user=root ansible_ssh_private_key_file=/home/rne/.ssh/ansiblekey
+web08.megabit.net ansible_port=22 ansible_host=web08.megabit.net ansible_user=root ansible_ssh_private_key_file=/home/rne/.ssh/ansiblekey
+web09.megabit.net ansible_port=22 ansible_host=web09.megabit.net ansible_user=root ansible_ssh_private_key_file=/home/rne/.ssh/ansiblekey
+
+[migration]
+web05.megabit.net ansible_port=22 ansible_host=web05.megabit.net ansible_user=root ansible_ssh_private_key_file=/home/rne/.ssh/ansiblekey
+web08.megabit.net ansible_port=22 ansible_host=web08.megabit.net ansible_user=root ansible_ssh_private_key_file=/home/rne/.ssh/ansiblekey
+

@@ -1,0 +1,57 @@
+---
+- hosts: "{{ lookup('env', 'srchost') }}"
+  remote_user: root
+  tasks:
+  - name: zip Vhost
+    delegate_to: "{{ lookup('env', 'srchost') }}"
+    archive:
+     path:
+        - "{{ lookup('env', 'vhostdir') }}/stats"
+        - "{{ lookup('env', 'vhostdir') }}/logs"
+        - "{{ lookup('env', 'vhostdir') }}/htdocs"
+        - "{{ lookup('env', 'vhostdir') }}/conf"
+     dest: "{{ lookup('env', 'archivedir') }}/{{ lookup('env', 'vhost') }}.zip"
+     format: zip
+
+
+    
+  - name: "Copy Vhost zip to Ansible Host"
+    fetch:
+       src: "{{ lookup('env', 'archivedir') }}/{{ lookup('env', 'vhost') }}.zip"
+       dest: "/tmp/{{ lookup('env', 'vhost') }}.zip"
+       flat: yes
+
+
+- hosts: "{{ lookup('env', 'desthost') }}"
+  remote_user: root
+  tasks:
+   # - name: Call a2addsite if the vhost doesnt exist on target host
+    #  shell:
+    #    a2addsite.sh {{ vhostdir }} user
+
+  - name: Copy .my.cnf for mysql operations
+    copy:
+      src: .my.cnf
+      dest: /root
+      owner: root
+      group: root
+      mode: 0600
+ 
+
+  - name: "Copy Zip to Target Host" 
+    copy: 
+        src: "/tmp/{{ lookup('env', 'vhost') }}.zip"
+        dest: "{{ lookup('env', 'archivedir') }}"
+        owner: root
+        group: root
+        mode: 0644
+        #remote_src: yes
+
+ 
+  - name: Extract Vhost on Target Host
+    unarchive:      
+       src: "{{ lookup('env', 'archivedir') }}/{{ lookup('env', 'vhost') }}.zip"       
+       dest: "{{ lookup('env', 'vhostdir') }}"
+       remote_src: yes
+   
+      

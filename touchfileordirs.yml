@@ -1,0 +1,11 @@
+---
+- hosts: webserver
+  remote_user: root
+  tasks:
+   - name: Create directories
+     shell:
+        mkdir /root/vhostarchives
+     register: cmd
+
+   - debug:
+       msg: "{{ cmd.stdout }}"

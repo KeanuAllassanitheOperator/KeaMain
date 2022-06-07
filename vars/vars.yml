@@ -1,0 +1,9 @@
+---
+srchost: web05.megabit.net
+desthost: web08.megabit.net
+tempdumpdir: /root
+vhostdir: /var/www/testomat.megabit.net
+archivedir: /root/vhostarchives
+db: testomatdb
+vhost: testomat.megabit.net
+tempzipdironanshost: /tmp/{{ vhost }}.zip

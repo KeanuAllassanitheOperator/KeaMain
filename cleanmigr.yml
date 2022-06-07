@@ -1,0 +1,55 @@
+---
+- hosts: "{{ lookup('env', 'srchost') }}"
+  remote_user: root
+  #strategy: mitogen_linear
+  tasks:
+
+  - name: remove my.cnf from srchost
+    shell:
+       rm /root/.my.cnf
+    register: cmd
+ 
+  - debug:
+       msg: "{{ cmd.stdout }}"
+
+
+- hosts: "{{ lookup('env', 'desthost') }}"
+  remote_user: root
+  #strategy: mitogen_linear
+  tasks:
+
+  - name: Drop Database
+    shell:
+       "mysql -e 'Drop Database '{{ lookup('env', 'DB') }}';'"
+    register: cmd
+
+  - debug:
+       msg: "{{ cmd.stdout }}"
+
+
+  - name: remove my.cnf from desthost
+    shell:
+       rm /root/.my.cnf
+    register: cmd
+
+  - debug:
+       msg: "{{ cmd.stdout }}"
+
+
+
+
+- hosts: localhost
+  remote_user: root
+  #strategy: mitogen_linear
+  tasks:
+  - name: remove Zip and Dump from Ansible Host
+    shell:
+        rm "/tmp/{{ lookup('env', 'vhost') }}.zip"
+        rm "/tmp/{{ lookup('env', 'DB') }}.sql"
+    register: cmd
+
+  - debug:
+       msg: "{{ cmd.stdout }}"
+
+
+

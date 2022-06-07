@@ -1,0 +1,6 @@
+#!/bin/bash
+source .env
+cat /var/www/www.gym-st-wolfhelm.de/htdocs/wp-config.php | grep "DB_USER" | cut -d ' ' -f2 | tr -d ' );' | tr -d "'"
+cat /var/www/www.gym-st-wolfhelm.de/htdocs/wp-config.php | grep "DB_PASSWORD" | cut -d ' ' -f2 | tr -d ' );' | tr -d "'"
+cat /var/www/www.gym-st-wolfhelm.de/htdocs/wp-config.php | grep "DB_HOST" | cut -d ' ' -f2 | tr -d ' );' | tr -d "'"
+
