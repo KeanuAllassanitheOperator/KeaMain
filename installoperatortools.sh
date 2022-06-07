@@ -27,6 +27,7 @@ sudo apt install pip
 pip install PyYAML
 helm plugin install https://github.com/databus23/helm-diff
 sudo apt install figlet
+pip3 install pyVim
 
 # Values manipulieren und auf chart anpassen und in das richtige verzeichnis packen für neue Microservices, damit die Daten davon persistent gespeichert werden
 helm repo add reponame repourl
