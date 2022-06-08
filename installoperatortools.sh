@@ -44,4 +44,11 @@ sudo apt-get install yamllint
 ansible-galaxy collection install community.mysql
 # Python Virtual Environments erstellen
 https://www.redhat.com/sysadmin/python-venv-ansible
+python3 -m venv ansible2.12.5
+source ansible2.12.5/bin/activate
+python3 -m pip install ansible==2.9
+pip3 install --upgrade pip setuptools
+pip3 install --upgrade git+https://github.com/vmware/vsphere-automation-sdk-python.git
+pip3 install PyVmomi
+pip3 install pyVim
 
