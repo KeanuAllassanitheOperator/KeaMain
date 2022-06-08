@@ -42,4 +42,6 @@ sudo apt install jq
 ansible-galaxy collection install tribe29.checkmk
 sudo apt-get install yamllint
 ansible-galaxy collection install community.mysql
+# Python Virtual Environments erstellen
+https://www.redhat.com/sysadmin/python-venv-ansible
 
