@@ -51,4 +51,5 @@ pip3 install --upgrade pip setuptools
 pip3 install --upgrade git+https://github.com/vmware/vsphere-automation-sdk-python.git
 pip3 install PyVmomi
 pip3 install pyVim
+pip3 install PyMySQL 
 
