@@ -35,7 +35,10 @@ helm show values chart >> /tmp/chartname.values
 mv to chart directory with playbooks 
 storageClassName anpassen auf den Namen nfs-client
 # Am besten immer auf musterbeispiele der anderen micorservices sich das abschaun
-
+ansible-galaxy collection install ansible.windows
+pip3 install pywinrm[credssp]
+pip3 install pywinrm[kerberos]
+python3 -m pip install --ignore-installed pywinrm
 touch ~/.bash_aliases && echo "alias k='kubectl'" > ~/.bash_aliases
 # Um den Output von API Reqs als Json Reqs aufzurufen und im Json Format lesen können was passiert ist
 sudo apt install jq 
