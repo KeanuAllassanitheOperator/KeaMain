@@ -6,6 +6,7 @@ Oops! Never committed!
 git push -u origin master
 error: src refspec master does not match any.
 All I had to do was:
+git checkout -b k0ssstorage
 
 git commit -m "initial commit"
 git push origin main
