@@ -55,4 +55,4 @@ pip3 install --upgrade git+https://github.com/vmware/vsphere-automation-sdk-pyth
 pip3 install PyVmomi
 pip3 install pyVim
 pip3 install PyMySQL 
-
+ansible-galaxy collection install community.windows
