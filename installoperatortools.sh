@@ -56,3 +56,5 @@ pip3 install PyVmomi
 pip3 install pyVim
 pip3 install PyMySQL 
 ansible-galaxy collection install community.windows
+# JSON Queries und Parsing für python nutzen
+pip3 install jmespath
