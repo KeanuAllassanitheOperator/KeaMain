@@ -1,3 +1,4 @@
+docker run --name collaboraserver -t -d -p 9980:9980 -e "extra_params=--o:ssl.enable=false" collabora/code
 version: '3'
 
 volumes:
