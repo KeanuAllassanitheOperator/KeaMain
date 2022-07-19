@@ -59,3 +59,4 @@ ansible-galaxy collection install community.windows
 # JSON Queries und Parsing für python nutzen
 pip3 install jmespath
 ansible-galaxy collection install community.docker
+ansible-galaxy install mycloudrevolution.veeam
