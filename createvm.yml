@@ -1,0 +1,25 @@
+---
+- hosts: localhost
+  gather_facts: no
+  vars_files: ./vars.yml
+  tasks:
+   - name: Clone a virtual machine from Linux template and customize
+     community.vmware.vmware_guest:
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      datacenter:  "{{ datacenter }}"
+      datastore: "{{ datastore }}"
+      cluster: "{{ cluster }}"
+      validate_certs: no
+      state: powered-on
+      folder: "{{ folder }}"
+      name: "{{ item }}"
+      template: "{{ template }}"
+      wait_for_ip_address: true
+      wait_for_ip_address_timeout: 600
+      networks:
+       - name: "{{ network }}"
+         type: dhcp
+     with_items: "{{ linuxserver }}"
+ 

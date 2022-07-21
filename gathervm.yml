@@ -1,0 +1,25 @@
+---
+- hosts: localhost
+  gather_facts: no
+  vars_files: ./vars.yml
+  tasks:
+   - name: Gather VMware guest facts
+     community.vmware.vmware_guest_info:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        datacenter: "{{ datacenter }}"
+        validate_certs: no
+        name: "{{ item }}"
+     register: no_vm_result
+     with_items: "{{ linuxserver }}"
+
+              
+   - name: Get IPv4 address of VMs to add to DNS configuration
+     debug:
+        msg: "{{ no_vm_result.results | json_query(s_query) }}"
+     vars:
+        s_query: "[?instance.hw_name == '{{ item }}'].instance.ipv4"
+     with_items: "{{ linuxserver }}"
+    
+    

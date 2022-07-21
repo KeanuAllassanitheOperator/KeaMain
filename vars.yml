@@ -1,0 +1,12 @@
+---
+vcenter_hostname: vcenter-office.megabit.net
+vcenter_username: administrator@megabit.net
+vcenter_password: M1t@0tD.
+cluster: RZCluster-2
+datacenter: Datacenter-RZ-2
+datastore: vsanDatastoreOffcie
+template: k0s_deb11
+folder: Azubi-Spielwiese
+network: Office-Netz_RZ
+linuxserver:
+- zammadtest

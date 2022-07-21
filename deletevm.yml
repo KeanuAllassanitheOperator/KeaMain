@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  vars_files: ./vars.yml
+  tasks: 
+    - name: Delete VM
+      community.vmware.vmware_guest:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: no
+        force: true
+        name: "{{ item }}"
+        delete_from_inventory: True
+        state: absent
+      with_items: "{{ linuxserver }}"
+        
