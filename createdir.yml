@@ -1,0 +1,9 @@
+---
+- hosts: veeam
+  vars_files:
+    - vars.yml
+  tasks: 
+   - name: Create PSScripts
+     ansible.windows.win_file:
+       path: "{{ psdir }}"
+       state: directory

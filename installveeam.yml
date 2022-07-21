@@ -1,0 +1,26 @@
+---
+- hosts: veeam
+  gather_facts: no
+  vars_files: 
+   - vars.yml
+  tasks:
+  - name: Install chocolatey
+    win_chocolatey:
+        name:
+         - chocolatey
+         - chocolatey-core.extension
+        state: present
+
+
+  - name: Install Veeam B and R Console
+     win_chocolatey:
+        name:
+         - veeam-backup-and-replication-console
+        state: present
+
+  - name: Install Veeam B and R Server
+    win_chocolatey:   
+      name: veeam-backup-and-replication-server
+      source: https://community.chocolatey.org/api/v2/
+      version: '11.0.1.1261'
+      state: present
