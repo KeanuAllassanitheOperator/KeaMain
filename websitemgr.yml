@@ -1,47 +1,44 @@
 ---
-- hosts: "{{ lookup('env', 'srchost') }}"
+- hosts: "{{ srchost }}"
   remote_user: root
+  #strategy: mitogen_linear
+  vars_files:
+   - ./vars/vars.yml
   tasks:
   - name: zip Vhost
-    delegate_to: "{{ lookup('env', 'srchost') }}"
+    delegate_to: "{{ srchost }}"
     archive:
      path:
-        - "{{ lookup('env', 'vhostdir') }}/stats"
-        - "{{ lookup('env', 'vhostdir') }}/logs"
-        - "{{ lookup('env', 'vhostdir') }}/htdocs"
-        - "{{ lookup('env', 'vhostdir') }}/conf"
-     dest: "{{ lookup('env', 'archivedir') }}/{{ lookup('env', 'vhost') }}.zip"
+        - "{{ vhostdir }}/stats"
+        - "{{ vhostdir }}/logs"
+        - "{{ vhostdir }}/htdocs"
+        - "{{ vhostdir }}/conf"
+     dest: "{{ archivedir }}/{{ vhost }}.zip"
      format: zip
 
 
     
   - name: "Copy Vhost zip to Ansible Host"
     fetch:
-       src: "{{ lookup('env', 'archivedir') }}/{{ lookup('env', 'vhost') }}.zip"
-       dest: "/tmp/{{ lookup('env', 'vhost') }}.zip"
+       src: "{{ archivedir }}/{{ vhost }}.zip"
+       dest: "/tmp/{{ vhost }}.zip"
        flat: yes
 
 
-- hosts: "{{ lookup('env', 'desthost') }}"
+- hosts: "{{ desthost }}"
   remote_user: root
+  #strategy: mitogen_linear
+  vars_files:
+   - ./vars/vars.yml
   tasks:
    # - name: Call a2addsite if the vhost doesnt exist on target host
     #  shell:
     #    a2addsite.sh {{ vhostdir }} user
 
-  - name: Copy .my.cnf for mysql operations
-    copy:
-      src: .my.cnf
-      dest: /root
-      owner: root
-      group: root
-      mode: 0600
- 
-
   - name: "Copy Zip to Target Host" 
     copy: 
-        src: "/tmp/{{ lookup('env', 'vhost') }}.zip"
-        dest: "{{ lookup('env', 'archivedir') }}"
+        src: "/tmp/{{ vhost }}.zip"
+        dest: "{{ archivedir }}"
         owner: root
         group: root
         mode: 0644
@@ -50,8 +47,8 @@
  
   - name: Extract Vhost on Target Host
     unarchive:      
-       src: "{{ lookup('env', 'archivedir') }}/{{ lookup('env', 'vhost') }}.zip"       
-       dest: "{{ lookup('env', 'vhostdir') }}"
+       src: "{{ archivedir }}/{{ vhost }}.zip"       
+       dest: "{{ vhostdir }}"
        remote_src: yes
    
       

@@ -1,8 +1,10 @@
 ---
 # DB User anlegen funktioniert nicht muss separat gemacht werden
-- hosts: "{{ lookup('env', 'srchost') }}"
+- hosts: "{{ srchost }}"
   remote_user: root
-  
+  #strategy: mitogen_linear
+  vars_files: 
+   - ./vars/vars.yml  
   tasks:
   - name: Copy .my.cnf for mysql operations
     copy:
@@ -12,27 +14,23 @@
       group: root
       mode: 0600
  
-  - name: Dump database from vhost
-    shell:
-       "mysqldump {{ lookup('env', 'DB') }} > {{ lookup('env', 'DB') }}.sql"
-    register: cmd
-
-  - debug:
-       msg: "{{ cmd.stdout }}"
- 
-     
+  - name: Dump DB from Vhost
+    shell: |
+       "mysqldump {{ db }} > {{ db }}.sql"     
   - name: "Copy DBDump to Ansible Host"
     fetch:
-       src: "/root/{{ lookup('env', 'DB') }}.sql"
+       src: "/root/{{ db }}.sql"
        dest: /tmp/
        flat: yes
    
 
 
 
-- hosts: "{{ lookup('env', 'desthost') }}"
+- hosts: "{{ desthost }}"
   remote_user: root
-  
+  #strategy: mitogen_linear
+  vars_files:
+   - ./vars/vars.yml
   tasks:
   - name: Copy .my.cnf for mysql operations
     copy:
@@ -42,30 +40,20 @@
       group: root
       mode: 0600
  
-  - name: Source .dbenv to load variables on Bash and Create a new database for vhost
-    shell: 
-       "mysql -e 'Create Database IF NOT EXISTS '{{ lookup('env', 'DB') }}';'"
-    register: cmd
-  
-  - debug:
-       msg: "{{ cmd.stdout }}"
-    tags: createdb
-
-  - name: Create database user with password and privilege him to db
-    become: true 
+  - name: Create a new database for vhost
     shell: |
-        #"mysql -e "Create User '{{ lookup('env', 'DBUSER') }}'@'localhost' IDENTIFIED BY '{{ lookup('env', 'DBPW') }}';""
-        #"mysql -e 'GRANT ALL PRIVILEGES ON {{ lookup('env', 'DB') }}.* TO '{{ lookup('env', 'DBUSER') }}'@'localhost';'"
-        # mysql -e 'FLUSH PRIVILEGES;'
-    register: cmd
-
-  - debug:
-        msg: "{{ cmd.stdout }}"
-    tags: db
-
+        "mysql -e Create Database {{ db }}"
+ # - name: Create database user with password and privilege him to db
+  #  community.mysql.mysql_user:
+   #   state: present
+    #  name: "{{ db_user }}" 
+    #  password: "{{ db_pw }}"
+    #  priv:
+     #   '{{ db }}.*': 'ALL'
+  
   - name: "Copy DBDump to Target Host"
     copy:
-       src: "/tmp/{{ lookup('env', 'DB') }}.sql"
+       src: "/tmp/{{ db }}.sql"
        dest: /root
        owner: root
        group: root
@@ -73,12 +61,7 @@
       # remote_src: yes
  
   - name: Import database from vhost to Target Host
-    shell:
-       "mysql {{ lookup('env', 'DB') }} < {{ lookup('env', 'DB') }}.sql"
-    register: cmd
-
-  - debug:
-       msg: "{{ cmd.stdout }}"
-
+    shell: | 
+        "mysql {{ db }} > {{ db }}.sql"
    
       

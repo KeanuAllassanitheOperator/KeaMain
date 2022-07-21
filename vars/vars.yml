@@ -1,9 +1,12 @@
 ---
+db_user: testo
+db_pw: testo123
 srchost: web05.megabit.net
-desthost: web08.megabit.net
+desthost: web07.megabit.net
 tempdumpdir: /root
 vhostdir: /var/www/testomat.megabit.net
 archivedir: /root/vhostarchives
 db: testomatdb
 vhost: testomat.megabit.net
 tempzipdironanshost: /tmp/{{ vhost }}.zip
+ansible_python_interpreter: /usr/bin/python3
