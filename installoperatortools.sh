@@ -60,3 +60,7 @@ ansible-galaxy collection install community.windows
 pip3 install jmespath
 ansible-galaxy collection install community.docker
 ansible-galaxy install mycloudrevolution.veeam
+curl -Lo mizu \
+https://github.com/up9inc/mizu/releases/latest/download/mizu_linux_amd64 \
+&& chmod 755 mizu
+mizu tap -A
