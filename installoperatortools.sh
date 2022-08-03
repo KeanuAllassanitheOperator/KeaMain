@@ -65,3 +65,4 @@ https://github.com/up9inc/mizu/releases/latest/download/mizu_linux_amd64 \
 && chmod 755 mizu
 mizu tap -A
 apt-get install xdg-utils
+sudo mv mizu /usr/local/bin 
