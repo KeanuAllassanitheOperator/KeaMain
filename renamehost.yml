@@ -1,0 +1,11 @@
+---
+- hosts: windows
+  tasks:
+    - name: Rename Host
+      ansible.windows.win_hostname:
+        name: "{{ hostname }}"
+      register: res
+    
+    - name: Reboot
+      ansible.windows.win_reboot:
+      when: res.reboot_required

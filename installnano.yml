@@ -1,0 +1,13 @@
+---
+- hosts: windows
+  gather_facts: no
+  vars_files:
+   - vars.yml
+  tasks:
+  - name: Install nano
+    win_chocolatey:
+        name:
+         - nano
+        version: '6.3.7'
+        source: https://community.chocolatey.org/api/v2/
+        state: present

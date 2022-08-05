@@ -1,0 +1,10 @@
+---
+- hosts: windows
+  vars_files: ./vars.yml
+  tasks:
+  - name: Install ntop 
+    win_chocolatey:
+     name: ntop.portable
+     version: '0.3.4'
+     source: https://community.chocolatey.org/api/v2/
+     state: present

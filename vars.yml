@@ -1,0 +1,18 @@
+---
+psdir: C:\PSScripts 
+acversion: 1.3.53858.0
+vcenter_hostname: vcenter-office.megabit.net
+vcenter_username: administrator@megabit.net
+vcenter_password: M1t@0tD.
+cluster: RZCluster-2
+datacenter: Datacenter-RZ-2
+datastore: vsanDatastoreOffcie
+template: windowsservercore2019
+folder: Azubi-Spielwiese
+network: Office-Netz_RZ
+ip: 172.16.17.227
+netmask: 255.255.255.0
+gateway: 172.16.17.1
+dns_servers: 172.16.17.1
+windowsserver:
+ - wincoreserveradmincenter

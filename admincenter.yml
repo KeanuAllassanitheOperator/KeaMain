@@ -1,0 +1,14 @@
+---
+- hosts: windows
+  vars_files: ./vars.yml
+  tasks:
+  - name: Install windows-admin-center
+    win_chocolatey:
+     name: windows-admin-center
+     version: "{{ acversion }}"
+     source: https://community.chocolatey.org/api/v2/
+     state: present
+     package_params:
+     - '/Port:443'
+     - '/Thumbprint:D3AE5C1924CA9A58920DF2557A770AB4160878D4'
+     - '/DisableRestartWinrm'

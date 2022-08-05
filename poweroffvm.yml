@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  vars_files: ./vars.yml
+  tasks: 
+   - name: Set the state of the virtual machines to poweroff
+     community.vmware.vmware_guest_powerstate:
+       hostname: "{{ vcenter_hostname }}"
+       username: "{{ vcenter_username }}"
+       password: "{{ vcenter_password }}"
+       folder: "{{ folder }}"
+       validate_certs: no
+       name: "{{ item }}"
+       state: powered-off
+     register: deploy
+     with_items: "{{ windowsserver }}"
+   

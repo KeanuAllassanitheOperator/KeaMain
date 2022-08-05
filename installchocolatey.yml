@@ -1,0 +1,12 @@
+---
+- hosts: windows
+  gather_facts: no
+  vars_files:
+   - vars.yml
+  tasks:
+  - name: Install chocolatey
+    win_chocolatey:
+        name:
+         - chocolatey
+         - chocolatey-core.extension
+        state: present
