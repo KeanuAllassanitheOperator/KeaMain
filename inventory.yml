@@ -1,6 +1,7 @@
 
 [windows]
 172.16.17.189
+172.16.17.122
 [windows:vars]
 ansible_user="administrator"
 ansible_password=admin1234#

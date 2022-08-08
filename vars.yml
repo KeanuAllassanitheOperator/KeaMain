@@ -16,3 +16,4 @@ gateway: 172.16.17.1
 dns_servers: 172.16.17.1
 windowsserver:
  - wincoreserveradmincenter
+ - windowsadmintest

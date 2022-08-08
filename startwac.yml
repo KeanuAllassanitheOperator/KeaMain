@@ -1,0 +1,8 @@
+--- 
+- hosts: windows
+  tasks:
+    - name: Start WAC Service
+      ansible.windows.win_service:
+       name: ServerManagementGateway
+       start_mode: auto
+       state: started
