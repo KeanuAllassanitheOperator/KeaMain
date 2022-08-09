@@ -66,3 +66,5 @@ https://github.com/up9inc/mizu/releases/latest/download/mizu_linux_amd64 \
 mizu tap -A
 apt-get install xdg-utils
 sudo mv mizu /usr/local/bin 
+sudo pip3 install openshift 
+ansible-galaxy collection install cloud.common
