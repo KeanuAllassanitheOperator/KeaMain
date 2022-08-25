@@ -1,0 +1,9 @@
+---
+- hosts: windows
+  tasks:
+    - name: Remove a certificate based on thumbprint
+      ansible.windows.win_certificate_store:
+       thumbprint: "{{ item }}"
+       state: absent
+      loop:
+        - "65D58B568225625111D8E781E7424B35CD11E8F5"

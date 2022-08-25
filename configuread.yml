@@ -1,0 +1,19 @@
+---
+- hosts: windows
+  vars_files:
+    - vars.yml
+  tasks:
+   - name: Create new Windows domain 
+     ansible.windows.win_domain:
+      create_dns_delegation: yes
+      database_path: C:\Windows\NTDS
+      dns_domain_name: "{{ dnsname }}"
+      domain_netbios_name: "{{ netbiosname }}"
+      safe_mode_password: "{{ domainpw }}"
+      sysvol_path: C:\Windows\SYSVOL
+     register: ad_install
+        
+   - name: Reboot for install domain correctly
+     ansible.windows.win_reboot:
+     when: ad_install.reboot_required
+

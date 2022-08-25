@@ -1,0 +1,22 @@
+---
+- hosts: windows
+  vars_files:
+    - vars.yml
+  tasks:
+   - name: Install Features 
+     ansible.windows.win_feature:
+       name:
+       - AD-Certificate
+       - ADCS-Cert-Authority
+       state: present
+       include_management_tools: yes
+       include_sub_features: no
+     register: ils
+  
+   - name: Create RootCertificate
+     ansible.windows.win_powershell:
+       script: |
+         Install-ADcsCertificationAuthority -CAType "StandaloneRootCA" –CACommonName “KeaDCCert” –CADistinguishedNameSuffix “DC=keadc,DC=local” –CryptoProviderName “RSA#Microsoft Software Key Storage Provider” -KeyLength 4096 –HashAlgorithmName SHA1 –ValidityPeriod Years –ValidityPeriodUnits 10 –DatabaseDirectory “C:\windows\system32\certLog” –LogDirectory “c:\windows\system32\CertLog” –Force
+  
+
+ 

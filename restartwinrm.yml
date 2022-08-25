@@ -1,0 +1,7 @@
+--- 
+- hosts: windows
+  tasks:
+     - name: Restart WinRM
+       ansible.windows.win_powershell:
+        script: |
+           Restart-Service winrm

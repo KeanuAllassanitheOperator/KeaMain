@@ -1,0 +1,14 @@
+---
+- hosts: windows
+  tasks:
+    - name: Uninstall Features 
+      ansible.windows.win_feature:
+       name:
+       - Web-Server
+       state: absent
+       include_management_tools: yes
+       include_sub_features: yes
+      register: ils
+    - name: Reboot if installing features requires it
+      ansible.windows.win_reboot:
+      when: ils.reboot_required

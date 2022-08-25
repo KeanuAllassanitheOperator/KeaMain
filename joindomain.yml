@@ -1,0 +1,20 @@
+---
+- hosts: windows
+  gather_facts: no
+  vars_files: 
+  - vars.yml
+  tasks:
+   - name: Join domain
+     community.windows.win_domain_computer:
+       name: "{{ hostname }}"
+       dns_hostname: "{{ dnsname }}"
+       domain_server: "{{ netbiosname }}"
+       domain_username: "{{ domainuser }}"
+       domain_password: "{{ domainpw }}"
+       ou: "{{ ldappath }}"
+     register: domain_state
+   - debug: var=domain_state
+
+   - name: Reboot after joining
+     ansible.windows.win_reboot:
+     when: domain_state.reboot_required
