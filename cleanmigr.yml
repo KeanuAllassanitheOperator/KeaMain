@@ -1,6 +1,8 @@
 ---
-- hosts: "{{ lookup('env', 'srchost') }}"
+- hosts: "{{ srchost }}"
   remote_user: root
+  vars_files: 
+   - ./vars/vars.yml 
   #strategy: mitogen_linear
   tasks:
 
@@ -13,18 +15,17 @@
        msg: "{{ cmd.stdout }}"
 
 
-- hosts: "{{ lookup('env', 'desthost') }}"
+- hosts: "{{ desthost }}"
   remote_user: root
+  vars_files: 
+   - ./vars/vars.yml 
   #strategy: mitogen_linear
   tasks:
 
-  - name: Drop Database
-    shell:
-       "mysql -e 'Drop Database '{{ lookup('env', 'DB') }}';'"
-    register: cmd
-
-  - debug:
-       msg: "{{ cmd.stdout }}"
+  #- name: Drop Database
+   # mysql_db:
+    #  name: "{{ db }}"
+     # state: absent
 
 
   - name: remove my.cnf from desthost

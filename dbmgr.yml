@@ -15,8 +15,11 @@
       mode: 0600
  
   - name: Dump DB from Vhost
-    shell: |
-       "mysqldump {{ db }} > {{ db }}.sql"     
+    mysql_db:
+      state: dump
+      name: "{{ db }}" 
+      target: "/root/{{ db }}.sql"
+ 
   - name: "Copy DBDump to Ansible Host"
     fetch:
        src: "/root/{{ db }}.sql"
@@ -41,16 +44,18 @@
       mode: 0600
  
   - name: Create a new database for vhost
-    shell: |
-        "mysql -e Create Database {{ db }}"
- # - name: Create database user with password and privilege him to db
-  #  community.mysql.mysql_user:
-   #   state: present
-    #  name: "{{ db_user }}" 
-    #  password: "{{ db_pw }}"
-    #  priv:
-     #   '{{ db }}.*': 'ALL'
-  
+    mysql_db:
+      name:
+        - "{{ db }}"
+      state: present
+ 
+  - name: Create database user with password and privilege him to db
+    mysql_user:
+       name: "{{ db_user }}" 
+       password: "{{ db_pw }}"
+       priv: '{{ db }}.*:ALL'
+       state: present
+ 
   - name: "Copy DBDump to Target Host"
     copy:
        src: "/tmp/{{ db }}.sql"
@@ -61,7 +66,9 @@
       # remote_src: yes
  
   - name: Import database from vhost to Target Host
-    shell: | 
-        "mysql {{ db }} > {{ db }}.sql"
+    mysql_db:
+      state: import
+      name: "{{ db }}"
+      target: "/root/{{ db }}.sql"
    
       
