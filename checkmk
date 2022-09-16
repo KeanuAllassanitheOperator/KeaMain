@@ -4,7 +4,7 @@ volumes:
   cmk_etc_cmk:
 services:
   check_mk:
-    image: checkmk/check-mk-raw:2.0.0-latest
+    image: checkmk/check-mk-raw:2.1.0-latest
     ports:
       - "8080:5000"
     stdin_open: true
