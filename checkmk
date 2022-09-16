@@ -1,2 +1,15 @@
-docker container run -dit -p 8080:5000 --tmpfs /opt/omd/sites/cmk/tmp:uid=1000,gid=1000 -v monitoring:/omd/sites --name monitoring 
--v cmk_etc:/etc/checkmk --restart always checkmk/check-mk-raw:2.0.0-latest
+version: '2'
+volumes:
+  cmk_local:
+  cmk_etc_cmk:
+services:
+  check_mk:
+    image: checkmk/check-mk-raw:2.0.0-latest
+    ports:
+      - "8080:5000"
+    stdin_open: true
+    tty: true
+    volumes:
+      - cmk_local:/opt/omd/sites/cmk/local
+      - cmk_etc_cmk:/opt/omd/sites/cmk/etc/check_mk
+    container_name: cmk-server
