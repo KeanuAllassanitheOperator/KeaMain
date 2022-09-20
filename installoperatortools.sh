@@ -57,6 +57,7 @@ pip3 install pyVim
 pip3 install PyMySQL 
 ansible-galaxy collection install community.windows
 # JSON Queries und Parsing für python nutzen
+pip3 install jsonpatch
 pip3 install jmespath
 ansible-galaxy collection install community.docker
 ansible-galaxy install mycloudrevolution.veeam
