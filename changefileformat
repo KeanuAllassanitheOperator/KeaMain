@@ -1,0 +1,7 @@
+ Powershell: Dir *.ps1 | rename-item -newname { [io.path]::ChangeExtension($_.name, "txt") }
+https://stackoverflow.com/questions/12120326/how-do-i-change-the-extension-of-many-files-in-a-directory
+Bash:
+for file in *.txt
+do
+ mv "$file" "${file%.txt}.c"
+done
