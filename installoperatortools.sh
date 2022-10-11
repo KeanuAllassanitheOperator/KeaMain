@@ -70,4 +70,5 @@ sudo mv mizu /usr/local/bin
 sudo pip3 install openshift 
 ansible-galaxy collection install cloud.common
 pip3 install jsondiff
+apt install kubecolor
 
