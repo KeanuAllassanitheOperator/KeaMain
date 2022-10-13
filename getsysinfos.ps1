@@ -62,7 +62,7 @@ if ((Get-WmiObject -Class Win32_ComputerSystem).PartOfDomain -eq $false) {
   'Benutzung von' = " "
   'CPU-Passmark' = " " 
   'MI/TN' =  " "
-   'Eingelagert bei' = "BZNR"
+   'Eingelagert bei' = " "
     Besonderheiten = " "
     'Letzte Wartung/Auslieferung' = " "
   
