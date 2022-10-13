@@ -5,19 +5,15 @@ $computerCPU = Get-CimInstance CIM_Processor
 $RAMClass = Get-WmiObject -Class Win32_PhysicalMemoryArray
 $RamSlots = Get-WmiObject -Class "Win32_PhysicalMemoryArray" | Select-Object -ExpandProperty MemoryDevices -First 1
 # speicherort muss angepasst werden
-$infofilecsv = "C:\Users\megabit\AllLaptops.csv"
- if (Test-Path -Path $infofilecsv) { 
-    Remove-Item $infofilecsv
-   } 
-
-$Disk = get-disk
+$infofilecsv = "E:\AllLaptops.csv"
+$Disk = get-disk -Number 0
 $one_gb = 1000*1000*1000
-$RoundedDiskSpace = ("{0:N0}" -f (((get-disk).AllocatedSize)/$one_gb) + " GB")
-$computerRAM = ("{0:N0}" -f ($computerSystem.TotalPhysicalMemory/1GB) + " GB")
-$RamTypeCode =  Get-WmiObject Win32_PhysicalMemory | Select-Object SMBiosMemoryType -ExpandProperty MemoryType -First 1
+$RoundedDiskSpace = ("{0:N0}" -f ((($Disk).AllocatedSize)/$one_gb) + " GB")
+$computerRAM = ("{0:N0}" -f ($computerSystem.TotalPhysicalMemory/$one_gb) + " GB")
+$RamTypeCode =  (Get-WmiObject Win32_PhysicalMemory).SMBiosMemoryType | Select-Object -First 1
 $MaxRAM = ("{0:N0}" -f ($RAMClass.maxcapacity/1024/1024) + " GB")
 $ComputerOSInfo = ($computerOS.caption + " ")
-$mediaType = (Get-PhysicalDisk).MediaType
+$DriveType = (Get-PhysicalDisk).MediaType | Select-Object  -First 1
 #$Usedby = (Get-WMIObject -ClassName Win32_ComputerSystem).Username
 
 #Check if Computer is in Domain
@@ -60,16 +56,17 @@ if ((Get-WmiObject -Class Win32_ComputerSystem).PartOfDomain -eq $false) {
   'RAM Type' = $DDR
   'Anzahl Ram-Slots' = $RamSlots
   Festplatte = $RoundedDiskSpace
-  Festplattentyp = $mediatype
+  Festplattentyp = $DriveType
   Betriebssystem = $computerOSInfo
   CPU =  $computerCPU.Name
   'Benutzung von' = " "
   'CPU-Passmark' = " " 
   'MI/TN' =  " "
-   'Eingelagert bei' = " "
+   'Eingelagert bei' = "BZNR"
     Besonderheiten = " "
     'Letzte Wartung/Auslieferung' = " "
   
  } 
- $Computerobject | Select-Object Seriennummer,Marke,Modell,RAM,'max. RAM','RAM Type','Anzahl Ram-Slots',Festplatte,Festplattentyp,Betriebssystem,CPU,'CPU-Passmark','MI/TN','Eingelagert bei','Benutzung von',Besonderheiten,'Letzte Wartung/Auslieferung' | Export-CSV $infofilecsv -NoTypeInformation -Append
- ii $infofilecsv
+ $Computerobject | Select-Object Seriennummer,Marke,Modell,RAM,'max. RAM','RAM Type','Anzahl Ram-Slots',Festplatte,Festplattentyp,Betriebssystem,CPU,'CPU-Passmark','MI/TN','Eingelagert bei','Benutzung von',Besonderheiten,'Letzte Wartung/Auslieferung' | Export-CSV -Delimiter ";" $infofilecsv -notype -Append 
+#Import-Csv $infofilecsv
+ii $infofilecsv
