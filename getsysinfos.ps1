@@ -5,25 +5,24 @@ $computerCPU = Get-CimInstance CIM_Processor
 $RAMClass = Get-WmiObject -Class Win32_PhysicalMemoryArray
 $RamSlots = Get-WmiObject -Class "Win32_PhysicalMemoryArray" | Select-Object -ExpandProperty MemoryDevices -First 1
 # speicherort muss angepasst werden
-$infofilecsv = "E:\AllLaptops.csv"
+$infofilecsv = "C:\Users\keanu\mysystem.csv"
 $Disk = get-disk -Number 0
 $one_gb = 1000*1000*1000
+$one_gib = 1024*1024*1024
 $RoundedDiskSpace = ("{0:N0}" -f ((($Disk).AllocatedSize)/$one_gb) + " GB")
-$computerRAM = ("{0:N0}" -f ($computerSystem.TotalPhysicalMemory/$one_gb) + " GB")
+$computerRAM =  ("{0:N0}" -f ((Get-CimInstance Win32_PhysicalMemory | Measure-Object -Property capacity -Sum).sum /$one_gib) + " GB")
 $RamTypeCode =  (Get-WmiObject Win32_PhysicalMemory).SMBiosMemoryType | Select-Object -First 1
 $MaxRAM = ("{0:N0}" -f ($RAMClass.maxcapacity/1024/1024) + " GB")
 $ComputerOSInfo = ($computerOS.caption + " ")
-$DriveType = (Get-PhysicalDisk).MediaType | Select-Object  -First 1
+$DriveType = (Get-PhysicalDisk).MediaType | Select-Object -First 1
 #$Usedby = (Get-WMIObject -ClassName Win32_ComputerSystem).Username
 
 #Check if Computer is in Domain
 if ((Get-WmiObject -Class Win32_ComputerSystem).PartOfDomain -eq $false) {
-   Write-Host "Computer is not a member of "
-     
+   $Domain = "Nein"  
  }
  else {
-       Write-Host "Computer is a member of "
-         
+       $Domain = "Ja"      
      }
 # Check RAM Type and assign DDR Type (ab DDR3 und aufwärts die abfragen)
  if ($RamTypeCode -eq 24) {
@@ -62,11 +61,12 @@ if ((Get-WmiObject -Class Win32_ComputerSystem).PartOfDomain -eq $false) {
   'Benutzung von' = " "
   'CPU-Passmark' = " " 
   'MI/TN' =  " "
-   'Eingelagert bei' = " "
+   'Eingelagert bei' = "BZNR"
     Besonderheiten = " "
     'Letzte Wartung/Auslieferung' = " "
+    'ist Mitglied in der Domain BZNR' = $Domain
   
  } 
- $Computerobject | Select-Object Seriennummer,Marke,Modell,RAM,'max. RAM','RAM Type','Anzahl Ram-Slots',Festplatte,Festplattentyp,Betriebssystem,CPU,'CPU-Passmark','MI/TN','Eingelagert bei','Benutzung von',Besonderheiten,'Letzte Wartung/Auslieferung' | Export-CSV -Delimiter ";" $infofilecsv -notype -Append 
+ $Computerobject | Select-Object Seriennummer,Marke,Modell,RAM,'max. RAM','RAM Type','Anzahl Ram-Slots',Festplatte,Festplattentyp,Betriebssystem,CPU,'CPU-Passmark','MI/TN','Eingelagert bei','Benutzung von',Besonderheiten,'Letzte Wartung/Auslieferung','ist Mitglied in der Domäne BZNR' | Export-CSV -Delimiter ";" $infofilecsv -notype -Append 
 #Import-Csv $infofilecsv
 ii $infofilecsv
