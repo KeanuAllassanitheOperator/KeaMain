@@ -61,12 +61,12 @@ if ((Get-WmiObject -Class Win32_ComputerSystem).PartOfDomain -eq $false) {
   'Benutzung von' = " "
   'CPU-Passmark' = " " 
   'MI/TN' =  " "
-   'Eingelagert bei' = "BZNR"
+   'Eingelagert bei' = " "
     Besonderheiten = " "
     'Letzte Wartung/Auslieferung' = " "
-    'ist Mitglied in der Domain BZNR' = $Domain
+    'ist Mitglied in der Domain' = $Domain
   
  } 
- $Computerobject | Select-Object Seriennummer,Marke,Modell,RAM,'max. RAM','RAM Type','Anzahl Ram-Slots',Festplatte,Festplattentyp,Betriebssystem,CPU,'CPU-Passmark','MI/TN','Eingelagert bei','Benutzung von',Besonderheiten,'Letzte Wartung/Auslieferung','ist Mitglied in der Domäne BZNR' | Export-CSV -Delimiter ";" $infofilecsv -notype -Append 
+ $Computerobject | Select-Object Seriennummer,Marke,Modell,RAM,'max. RAM','RAM Type','Anzahl Ram-Slots',Festplatte,Festplattentyp,Betriebssystem,CPU,'CPU-Passmark','MI/TN','Eingelagert bei','Benutzung von',Besonderheiten,'Letzte Wartung/Auslieferung','ist Mitglied in der Domäne ' | Export-CSV -Delimiter ";" $infofilecsv -notype -Append 
 #Import-Csv $infofilecsv
 ii $infofilecsv
