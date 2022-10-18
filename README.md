@@ -1,7 +1,6 @@
 My Powershell Repository to automate Windows Infrastructures
 Powershell Automating Tasks:
 Active Directory:
-- User und Gruppen Zuweisung
 - GPO create, delete, Listing, Grund GPOs Setup 
 Exchange:
  - Exchange Email-User anlegen (vorhandener AD User)
