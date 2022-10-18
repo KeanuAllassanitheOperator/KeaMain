@@ -1,1 +1,4 @@
-﻿Remove-DistributionGroup -Identity "Strohhutpiraten"
+DGroup = @('')
+foreach ($vg in $DGroup) {
+﻿ Remove-DistributionGroup -Identity "DGroup"
+}
