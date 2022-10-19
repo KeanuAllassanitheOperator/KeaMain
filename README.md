@@ -3,6 +3,7 @@ Powershell Automating Tasks:
 
 - Eigenes Powershell ProjektRepository
 - Mergen von den Powershell Branches
+- von CSV auf OutGridView umstellen
 
 Active Directory:
 - GPO create, delete, Listing, Grund GPOs Setup 
