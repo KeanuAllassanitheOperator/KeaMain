@@ -1,6 +1,9 @@
 My Powershell Repository to automate Windows Infrastructures
 Powershell Automating Tasks:
 
+- Eigenes Powershell ProjektRepository
+- Mergen von den Powershell Branches
+
 Active Directory:
 - GPO create, delete, Listing, Grund GPOs Setup 
 DFS:
