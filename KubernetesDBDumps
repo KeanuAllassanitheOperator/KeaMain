@@ -1,0 +1,15 @@
+Export DB dump of a particular database to your machine
+
+$ kubectl exec {{podName}} -n {{namespace}} -- mysqldump -u {{dbUser}} -p{{password}} {{DatabaseName}} > <scriptName>.sql
+Example :
+$ kubectl exec mysql-58 -n sql -- mysqldump -u root -proot USERS > dump.sql
+Export DB dump of all databases to your machine
+
+$ kubectl exec {{podName}} -n {{namespace}} -- mysqldump -u {{dbUser}} -p{{password}} --all-databases > <scriptName>.sql
+Example :
+$ kubectl exec mysql-58 -n sql -- mysqldump -u root -proot --all-databases > dump_all.sql
+Restore a DB on kubernetes pod from a dump in your machine
+
+$ kubectl exec -it {{podName}} -n {{namespace}} -- mysql -u {{dbUser}} -p{{password}} {{DatabaseName}} < <scriptName>.sql
+Example :
+$ kubectl exec -it mysql-58 -n sql -- mysql -u root -proot USERS < dump_all.sql
