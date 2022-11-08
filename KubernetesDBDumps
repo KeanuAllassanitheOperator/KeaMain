@@ -13,3 +13,10 @@ Restore a DB on kubernetes pod from a dump in your machine
 $ kubectl exec -it {{podName}} -n {{namespace}} -- mysql -u {{dbUser}} -p{{password}} {{DatabaseName}} < <scriptName>.sql
 Example :
 $ kubectl exec -it mysql-58 -n sql -- mysql -u root -proot USERS < dump_all.sql
+
+
+Kubernetes Postgres DB DUmps:
+Backup
+kubectl exec $podname -n $ns -- bash -c  "pg_dump --dbname=postgresql://$user:$pw@127.0.0.1:5432/$db" > $sqlfile
+Restore
+cat $sqlfile | kubectl exec -i $podname -- psql "postgresql://$user:$pw@127.0.0.1:5432/$db"
