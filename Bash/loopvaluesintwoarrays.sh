@@ -1,5 +1,6 @@
 #!/bin/bash
 # Script um in Linux durch zwei Listen zu iterieren
+#https://linuxhint.com/bash_append_array/
 emails=()
 ips=()
 # Arrays befüllen
