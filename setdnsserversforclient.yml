@@ -11,6 +11,6 @@
  
    - name: Set IPv6 DNS servers on the specified nice
      ansible.windows.win_dns_client:
-      adapter_names: Ethernet
+      adapter_names: "{{ nic }}"
       dns_servers: "{{ item }}"
       with_items: "{{ dnsips }}"
