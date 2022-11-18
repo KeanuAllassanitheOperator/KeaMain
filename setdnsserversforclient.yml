@@ -1,14 +1,16 @@
-- name: Set multiple lookup addresses on all visible adapters (usually physical adapters that are in the Up state), with debug logging to a file
-  ansible.windows.win_dns_client:
-    adapter_names: '*'
-    dns_servers:
-    - 192.168.34.5
-    - 192.168.34.6
-    log_path: C:\dns_log.txt
+---
+- hosts: windows
+  vars_files: ./vars.yml
+  tasks:
+   - name: Set multiple lookup addresses on specified nic
+     ansible.windows.win_dns_client:
+      adapter_names: "{{ nic }}"
+      dns_servers: "{{ item }}"
+      with_items: "{{ dnsips }}"
 
-- name: Set IPv6 DNS servers on the adapter named Ethernet
-  ansible.windows.win_dns_client:
-    adapter_names: Ethernet
-    dns_servers:
-    - '2001:db8::2'
-    - '2001:db8::3'
+ 
+   - name: Set IPv6 DNS servers on the specified nice
+     ansible.windows.win_dns_client:
+      adapter_names: Ethernet
+      dns_servers: "{{ item }}"
+      with_items: "{{ dnsips }}"
