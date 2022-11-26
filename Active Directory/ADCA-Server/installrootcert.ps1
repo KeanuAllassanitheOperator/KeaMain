@@ -1,6 +1,6 @@
 #https://learn.microsoft.com/en-us/powershell/module/adcsdeployment/install-adcscertificationauthority?view=windowsserver2022-ps
 $CAType="StandaloneRootCA" 
-$CAName="blabla"
+$CAName=""
 $CADistinguishedNameSuffix=DC=,DC=”
 $CryptoProviderName=“RSA#Microsoft Software Key Storage Provider”
 $KeyLength=4096
