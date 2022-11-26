@@ -7,6 +7,7 @@ Powershell Automating Tasks:
 
 Active Directory:
 - GPO create, delete, Listing, Grund GPOs Setup 
+- Alle GPOs sichern Backup-GPO and Restore-GPO
 DFS:
  - Gruppen Berechtigungen (mit Vererbung und ohne)
  - User Berechtigung (mit Vererbung und ohne)
