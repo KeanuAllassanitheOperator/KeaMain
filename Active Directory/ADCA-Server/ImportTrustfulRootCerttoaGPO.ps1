@@ -1,5 +1,5 @@
 # Dieses Skript importiert ein Win Server Zertfikat als Vertrauenswürdige Zertifikat, damit Client diesem vertrauen
-#  Mit dir Cert:\LocalMachine\my kann man seine aktuellen Zertifikate sehen
+#  Mit dem Befehl "dir Cert:\LocalMachine\my" kann man seine aktuellen Zertifikate sehen
 $certsGpoName = 'Name of GPO'
 
 $certThumbprint = 'Thumbprint des Certs'
