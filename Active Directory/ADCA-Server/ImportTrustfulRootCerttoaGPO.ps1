@@ -14,3 +14,4 @@ $null = Set-GPRegistryValue -Name $certsGpoName -Key $certPoliciesRegistryKey -V
 
 foreach ($sgroup in $Group) {
    set-gppermissions -Name $GpoName -permissionlevel GpoApply -targetname $sgroup -targettype group
+}
