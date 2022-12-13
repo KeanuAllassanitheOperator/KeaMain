@@ -1,5 +1,7 @@
 # MYSQL
-# Backup
+# Backupstrategie
+#1) Volumen backupen und mounten, dass der Container aktuell verwendet
+#2) Dump durchführen und in einen neuerstellten Container Dump importieren falls nötig
 docker exec -i $cont /usr/bin/mysqldump -u $user -p$pw -d $db > $sqlfile
 
 # Restore
