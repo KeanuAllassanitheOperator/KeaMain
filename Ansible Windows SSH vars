@@ -1,4 +1,4 @@
-Local Conf for non domain PCs
+#Local Conf for non domain PCs
 ---
 ansible_user: administrator
 ansible_password: admin1234#
@@ -9,7 +9,7 @@ ansible_shell_type: cmd
 ansible_become_method: runas
 ansible_become_user: administrator
 
-Domain User Conf for domain PCs
+#Domain User Conf for domain PCs (oder automation user für maintenance mit ansible)
 ---
 ansible_user: administrator@bktm
 ansible_password: admin1234#
@@ -19,3 +19,5 @@ ansible_ssh_retries: 3
 ansible_shell_type: cmd
 ansible_become_method: runas
 ansible_become_user: administrator
+
+Benutzer muss angemeldet sein 
