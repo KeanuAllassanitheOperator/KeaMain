@@ -24,14 +24,4 @@ Benutzer muss angemeldet sein
 
 
 
-- hosts: windows
-  vars_files:
-    - invvars.yml
-  tasks:
-   - name: Install pdf24
-     win_chocolatey:
-      name: pdf24
-      version: '11.8.0'
-      source: https://community.chocolatey.org/api/v2/
-      state: present
-      params: '"/Icon"'
+
