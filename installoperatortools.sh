@@ -1,5 +1,6 @@
 #!/bin/bash
 sudo apt install git -y
+sudo apt-get install apache2-utils pwgen
 sudo apt install ansible -y
 sudo apt install sshpass -y
 sudo mkdir ansible-playbooks
