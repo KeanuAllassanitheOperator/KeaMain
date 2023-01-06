@@ -8,6 +8,7 @@ sudo apt install vagrant -y
 sudo apt install toilet -y 
 sudo apt install ruby-dev build-essential libmysqlclient-dev rubygems -y
 gem install nokogiri --platform=ruby
+sudo apt install software-properties-common
 vagrant plugin install vagrant-env vagrant-vsphere
 VER=$(curl -s https://api.github.com/repos/k0sproject/k0sctl/releases/latest|grep tag_name | cut -d '"' -f 4)
 sudo wget https://github.com/k0sproject/k0sctl/releases/download/${VER}/k0sctl-linux-x64 -O k0sctl
