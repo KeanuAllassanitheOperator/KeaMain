@@ -47,8 +47,8 @@ services:
       - '--storage.tsdb.retention.time=200h'
       - '--web.enable-lifecycle'
     restart: unless-stopped
-    expose:
-      - 9090
+    ports:
+      - "9090:9090"
     networks:
       - monitor-net
     labels:
@@ -63,8 +63,8 @@ services:
       - '--config.file=/etc/alertmanager/config.yml'
       - '--storage.path=/alertmanager'
     restart: unless-stopped
-    expose:
-      - 9093
+    ports:
+      - "9093:9093"
     networks:
       - monitor-net
     labels:
@@ -83,8 +83,8 @@ services:
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
     restart: unless-stopped
-    expose:
-      - 9100
+    ports:
+      - "9100:9100"
     networks:
       - monitor-net
     labels:
@@ -103,8 +103,8 @@ services:
       - /var/lib/docker:/var/lib/docker:ro
       #- /cgroup:/cgroup:ro #doesn't work on MacOS only for Linux
     restart: unless-stopped
-    expose:
-      - 8080
+    ports:
+      - "8080:8080"
     networks:
       - monitor-net
     labels:
@@ -118,12 +118,11 @@ services:
       - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
       - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
     environment:
-      - GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}
-      - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
       - GF_USERS_ALLOW_SIGN_UP=false
+      -  GF_SERVER_ROOT_URL=https://monitoring.allassani.de
     restart: unless-stopped
-    expose:
-      - 3000
+    ports:
+      - "3001:3000"
     networks:
       - monitor-net
     labels:
@@ -133,29 +132,8 @@ services:
     image: prom/pushgateway:v1.4.3
     container_name: pushgateway
     restart: unless-stopped
-    expose:
-      - 9091
-    networks:
-      - monitor-net
-    labels:
-      org.label-schema.group: "monitoring"
-
-  caddy:
-    image: caddy:2.6.2
-    container_name: caddy
-    ports:
-      - "3001:3000"
-      - "8080:8080"
-      - "9090:9090"
-      - "9093:9093"
+    ports:    
       - "9091:9091"
-    volumes:
-      - ./caddy:/etc/caddy
-    environment:
-      - ADMIN_USER=${ADMIN_USER:-admin}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
-      - ADMIN_PASSWORD_HASH=${ADMIN_PASSWORD_HASH:-$2a$14$1l.IozJx7xQRVmlkEQ32OeEEfP5mRxTpbDTCTcXRqn19gXD8YK1pO}
-    restart: unless-stopped
     networks:
       - monitor-net
     labels:
