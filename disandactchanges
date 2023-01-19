@@ -1,11 +1,6 @@
 #!/bin/bash
 
-HOST_NAME="omd.megabit.net"
-SITE_NAME="master"
-API_URL="https://$HOST_NAME/$SITE_NAME/check_mk/api/1.0"
 
-USERNAME="cmkauto"
-PASSWORD="Q@YKBQXSQALSLMXL@GJH"
 
 for host in $(grep -E 'cms0|web0' inventorymegabit.yml | tail -n 20 | cut -d ' ' -f1);
 do
