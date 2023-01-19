@@ -8,31 +8,7 @@ volumes:
     prometheus_data: {}
     grafana_data: {}
 
-x-logging:
-  logging:
-    driver: loki
-    options:
-     loki-url: "http://dockpromloki:3100/loki/api/v1/push"
-
 services:
-  loki:
-    image: grafana/loki:2.7.0
-    container_name: dockpromloki
-    ports:
-      - "3100:3100"
-    command: -config.file=/etc/loki/local-config.yaml
-    networks:
-      - monitor-net
-
-  promtail:
-    image: grafana/promtail:2.7.0
-    container_name: dockpromtail
-    volumes:
-      - /var/log:/var/log
-    command: -config.file=/etc/promtail/config.yml
-    networks:
-      - monitor-net
-
   prometheus:
     image: prom/prometheus:v2.40.1
     container_name: prometheus
