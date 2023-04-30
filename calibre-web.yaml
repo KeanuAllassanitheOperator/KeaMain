@@ -1,7 +1,6 @@
-
 #Ausführen nach Deploy um eine neu Calibredb erzeugen:
 #https://github.com/linuxserver/docker-calibre-web/issues/30
-
+#https://hub.docker.com/r/linuxserver/calibre-web
 #docker exec -it CONTAINER_ID /bin/bash -c "cd /app/calibre/bin && calibredb restore_database --really-do-it --with-library /books"
 ---
 version: "2.1"
