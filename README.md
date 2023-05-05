@@ -1,6 +1,6 @@
 # 
 
-our own registry for all automating scripts and files to deploy scalable and comfortable IT Infrastructures 
+My registry for all automating scripts and files to deploy scalable and comfortable IT Infrastructures 
 
 ## Getting started
 
