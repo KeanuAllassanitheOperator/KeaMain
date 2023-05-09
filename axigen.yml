@@ -1,0 +1,23 @@
+version: "3.4"
+services:
+  axigen:
+   image: axigen/axigen:latest
+   restart: on-failure
+   networks:
+    - axigennet
+   ports:
+    - 465:465
+    - 993:993
+    - 443:443
+    - 8081:9000
+    - 9443:9443
+    - 7000:7000
+   volumes:
+      - axigenbin:/axigen/bin
+      - axigendata:/axigenvar
+networks:
+  axigennet:
+volumes:
+ axigenbin:
+ axigendata:
+# https://www.axigen.com/documentation/deploying-running-axigen-in-docker-axigen-x4-p686522391
