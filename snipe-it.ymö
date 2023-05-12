@@ -1,0 +1,42 @@
+---
+version: "2.1"
+services:
+  snipe-it:
+    image: lscr.io/linuxserver/snipe-it:latest
+    container_name: snipe-it
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - APP_URL=http://ansible.megabit.net:8083
+      - MYSQL_DATABASE=snipedb
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin1234#
+      - MYSQL_PORT_3306_TCP_PORT=3306
+      - MYSQL_PORT_3306_TCP_ADDR=mariadb
+    volumes:
+      -  snipeitconfig:/config
+    ports:
+      - 8083:80
+    restart: unless-stopped
+    networks: 
+      - snipeitnet
+  mariadb:
+    image: mariadb:latest
+    volumes:
+    - snipedb:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=snipedb
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin1234#
+      - MARIADB_ROOT_PASSWORD=mLG2abUEabLEBS
+    networks:
+    - snipeitnet
+    ports:
+      - "3306:3306"
+networks:
+ snipeitnet:
+
+volumes:
+  snipedb:
+  snipeitconfig:
