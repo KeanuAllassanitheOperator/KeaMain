@@ -16,7 +16,7 @@ services:
       - mariadb-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: admin123
-      MYSQL_USER: megabit
+      MYSQL_USER: admin
       MYSQL_PASSWORD: admin123
 
   phpmyadmin:
