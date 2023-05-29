@@ -1,0 +1,3 @@
+docker plugin install --alias glusterfs trajano/glusterfs-volume-plugin:latest --grant-all-permissions --disable
+docker plugin set glusterfs SERVERS=192.168.0.41,192.168.0.184,192.168.0.38 
+docker plugin enable glusterfs
