@@ -1,0 +1,108 @@
+version: "3.4"
+
+services:
+
+  nextdb:
+
+    image: mysql:8.0.32
+
+    restart: on-failure
+    volumes:
+
+      - nextdb:/var/lib/mysql
+    ports:
+
+    - 3308:3306
+ 
+    networks:
+     - nxc
+    
+    env_file: 
+      - nxdb.env
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == worker]
+
+  redis:
+
+    image: redis:7.0.10
+
+    restart: on-failure
+
+    command: redis-server --requirepass "$REDIS_HOST_PASSWORD"
+  
+    env_file:
+      - nx.env
+    networks:
+      - nxc
+    ports:
+      - 6380:6379
+    volumes:
+      - redis-data:/data
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == worker]
+
+  nextcloud:
+    image: nextcloud:26.0.1
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == worker]
+    networks:
+      - nxc
+    volumes:
+       - nextcloud:/var/www/html
+    ports: 
+     - 8080:80
+    env_file:
+      - nx.env     
+      - nxdb.env
+      
+
+    depends_on:
+      - nextdb
+      - redis
+    
+networks:
+  nxc:
+    driver: overlay
+    ipam: 
+      config:
+      - subnet: 10.0.4.0/28
+
+
+
+volumes:
+  nextcloud:
+   
+  nextdb:
+
+  redis-data:
