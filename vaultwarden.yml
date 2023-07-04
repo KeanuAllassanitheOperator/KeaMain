@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    ports:
+        - 8080:80
+    restart: always
+    environment:
+      #WEBSOCKET_ENABLED: "true"  # Enable WebSocket notifications.
+      DOMAIN: "https://192.168.101.16"
+      #SMTP_HOST: "<smtp.domain.tld>"
+      #SMTP_FROM: "<vaultwarden@domain.tld>"
+      #SMTP_PORT: "587"
+      #SMTP_SECURITY: "starttls"
+      #SMTP_USERNAME: "<username>"
+      #SMTP_PASSWORD: "<password>"
+      SHOW_PASSWORD_HINT: "false"
+    volumes:
+      - vaultwarden-data:/data
+volumes:
+  vaultwarden-data:
