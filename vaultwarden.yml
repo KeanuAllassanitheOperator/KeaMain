@@ -14,6 +14,7 @@ services:
       #SMTP_FROM: "<vaultwarden@domain.tld>"
       #SMTP_PORT: "587"
       #SMTP_SECURITY: "starttls"
+      o. SMTP_SECURITY: "off" für non smtps
       #SMTP_USERNAME: "<username>"
       #SMTP_PASSWORD: "<password>"
       SHOW_PASSWORD_HINT: "false"
