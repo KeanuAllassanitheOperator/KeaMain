@@ -1,0 +1,15 @@
+https://zhxilin.github.io/post/ssl_certificate_and_nginx_config/
+Generate ca priv key and issue root crt:
+openssl genrsa -out ca.key 2048
+openssl req -new -x509 -days 3650 -key ca.key -subj "/C=CN/ST=BJ/L=BJ/O=MyCA/CN=CA" -out ca.crt
+
+Generate priv key for server
+ openssl genrsa -out server.key 2048
+ Generate csr 
+ openssl req -newkey rsa:2048 -nodes -keyout server.key -subj "/C=CN/ST=BJ/L=BJ/O=Kiwifruit Studio/CN=<YOUR_IP or YOUR_DOMAIN>" -out server.csr
+Issue Crt for server 
+openssl x509 -req -days 3650 -in nginx.csr -CA rzhca.crt -CAkey rzhca.key -CAcreateserial -out nginx.crtt
+
+Display crt
+openssl x509 -text -noout -in server.crt
+
