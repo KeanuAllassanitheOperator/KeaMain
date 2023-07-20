@@ -1,3 +1,4 @@
+#https://bitwarden.com/help/bitwarden-security-white-paper/#overview-of-the-master-password-hashing-key-derivation-and-encryption-process
 version: '3'
 
 services:
