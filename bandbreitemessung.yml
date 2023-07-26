@@ -1,0 +1,19 @@
+#% APPDATA: Path or volume for AppData (Example: /apps/service) [/_data/apps]
+#% PORT: Port for Webinterface (Example: 5800) [5800]
+# https://github.com/fabianbees/breitbandmessung-docker/
+# https://www.breitbandmessung.de/
+# Compose file for portainer
+version: "3.8"
+services:
+  breitband-desktop:
+    image: breitband:latest
+    container_name: breitband-desktop
+    environment:
+      - TZ=Europe/Berlin
+    volumes:
+      - breitbanddata:/config/xdg/config/Breitbandmessung
+    ports:
+      - 5800:5800
+    restart: unless-stopped
+volumes:
+   breitbanddata:
