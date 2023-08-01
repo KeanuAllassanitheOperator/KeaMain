@@ -10,6 +10,7 @@ services:
     restart: always
     environment:
       #WEBSOCKET_ENABLED: "true"  # Enable WebSocket notifications.
+      ORG_EVENTS_ENABLED: true
       DOMAIN: "https://192.168.101.16"
       #SMTP_HOST: "<smtp.domain.tld>"
       #SMTP_FROM: "<vaultwarden@domain.tld>"
