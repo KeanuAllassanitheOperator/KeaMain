@@ -10,4 +10,4 @@ services:
 EOF
 sudo docker-compose pull
 sudo docker-compose up -d
-
+docker compose exec netbox /opt/netbox/netbox/manage.py createsuperuser
