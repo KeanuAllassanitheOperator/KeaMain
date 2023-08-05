@@ -1,0 +1,254 @@
+PDNS Recursor
+
+
+#!/bin/bash 
+PING=$(rec_control ping | wc -l)
+crit=0 
+if [ $PING -eq $crit ] 
+then 
+        echo "2 DNSStatus - PDNS inactive"
+else
+        echo "0 DNSStatus - PDNS active"
+fi
+
+PDNS Server Resolver 
+#!/bin/bash 
+PING=$(pdns_control rping)
+if [ $PING != PONG ] 
+then 
+        echo "2 DNSStatus - PDNS inactive"
+else
+        echo "0 DNSStatus - PDNS active"
+fi
+
+LDAPConnections
+
+#!/bin/bash
+
+LDAPConnections=$(lsof -i tcp:389 | grep ESTABLISHED | wc -l)
+WarnConn=0
+if  [ $LDAPConnections -le $WarnConn ]
+then 
+	echo "2 LDAPConnections LDAPConnections=$LDAPConnections Critical keine LDAP Connections mehr oder ein oder mehere Master Slave Connections sind abgebrochen"
+else	
+	echo "0 LDAPConnections LDAPConnections=$LDAPConnections LDAP connections bestehend"
+fi 
+
+
+DNSCacheSize PowerDNS
+
+#!/bin/bash
+Cache=$(rec_control get cache-bytes)
+
+echo "0 DNSCacheSize DNSCacheSize(Bytes)=$Cache DNSCacheSize:$Cache Bytes"
+
+DNSOutgoingQueries PowerDNS
+#!/bin/bash
+ 
+ histfile="/tmp/OutgoingQueriesHist"
+ q=`rec_control get all-outqueries`;
+ crit=0
+
+ # wenn history existiert
+if [ -e "$histfile" ]; then
+   diff=$(( $(date +%s) - $(stat -c %Y $histfile) ))
+   # und nicht älter als 10 Minuten
+   if [ $diff -lt 600 ]; then 
+     h=`cat $histfile`
+     # gib die differenz pro sekunde aus
+     Queries=$(( ( $q - $h )/ $diff ))
+   fi  
+	
+   if [ $Queries -eq $crit ]
+   then 
+	echo "2 DNSOutgoingQueries - Critical! No outgoing Queries"
+   else 
+	echo "0 DNSOutgoingQueries DNSOutgoingQueriesPerSec=$Queries DNSOutgoingQueriesPerSec:$Queries"		
+   fi
+else 
+	echo "File not found"
+fi
+ 
+
+
+QPS PowerDns
+
+#!/bin/bash
+ 
+ histfile="/tmp/pdns_stat_hist.questions"
+ q=`rec_control get questions`;
+ crit=0
+
+ # wenn history existiert
+if [ -e "$histfile" ]; then
+   diff=$(( $(date +%s) - $(stat -c %Y $histfile) ))
+   # und nicht älter als 10 Minuten
+   if [ $diff -lt 600 ]; then 
+     h=`cat $histfile`
+     # gib die differenz pro sekunde aus
+     Queries=$(( ( $q - $h )/ $diff ))
+   fi  
+	
+   if [ $Queries -eq $crit ]
+   then 
+	echo "2 DNSQueries - Critical! no Queries"
+   else 
+	echo "0 DNSQueries DNSQueriesPerSec=$Queries DNSQueriesPerSec:$Queries"		
+   fi
+else 
+	echo "File not found"
+fi
+ echo $q > $histfile     
+ 
+
+
+DNSStatus PowerDNS
+
+#!/bin/bash 
+Daemon=$(netstat -tulpen | grep 53 | wc -l)
+Crit=0
+Warn=1
+if [ $Daemon -eq $Warn ] 
+then 
+	echo "1 DNSStatus NumberofProcesses=$Daemon Warning 1 daemon is not running on tcp or udp NumberofProcesses:$Daemon"
+elif [ $Daemon -eq $Crit ]
+then 
+	echo "2 DNSStatus NumberofProcesses=$Daemon Critical! Daemons are not running on tcp or udp DNS inactive NumberofProcesses:$Daemon"
+else
+	echo "0 DNSStatus NumberofProcesses=$Daemon DNS active NumberofProcesses:$Daemon"
+fi
+
+
+PDNS Answer-slow 
+#!/bin/bash
+
+ histfile="/tmp/AnswersSlowHist"
+ q=`rec_control get answers-slow`;
+
+ # wenn history existiert
+if [ -e "$histfile" ]; then
+   diff=$(( $(date +%s) - $(stat -c %Y $histfile) ))
+   # und nicht älter als 10 Minuten
+   if [ $diff -lt 600 ]; then 
+     h=`cat $histfile`
+     # gib die differenz pro sekunde aus
+     Queries=$(( ( $q - $h )/ $diff ))
+   fi  
+	
+      echo "0 PDNSAnswerSlow QueryAnswersafter1Sec=$Queries QueryAnswersafter1Sec:$Queries"		
+   
+else 
+	echo "File not found"
+fi
+ echo $q > $histfile     
+ 
+
+
+PDNS Cache Entries 
+#!/bin/bash
+
+ histfile="/tmp/CacheEntriesHist"
+ q=`rec_control get cache-entries`;
+
+ # wenn history existiert
+if [ -e "$histfile" ]; then
+   diff=$(( $(date +%s) - $(stat -c %Y $histfile) ))
+   # und nicht älter als 10 Minuten
+   if [ $diff -lt 600 ]; then 
+     h=`cat $histfile`
+     # gib die differenz pro sekunde aus
+     Queries=$(( ( $q - $h )/ $diff ))
+   fi  
+	
+      echo "0 PDNSCacheEntries CacheEntriesPerSec=$Queries CacheEntriesPerSec:$Queries"		
+   
+else 
+	echo "File not found"
+fi
+ echo $q > $histfile     
+
+
+
+PDNS Cache Hits 
+#!/bin/bash
+
+ histfile="/tmp/CacheHitsHist"
+ q=`rec_control get cache-hits`;
+
+ # wenn history existiert
+if [ -e "$histfile" ]; then
+   diff=$(( $(date +%s) - $(stat -c %Y $histfile) ))
+   # und nicht älter als 10 Minuten
+   if [ $diff -lt 600 ]; then 
+     h=`cat $histfile`
+     # gib die differenz pro sekunde aus
+     Queries=$(( ( $q - $h )/$diff ))
+   fi  
+	
+      echo "0 PDNSCacheHits CacheHitsPerSec=$Queries CacheHitsPerSec:$Queries"		
+   
+else 
+	echo "File not found"
+fi
+ echo $q > $histfile 
+
+
+PDNS Cache Misses 
+
+#!/bin/bash
+
+ histfile="/tmp/CacheMissesHist"
+ q=`rec_control get cache-misses`;
+
+ # wenn history existiert
+if [ -e "$histfile" ]; then
+   diff=$(( $(date +%s) - $(stat -c %Y $histfile) ))
+   # und nicht älter als 10 Minuten
+   if [ $diff -lt 600 ]; then 
+     h=`cat $histfile`
+     # gib die differenz pro sekunde aus
+     Queries=$(( ( $q - $h )/ $diff ))
+   fi  
+
+      echo "0 PDNSCacheMisses CacheMissesPerSec=$Queries CacheMissesPerSec:$Queries"            
+   
+else 
+        echo "File not found"
+fi
+ echo $q > $histfile     
+
+
+PDNS QA-Latency 
+#!/bin/bash
+qa=$(rec_control get qa-latency)
+Result=$(($qa / 1000 | bc))
+
+echo "0 PDNSQALatency ms=$Result shows the current latency average in miliseconds:$Result ms"
+
+
+LogÜberprüfung 
+#!/bin/bash
+
+EXIMLOG=/var/log/exim4/mainlog
+LastConnection=$(tail -n 1  $EXIMLOG | cut -d" " -f1,2)
+LastLogRefresh=$(($(date +%s) - $(date -r $EXIMLOG  +%s)))
+if [ -e $EXIMLOG ]
+then
+
+	if [ $LastLogRefresh -gt 300 ]
+        then
+		echo "1 EximStatus LastLogRefresh=$LastLogRefresh Last Log Refresh in Seconds: for $LastLogRefresh seconds, LastLogActivity:$LastConnection"
+	
+	elif [ $LastLogRefresh -ge 600 ]
+	then 
+		echo "2 EximStatus LastLogRefresh=$LastLogRefresh Last Log Refresh in Seconds:for $LastLogRefresh seconds, LastLogActivity:$LastConnection"
+	 
+	else	
+
+		echo "0 EximStatus LastLogRefresh=$LastLogRefresh Last Log Refresh in Seconds:for $LastLogRefresh seconds, LastLogActivity:$LastConnection" 
+	fi
+else
+	echo "Log not found"
+fi
+
+
