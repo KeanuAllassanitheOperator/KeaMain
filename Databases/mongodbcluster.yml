@@ -1,0 +1,50 @@
+# first, we define the three mongo servers that will act as replicas
+# here, we steup the hostname ports, and startup command
+# which is the same as discussed in the previous section
+# docker exec -it root-mongo1-1 mongosh --eval "rs.initiate({
+# _id: \"myReplicaSet\",
+# members: [
+ #  {_id: 0, host: \"root-mongo1-1\"},
+  # {_id: 1, host: \"root-mongo2-1\"},
+   #{_id: 2, host: \"root-mongo3-1\"}
+# ]
+#})"
+# https://www.mongodb.com/compatibility/deploying-a-mongodb-cluster-with-docker
+# https://www.sohamkamani.com/docker/mongo-replica-set/
+services:
+ mongo1:
+    hostname: mongo1
+    image: mongo:latest
+    networks:
+      - mongoclusternet
+    expose:
+      - 27017
+    ports:
+      - 30001:27017
+    restart: always
+    command: mongod --replSet myReplicaSet
+  mongo2:
+    hostname: mongo2
+    image: mongo:latest
+    networks:
+      - mongoclusternet
+    expose:
+      - 27017
+    ports:
+      - 30002:27017
+    restart: always
+    command: mongod --replSet myReplicaSet
+  mongo3:
+    hostname: mongo3
+    image: mongo:latest
+    networks:
+      - mongoclusternet
+    expose:
+      - 27017
+    ports:
+      - 30003:27017
+    restart: always
+    command: mongod --replSet myReplicaSet
+
+networks:
+   mongoclusternet:
