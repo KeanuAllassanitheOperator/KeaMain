@@ -12,7 +12,7 @@
 # https://www.mongodb.com/compatibility/deploying-a-mongodb-cluster-with-docker
 # https://www.sohamkamani.com/docker/mongo-replica-set/
 # Mit mongo-Express Frontend docker run -d --network root_mongoclusternet -e ME_CONFIG_MONGODB_SERVER=root-mongo1-1 -p 8081:8081 mongo-express
-
+# https://hub.docker.com/_/mongo-express
 services:
  mongo1:
     hostname: mongo1
