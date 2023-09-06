@@ -1,3 +1,5 @@
+Hosts Datei als Malware erkannt wegen telemetry block
+https://efficient-lifestyle.com/windows-10-defender-erkennt-hosts-datei-als-sicherheitsrisiko-settingsmodifierwin32-hostsfilehijack
 My Powershell Repository to automate Windows Infrastructures
 Powershell Automating Tasks:
 
