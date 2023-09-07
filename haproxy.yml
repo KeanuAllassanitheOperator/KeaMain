@@ -1,3 +1,7 @@
+#https://tylersguides.com/guides/haproxy-ldap-backend/ LDAP Proxy
+#https://severalnines.com/resources/whitepapers/mysql-load-balancing-with-haproxy/ MYSQL Proxy
+#https://severalnines.com/resources/whitepapers/postgresql-load-balancing-haproxy/ PostgresSQL proxy
+#https://proxysql.com/ alternative
 version: '2'
 services:
 
