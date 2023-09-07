@@ -2,6 +2,8 @@
 #https://severalnines.com/resources/whitepapers/mysql-load-balancing-with-haproxy/ MYSQL Proxy
 #https://severalnines.com/resources/whitepapers/postgresql-load-balancing-haproxy/ PostgresSQL proxy
 #https://proxysql.com/ alternative
+#https://www.haproxy.com/blog/websockets-load-balancing-with-haproxy
+#https://wiki.freeradius.org/config/Proxy Radius Proxy Freeradius
 version: '2'
 services:
 
