@@ -1,0 +1,15 @@
+# https://hub.docker.com/r/ironmansoftware/universal
+version: "3.7"
+services:
+  PSU:
+    container_name: PSU
+    image: ironmansoftware/universal:latest
+    ports:
+      - 5000:5000
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/London
+    volumes:
+      - PSU:/root
+volumes:
+   PSU:
