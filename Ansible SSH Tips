@@ -1,3 +1,4 @@
+https://dev.to/rimelek/ansible-playbook-and-ssh-keys-33bo
 #Local Conf for non domain PCs
 ---
 ansible_user: administrator
