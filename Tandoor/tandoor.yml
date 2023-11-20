@@ -1,4 +1,5 @@
 version: "3"
+#https://docs.tandoor.dev/install/docker/
 services:
   db_recipes:
     restart: always
