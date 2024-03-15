@@ -1,0 +1,23 @@
+services:
+  spark-master:
+    image: bitnami/spark:latest
+    hostname: spark-master
+    ports:
+      - "7077:7077"  # Spark Master UI
+      - "8080:8080"  # Spark Master web UI (optional)
+    environment:
+       SPARK_MASTER_HOST: spark-master  # Set master hostname
+       SPARK_MASTER_PORT: 7077          # Set master port
+       SPARK_WORKER_CORES: 1           # Adjust the number of cores (optional)
+       SPARK_WORKER_MEMORY: 1g          # Adjust the memory allocation (optional)
+
+  spark-worker:
+    image: bitnami/spark:latest
+    depends_on:
+      - spark-master
+    ports:
+      - "8081:8081"  # Spark Worker UI (optional)
+    environment:
+       SPARK_MASTER: spark://spark-master:7077  # Point worker to master
+       SPARK_WORKER_CORES: 1           # Adjust the number of cores (optional)
+       SPARK_WORKER_MEMORY: 1g          # Adjust the memory allocation (optional)
