@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  # Data Ingestion (using Sqoop with Kerberos)
+  sqoop:
+    image: apache/sqoop:1.5.0
+    #environment:
+      # Secure connection details with Kerberos configuration
+    volumes:
+      - ./sqoop-config:/opt/sqoop/conf  # Mount configuration files
+    networks:
+      - data-ops-network  # Connect to secure network
+
+  # Data Transformation (using Spark with resource constraints)
+  spark:
+    image: apache/spark:3.4.0-binary-hadoop3.3
+    #environment:
+      # Spark configuration, processing script location
+      SPARK_DRIVER_MEMORY: 1g  # Limit memory usage
+      SPARK_EXECUTOR_MEMORY: 512m  # Limit memory usage
+    volumes:
+      - ./spark-scripts:/app/spark-scripts  # Mount processing scripts
+    networks:
+      - data-ops-network  # Connect to secure network
+
+  # Data Validation (using custom Python script)
+  validator:
+    image: python:3.11-slim  # Use latest secure Python version
+    command: ["python", "/app/validation_script.py"]
+    volumes:
+      - ./validation_script.py:/app/validation_script.py  # Mount validation script
+    networks:
+      - data-ops-network  # Connect to secure network
+
+  # Data Loading (using Hive with secure Metastore access)
+  hive:
+    image: apache/hive:3.3.0-hadoop3.3
+    #environment:
+      # Secure connection details for Hive Metastore
+    volumes:
+      - ./hive-scripts:/app/hive-scripts  # Mount Hive scripts
+    networks:
+      - data-ops-network  # Connect to secure network
+
+# Define secure network (optional)
+networks:
+  data-ops-network:
+    driver_opts:
+      - overlay
+
+# Optional: secrets management using environment variables
+secrets:
+  db_password:
+    external: true
