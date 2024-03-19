@@ -1,0 +1,46 @@
+version: "3"
+
+services:
+  db:
+    image: mariadb:10.11
+    command: --max-allowed-packet=64MB
+    restart: always
+    volumes:
+      - db:/var/lib/mysql:Z
+    environment:
+      - MYSQL_PASSWORD=JUXe6&C^&G*U7qZCRh@vzNvNVgj8fmpkEB2kVRz
+      - MYSQL_DATABASE=matomo
+      - MYSQL_USER=matomo
+      - MYSQL_ROOT_PASSWORD=B#FB9rD3WhnZa&V!Fyxazj^obF7wfpLPcLiXj@a
+      - MARIADB_AUTO_UPGRADE=1
+      - MARIADB_DISABLE_UPGRADE_BACKUP=1
+    env_file:
+      - ./db.env
+
+  app:
+    image: matomo:5.0.3-fpm
+    restart: always
+    environment:
+      - MATOMO_DATABASE_HOST=db
+      - PHP_MEMORY_LIMIT=512M
+      - MATOMO_DATABASE_USERNAME=matomo
+      - MATOMO_DATABASE_PASSWORD=JUXe6&C^&G*U7qZCRh@vzNvNVgj8fmpkEB2kVRz
+      - MATOMO_DATABASE_DBNAME=matomo
+      - MATOMO_DATABASE_TABLES_PREFIX=matomo_
+      - MATOMO_DATABASE_ADAPTER=mysql
+    volumes:
+      - matomo:/var/www/html:z
+    env_file:
+      - ./db.env
+  web:
+    image: nginx:latest
+    restart: always
+    volumes:
+      - matomo:/var/www/html:z
+      # see https://github.com/matomo-org/matomo-nginx
+      - ./matomo.conf:/etc/nginx/conf.d/default.conf:z
+    ports:
+      - 8080:80
+volumes:
+  db:
+  matomo:
