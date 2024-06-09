@@ -1,0 +1,40 @@
+#https://www.kimai.org/store/
+#https://www.kimai.org/
+#https://www.kimai.org/documentation/docker-compose.html
+version: '3.5'
+services:
+
+  sqldb:
+    image: mysql:8.3
+    volumes:
+      - mysql:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=kimai
+      - MYSQL_USER=kimaiuser
+      - MYSQL_PASSWORD=AhZJJKGz3ybC2Hgf8wX
+      - MYSQL_ROOT_PASSWORD=LygwRRZcCJ5zRX9
+    command: --default-storage-engine innodb
+    restart: unless-stopped
+    healthcheck:
+      test: mysqladmin -p$$MYSQL_ROOT_PASSWORD ping -h localhost
+      interval: 20s
+      start_period: 10s
+      timeout: 10s
+      retries: 3
+
+  kimai:
+    image: kimai/kimai2:apache
+    volumes:
+      - data:/opt/kimai/var/data
+    ports:
+      - 8001:8001
+    environment:
+      - ADMINMAIL=admin@kimai.de
+      - ADMINPASS=o5M7ZiyG8xJr7DU
+      - "DATABASE_URL=mysql://kimaiuser:AhZJJKGz3ybC2Hgf8wX@sqldb:3306/kimai?charset=utf8mb4&serverVersion=8.3.0"
+      - TRUSTED_HOSTS=localhost,127.0.0.1,192.168.0.30
+    restart: unless-stopped
+
+volumes:
+  data:
+  mysql:
