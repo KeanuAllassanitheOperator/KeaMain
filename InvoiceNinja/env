@@ -1,5 +1,5 @@
 # IN application vars
-APP_URL=http://172.16.17.178:8003
+APP_URL=http://in.localhost:8003
 APP_KEY=base64:oYjUNsGDjTRhhoAGtuqjhWshApL6uhn8H+GTVYxPM90=
 APP_DEBUG=true
 REQUIRE_HTTPS=false
@@ -21,8 +21,8 @@ DB_PASSWORD=ninja
 # Default to these values if empty
 # IN_USER_EMAIL=admin@example.com
 # IN_PASSWORD=changeme!
-IN_USER_EMAIL=admin@admin.de
-IN_PASSWORD=admin1234#
+IN_USER_EMAIL=
+IN_PASSWORD=
 
 # Mail options
 MAIL_MAILER=log
@@ -40,6 +40,11 @@ MYSQL_USER=ninja
 MYSQL_PASSWORD=ninja
 MYSQL_DATABASE=ninja
 
+# GoCardless/Nordigen API key for banking integration
+NORDIGEN_SECRET_ID=
+NORDIGEN_SECRET_KEY=
+
 # V4 env vars
 # DB_STRICT=false
 # APP_CIPHER=AES-256-CBC
+
