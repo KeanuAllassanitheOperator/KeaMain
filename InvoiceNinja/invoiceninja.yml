@@ -19,8 +19,6 @@ services:
       #- "443:443"
     networks:
       - invoiceninja
-    #extra_hosts:
-     # - "in5.localhost:192.168.0.124 " #host and ip
 
   app:
     image: invoiceninja/invoiceninja:5
@@ -30,12 +28,13 @@ services:
       - ./config/hosts:/etc/hosts:ro
       - ./docker/app/public:/var/www/app/public:rw,delegated
       - ./docker/app/storage:/var/www/app/storage:rw,delegated
+      - ./config/php/php.ini:/usr/local/etc/php/php.ini
+      - ./config/php/php-cli.ini:/usr/local/etc/php/php-cli.ini
+
     depends_on:
       - db
     networks:
       - invoiceninja
-    #extra_hosts:
-     # - "in5.localhost:192.168.0.124 " #host and ip
 
   db:
     image: mysql:8
@@ -44,8 +43,6 @@ services:
 #    For auto DB backups comment out image and use the build block below
 #    build:
 #      context: ./config/mysql
-    ports:
-      - "3305:3306"
     restart: always
     env_file: env
     volumes:
@@ -58,29 +55,6 @@ services:
       #- ./config/mysql/backup-script:/etc/cron.monthly/monthly:ro
     networks:
       - invoiceninja
-    #extra_hosts:
-     # - "in5.localhost:192.168.0.124 " #host and ip
-
-  # THIS IS ONLY A VALID CONFIGURATION FOR IN 4. DO NOT USE FOR IN 5.
-  # cron:
-  #   image: invoiceninja/invoiceninja:alpine-4
-  #   volumes:
-      # - ./docker/app/public:/var/www/app/public:rw,delegated
-      # - ./docker/app/storage:/var/www/app/storage:rw,delegated
-      # - ./docker/app/public/logo:/var/www/app/public/logo:rw,delegated
-  #   entrypoint: |
-  #     /bin/sh -c 'sh -s <<EOF
-  #     trap "break;exit" SIGHUP SIGINT SIGTERM
-  #     sleep 300s
-  #     while /bin/true; do
-  #       ./artisan ninja:send-invoices
-  #       ./artisan ninja:send-reminders
-  #       sleep 1d
-  #     done
-  #     EOF'
-  #   networks:
-  #     - invoiceninja
-  #
 
 networks:
   invoiceninja:
