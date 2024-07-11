@@ -1,7 +1,10 @@
-#
+# Links
+#https://github.com/invoiceninja/dockerfiles/blob/master/config/nginx/in-vhost.conf nginx vhost
+#https://github.com/invoiceninja/dockerfiles/tree/master/config/php php configs
+#Berechtigung anpassen für Pfade
 #chmod 755 docker/app/public
 #sudo chown -R 1500:1500 docker/app
-#Berechtigung anpassen für Pfade
+
 
 version: '3.7'
 
