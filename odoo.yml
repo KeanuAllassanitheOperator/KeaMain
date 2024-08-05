@@ -1,7 +1,8 @@
 version: '3.1'
 services:
   web:
-    image: odoo:16.0
+    image: odoo:17.0
+    user: odoo
     depends_on:
       - db
     ports:
@@ -9,21 +10,44 @@ services:
     environment:
       - HOST=db
       - USER=odoo
-      - PASSWORD=odoo1234
+      - PASSWORD=admin1234
+      - DB_PORT=5432
     volumes:
       - odoo-web-data:/var/lib/odoo
-      
+      - odoo-addons:/mnt/extra-addons
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+    #security_opt:
+     # - no-new-privileges:true
+    #cap_drop:
+     # - ALL
+
   db:
     image: postgres:15
+    user: postgres
     environment:
       - POSTGRES_DB=postgres
-      - POSTGRES_PASSWORD=odoo1234
+      - POSTGRES_PASSWORD=admin1234
       - POSTGRES_USER=odoo
       - PGDATA=/var/lib/postgresql/data/pgdata
-    ports: 
-      - "5432:5432"
     volumes:
       - odoo-db-data:/var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+    #security_opt:
+     # - no-new-privileges:true
+    #cap_drop:
+     # - ALL
+
 volumes:
   odoo-web-data:
   odoo-db-data:
+  odoo-addons:
