@@ -8,6 +8,8 @@ services:
       - db
     ports:
       - "8069:8069"
+    networks:
+      - odoonet
     environment:
       - HOST=db
       - USER=odoo
@@ -38,6 +40,8 @@ services:
       - odoo-db-data:/var/lib/postgresql/data/pgdata
     ports:
       - "5432:5432"
+    networks:
+      - odoonet
     deploy:
       resources:
         limits:
@@ -47,7 +51,8 @@ services:
      # - no-new-privileges:true
     #cap_drop:
      # - ALL
-
+networks:
+    odoonet:
 volumes:
   odoo-web-data:
   odoo-db-data:
