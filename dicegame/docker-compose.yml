@@ -4,3 +4,8 @@ services:
     image: dicegame:latest
     ports:
       - "8000:8080"
+    networks:
+      - gonet
+
+  networks:
+      gonet:
