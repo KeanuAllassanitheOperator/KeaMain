@@ -1,4 +1,6 @@
+
 https://zhxilin.github.io/post/ssl_certificate_and_nginx_config/
+Für RSA CA:
 Generate ca priv key and issue root crt:
 openssl genrsa -out ca.key 4096
 openssl req -new -x509 -days 3650 -key ca.key -subj "/C=CN/ST=BJ/L=BJ/O=MyCA/CN=CA" -out ca.crt
@@ -7,10 +9,18 @@ Generate priv key for server
  openssl genrsa -out server.key 4096
  Generate csr 
  openssl req -newkey rsa:4096 -nodes -keyout server.key -subj "/C=CN/ST=BJ/L=BJ/O=Kiwifruit Studio/CN=<YOUR_IP or YOUR_DOMAIN>" -out server.csr
-Issue Crt for server 
-openssl x509 -req -days 3650 -in nginx.csr -CA rzhca.crt -CAkey rzhca.key -CAcreateserial -out nginx.crtt
+Issue Crt for server C
+openssl x509 -req -days 3650 -in nginx.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out nginx.crt
 
 Display crt
 openssl x509 -text -noout -in server.crt
 
 openssl dhparam -out /etc/nginx/ssl/dhparam.pem 4096
+
+Für ECC CA (Ellipitic Curve Cryptography):
+openssl ecparam -name secp384r1 -genkey -out ca.key (Generate only private key)
+openssl req -newkey ec:secp384r1 -nodes -keyout server.key -out server.csr
+Sign CSR and create certificate for host signed by CA.key
+openssl x509 -req -in server.csr -signkey ca.key -out server.crt -days 3600
+
+
