@@ -1,16 +1,16 @@
 
 https://zhxilin.github.io/post/ssl_certificate_and_nginx_config/
+Info! Google Chrome muss man neben common name auch den subj alt name miteintragen, sonst wird cert nicht akzeptiert
 Für RSA CA:
 Generate ca priv key and issue root crt:
 openssl genrsa -out ca.key 4096
 openssl req -new -x509 -days 3650 -key ca.key -subj "/C=CN/ST=BJ/L=BJ/O=MyCA/CN=CA" -out ca.crt
 
 Generate priv key for server
- openssl genrsa -out server.key 4096
- Generate csr 
- openssl req -newkey rsa:4096 -nodes -keyout server.key -subj "/C=CN/ST=BJ/L=BJ/O=Kiwifruit Studio/CN=<YOUR_IP or YOUR_DOMAIN>" -out server.csr
-Issue Crt for server C
-openssl x509 -req -days 3650 -in nginx.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out nginx.crt
+ openssl req -newkey rsa:4096 -nodes -keyout monitor.key -out monitor.csr -subj "/C=DE/CN=monitor.example.com.de" -addext "subjectAltName=DNS:example.com.de,DNS:monitor.example.com.de,IP:YYY"
+Issue Crt for server C (Vorher ext.conf erstellen)
+ext3.conf: subjectAltName = DNS:example.com.de,DNS:monitor.example.com.de,IP:YYY
+openssl x509 -req -days 3600 -in monitor.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out monitor.crt -sha512 -extensions v3_req -extfile v3_ext.conf
 
 Display crt
 openssl x509 -text -noout -in server.crt
