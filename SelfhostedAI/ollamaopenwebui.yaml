@@ -1,0 +1,36 @@
+services:
+  openWebUI:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: openWebUI
+    restart: always
+    ports:
+      - "3002:8080"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - ollama
+    volumes:
+      - openwebui-local:/app/backend/data
+    dns:
+      - 8.8.8.8
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    networks:
+      - ollama
+    volumes:
+      - ollama-local:/root/.ollama
+    dns:
+      - 8.8.8.8
+
+volumes:
+  ollama-local:
+    external: true
+  openwebui-local:
+    external: true
+networks:
+  ollama:
+   external: true
