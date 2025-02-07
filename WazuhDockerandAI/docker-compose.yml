@@ -3,6 +3,7 @@
 #docker exec single-node-wazuh.indexer-1 ls -la /usr/share/wazuh-indexer/certs/ Cert Directory check
 #docker exec single-node-wazuh.indexer-1 /usr/share/wazuh-indexer/plugins/opensearch-security/tools/securityadmin.sh \-cacert /usr/share/wazuh-indexer/certs/root-ca.pem \-cert /usr/share/wazuh-indexer/certs/admin.pem \-key /usr/share/wazuh-indexer/certs/admin-key.pem
 # SecAdmin.sh da keine envs erkannt werden
+#docker exec -u 0 -it single-node-wazuh.indexer-1 bash für opensearch plugins im wazuh-indexer container
 services:
   wazuh.manager:
     image: wazuh/wazuh-manager:4.10.1
