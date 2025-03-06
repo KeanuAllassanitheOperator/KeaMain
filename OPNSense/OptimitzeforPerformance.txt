@@ -1,0 +1,61 @@
+https://docs.opnsense.org/troubleshooting/performance.html
+https://forum.opnsense.org/index.php?topic=39745.0
+https://forum.opnsense.org/index.php?topic=6590.45
+### WebGUI > System > Settings > Tunables
+dev.ix.0.fc = 0   
+dev.ix.1.fc = 0
+net.isr.bindthreads = 1
+
+net.isr.maxthreads = -1
+net.inet.rss.enabled = 1
+
+# Flow Control (FC): 0 = Disabled, 1 = Rx Pause, 2 = Tx Pause, 3 = Full FC
+hw.igb.0.fc=0
+hw.igb.1.fc=0
+hw.igb.2.fc=0
+hw.igb.3.fc=0
+
+# Set number of queues to number of cores divided by number of ports, 0 lets FreeBSD decide (should be default)
+hw.igb.num_queues=0
+
+# Increase packet descriptors (set as 1024, 2048 or 4096 ONLY)
+hw.igb.rxd="4096" # Default = 1024
+hw.igb.txd="4096"
+net.link.ifqmaxlen="8192" # Sum of above two (default = 50)
+
+# Increase network efficiency (Adaptive Interrupt Moderation, should be default)
+hw.igb.enable_aim=1
+
+# Increase interrupt rate # Default = 8000
+hw.igb.max_interrupt_rate="64000"
+
+# Fast interrupt handling, allows NIC to process packets as fast as they are received (should be default)
+hw.igb.enable_msix=1
+hw.pci.enable_msix=1
+
+# Unlimited packet processing
+hw.igb.rx_process_limit="-1"
+hw.igb.tx_process_limit="-1"
+
+
+
+# Disable Energy Efficient Ethernet
+dev.igb.0.eee_disabled=1
+dev.igb.1.eee_disabled=1
+dev.igb.2.eee_disabled=1
+dev.igb.3.eee_disabled=1
+
+# Set Flow Control
+hw.igb.0.fc=0
+hw.igb.1.fc=0
+hw.igb.2.fc=0
+hw.igb.3.fc=0
+
+dev.igb.0.fc=0
+dev.igb.1.fc=0
+dev.igb.2.fc=0
+dev.igb.3.fc=0
+
+# Do not accept IPv4 fragments
+net.inet.ip.maxfragpackets=0
+net.inet.ip.maxfragsperpacket=0
