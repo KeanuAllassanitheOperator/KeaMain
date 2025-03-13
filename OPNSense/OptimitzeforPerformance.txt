@@ -59,3 +59,27 @@ dev.igb.3.fc=0
 # Do not accept IPv4 fragments
 net.inet.ip.maxfragpackets=0
 net.inet.ip.maxfragsperpacket=0
+kern.ipc.maxsockbuf: Erhöht die maximale Größe des Socket-Puffers.
+
+Beispiel: kern.ipc.maxsockbuf="16777216"
+net.inet.ip.fw.one_pass: Aktiviert die One-Pass-Verarbeitung für die Firewall.
+
+Beispiel: net.inet.ip.fw.one_pass="1"
+
+https://wiki.freebsd.org/ZFSTuningGuide ZFSTuningGuide
+ZFS Tunables
+vfs.zfs.arc_max: Legt die maximale Größe des ARC-Caches fest. Dies kann erhöht werden, um mehr RAM für den Cache zu nutzen.
+
+Beispiel: vfs.zfs.arc_max="4G"
+vfs.zfs.arc_min: Legt die minimale Größe des ARC-Caches fest.
+
+Beispiel: vfs.zfs.arc_min="1G"
+vfs.zfs.l2arc_write_max: Begrenzt die maximale Schreibgeschwindigkeit an den L2ARC-Cache.
+
+Beispiel: vfs.zfs.l2arc_write_max="1000000"
+vfs.zfs.zil_slog_limit: Begrenzt die Größe des SLOG-Caches.
+
+Beispiel: vfs.zfs.zil_slog_limit="10000000"
+vfs.zfs.prefetch_disable: Deaktiviert das Prefetching, was in einigen Fällen die Performance verbessern kann.
+
+Beispiel: vfs.zfs.prefetch_disable="1"
