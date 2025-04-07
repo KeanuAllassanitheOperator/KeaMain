@@ -1,0 +1,1 @@
+https://www.zenarmor.com/docs/network-security-tutorials/opnsense-security-and-hardening-best-practice-guide
