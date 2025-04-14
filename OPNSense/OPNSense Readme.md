@@ -4,7 +4,7 @@ Zenarmor generell hat gute OPNSense Guides
 
 Suricata Detection Algorithm
 ​Hier ist eine tabellarische Übersicht der fünf Musterprüfer-Algorithmen (Pattern Matcher) in OPNsense IPS (Suricata), bewertet nach Netzwerkbandbreite, Eignung für SOHO- oder große Netzwerke, Speicherverbrauch, Performance und einer kurzen Erklärung des Algorithmus:​
-
+https://de.wikipedia.org/wiki/Aho-Corasick-Algorithmus
 Musterprüfer	Netzwerkbandbreite	Eignung für Netzwerke	Speicherverbrauch	Performance	Erklärung des Algorithmus
 Standard (Aho-Corasick)	Mittel	SOHO	Mittel	Mittel	Standard-Algorithmus in Suricata; nutzt den Aho-Corasick-Algorithmus für effiziente Mustererkennung.
 Aho-Corasick	Mittel	SOHO	Mittel	Mittel	Klassischer Algorithmus zur effizienten Suche mehrerer Muster in Texten; verwendet Zustandsautomaten.
