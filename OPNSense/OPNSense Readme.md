@@ -18,3 +18,8 @@ Für kleine Netzwerke empfiehlt sich die Verwendung der Aho-Corasick "Ken Steele
 Hinweis:
 
 Die Auswahl des geeigneten Musterprüfers hängt von der spezifischen Hardware und den Leistungsanforderungen ab. Es wird empfohlen, verschiedene Optionen zu testen, um die optimale Balance zwischen Leistung und Ressourcenverbrauch für Ihr Netzwerk zu finden.
+
+OPNSense Bugs:
+Unbound DNS Internal DNS Server löst nicht auf bei DNS Rewrites
+WireGuard funktioniert nicht sauber Site-to-Site als Single-Peer (nur ein User) und Multi-Peer (mehrere Interfaces mit verschieden Usern)
+DenyAll blockt viel und soll als letztes und eigene Regeln heben das nicht auf
