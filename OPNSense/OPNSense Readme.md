@@ -19,7 +19,9 @@ Hinweis:
 
 Die Auswahl des geeigneten Musterprüfers hängt von der spezifischen Hardware und den Leistungsanforderungen ab. Es wird empfohlen, verschiedene Optionen zu testen, um die optimale Balance zwischen Leistung und Ressourcenverbrauch für Ihr Netzwerk zu finden.
 
-OPNSense Bugs:
+OPNSense Bugs (Issues zur Not aufmachen mit Github):
 Unbound DNS Internal DNS Server löst nicht auf bei DNS Rewrites
 WireGuard funktioniert nicht sauber Site-to-Site als Single-Peer (nur ein User) und Multi-Peer (mehrere Interfaces mit verschieden Usern)
 DenyAll blockt viel und soll als letztes und eigene Regeln heben das nicht auf
+SFTP Backup Private Key crypto error
+Alias wird nicht richtig erkannt
