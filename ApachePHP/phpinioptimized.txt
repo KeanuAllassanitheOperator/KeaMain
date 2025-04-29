@@ -1,0 +1,40 @@
+php.ini
+; Increase the maximum execution time of scripts to prevent timeouts during intensive processes
+max_execution_time = 300
+
+; Set the maximum time in seconds a script is allowed to parse input data, like POST and GET
+max_input_time = 300
+
+; Limit the number of input variables to prevent denial of service attacks
+max_input_vars = 3000
+
+; Set the maximum amount of memory a script may consume
+memory_limit = 512M
+
+; Define the maximum size of POST data that PHP will accept
+post_max_size = 64M
+
+; Specify the maximum size of an uploaded file
+upload_max_filesize = 64M
+
+php-10-opcache.ini
+; Enable OPcache for faster script execution
+opcache.enable = 1
+
+; Set the OPcache memory consumption
+opcache.memory_consumption = 128
+
+; Define the number of strings that can be interned
+opcache.interned_strings_buffer = 16
+
+; Maximize the number of files OPcache can cache
+opcache.max_accelerated_files = 10000
+
+; Validate cached files using timestamps
+opcache.validate_timestamps = 1
+
+; How often to check script timestamps for updates, in seconds
+opcache.revalidate_freq = 2
+
+; Enable fast shutdown sequence
+opcache.fast_shutdown = 1
