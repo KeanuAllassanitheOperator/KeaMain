@@ -1,0 +1,1 @@
+dnf -y remove --oldinstallonly --setopt installonly_limit=2 kernel immer ein kernel behalten
