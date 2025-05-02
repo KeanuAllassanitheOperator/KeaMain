@@ -23,6 +23,14 @@ services:
       - ollama
     volumes:
       - ollama-local:/root/.ollama
+    environment:
+      - OLLAMA_BACKEND=cpu
+      - OLLAMA_NUM_THREADS=16
+      - OLLAMA_LOWVRAM=true
+      - OLLAMA_NUM_BATCH=1
+      - OLLAMA_NUM_CTX=2048
+      - OLLAMA_MEMORY_OFFLOAD=true
+      - OLLAMA_SWAP_DISK=true
     dns:
       - 8.8.8.8
 
