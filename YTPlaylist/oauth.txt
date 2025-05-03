@@ -1,0 +1,27 @@
+Desktopanwendung Oauth Google braucht kein Callback
+For a console application where you can't use a local redirect server, you need to use the run_console() method. This approach works differently:
+
+It will generate a URL for you to copy and paste into your browser
+You'll authenticate in the browser
+Google will show you an authorization code
+You'll copy that authorization code and paste it back into your console
+
+Important Google Cloud Console Settings
+For this to work, you need to configure your OAuth client correctly in Google Cloud Console:
+
+Go to Google Cloud Console -> APIs & Services -> Credentials
+Edit your OAuth client ID
+Make sure the application type is set to "Desktop app" (not Web application)
+You shouldn't need to specify a redirect URI for desktop applications using console flow
+
+Using the Script
+When you run the updated script:
+
+It will print a URL to the console
+Copy and paste that URL into your browser
+Complete the authentication flow in your browser
+Google will show you an authorization code
+Copy that authorization code
+Paste it back into your console when prompt
+
+Webanwendung hingegen braucht Google Oauth Callback-Adresse
