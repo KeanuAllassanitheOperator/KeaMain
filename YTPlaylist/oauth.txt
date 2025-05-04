@@ -1,4 +1,5 @@
 Desktopanwendung Oauth Google braucht kein Callback
+https://medium.com/jungletronics/testing-oauth-2-0-authorization-with-youtube-api-b4042973d8ff
 For a console application where you can't use a local redirect server, you need to use the run_console() method. This approach works differently:
 
 It will generate a URL for you to copy and paste into your browser
