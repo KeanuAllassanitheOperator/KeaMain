@@ -1,3 +1,6 @@
+PolicyViolation checken für SELinux Anpassung:
+grep -R "failed" /var/log/audit/audit.log
+
 SSH:
 sudo semanage fcontext --add -t ssh_home_t "/home/kea/.ssh(/.*)?";
 restorecon -FRv /home/kea/.ssh/
