@@ -1,0 +1,12 @@
+SSH:
+sudo semanage fcontext --add -t ssh_home_t "/home/kea/.ssh(/.*)?";
+restorecon -FRv /home/kea/.ssh/
+
+Nginx:
+ semanage fcontext -l | grep nginx
+ restorecon -Rv /usr/sbin/nginx
+ restorecon -Rv /etc/nginx
+ restorecon -Rv /var/log/nginx
+ sudo grep nginx /var/log/audit/audit.log | audit2allow -M mynginx
+ sudo semodule -i mynginx.pp
+ sudo semanage port -a -t http_port_t -p tcp 80
