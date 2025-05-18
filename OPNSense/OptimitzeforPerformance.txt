@@ -85,49 +85,38 @@ vfs.zfs.prefetch_disable: Deaktiviert das Prefetching, was in einigen Fällen di
 Beispiel: vfs.zfs.prefetch_disable="1"
 
 
-Claude 
-Suricata OPNsense Tuning-Parameter für optimale Performance
-Hier sind die wichtigsten Tuning-Parameter für Suricata in OPNsense, um die Performance zu optimieren:
-Hardware-bezogene Parameter
+Um die Performance von Suricata in OPNsense zu optimieren, können Sie die folgenden Tunable Environment Variablen in der Konfiguration verwenden. Diese Variablen entsprechen den zuvor genannten Parametern und können in der OPNsense-Oberfläche unter "System" -> "Settings" -> "Tunables" hinzugefügt werden.
 
-max-pending-packets: Standard ist 1024, erhöhen Sie auf 4096-8192 für stärkere Hardware
-runmode: Wählen Sie "workers" für Multicore-Systeme
-detect-thread-ratio: Optimaler Wert zwischen 1.0 und 1.5 für Balance
-cpu-affinity: Aktivieren und konfigurieren für dedizierte CPU-Kerne
+Hier sind die genauen Variablen:
 
-Speicher-Optimierung
+Hardware-bezogene Parameter:
 
-memcap: Erhöhen Sie für Stream- und Flow-Reconstruktion (z.B. 1GB oder mehr)
-memory-profile: "medium" oder "high" je nach verfügbarem RAM
-stream.memcap: Erhöhen für bessere Paketverarbeitung (z.B. 256MB)
-flow.memcap: Für Hochgeschwindigkeitsnetze erhöhen (z.B. 512MB)
+suricata_max_pending_packets: Setzen Sie diesen Wert auf 4096 oder 8192 für stärkere Hardware.
+suricata_runmode: Setzen Sie diesen Wert auf workers für Multicore-Systeme.
+suricata_detect_thread_ratio: Setzen Sie diesen Wert auf einen Wert zwischen 1.0 und 1.5.
+suricata_cpu_affinity: Aktivieren und konfigurieren Sie diesen Wert für dedizierte CPU-Kerne.
+Speicher-Optimierung:
 
-Paket-Verarbeitung
+suricata_memcap: Erhöhen Sie diesen Wert auf 1GB oder mehr.
+suricata_memory_profile: Setzen Sie diesen Wert auf medium oder high je nach verfügbarem RAM.
+suricata_stream_memcap: Erhöhen Sie diesen Wert auf 256MB.
+suricata_flow_memcap: Erhöhen Sie diesen Wert auf 512MB für Hochgeschwindigkeitsnetze.
+Paket-Verarbeitung:
 
-mpm-algo: Wählen Sie "hyperscan" für beste Performance (wenn Hardware unterstützt)
-defrag.memcap: 32MB oder mehr für Netzwerke mit fragmentierten Paketen
-detect.profile: "medium", "high" oder "custom" basierend auf Systemleistung
-detect.sgh-mpm-context: "full" für maximale Genauigkeit oder "auto" für Balance
+suricata_mpm_algo: Setzen Sie diesen Wert auf hyperscan für beste Performance (wenn Hardware unterstützt).
+suricata_defrag_memcap: Setzen Sie diesen Wert auf 32MB oder mehr für Netzwerke mit fragmentierten Paketen.
+suricata_detect_profile: Setzen Sie diesen Wert auf medium, high oder custom basierend auf Systemleistung.
+suricata_detect_sgh_mpm_context: Setzen Sie diesen Wert auf full für maximale Genauigkeit oder auto für Balance.
+Regeloptimierung:
 
-Regeloptimierung
+suricata_af_packet_use_mmap: Setzen Sie diesen Wert auf yes für bessere Paketverarbeitung.
+suricata_af_packet_tpacket_v3: Aktivieren Sie diesen Wert für verbesserte Paket-Erfassung.
+suricata_af_packet_block_size: Erhöhen Sie diesen Wert auf 65536 oder höher bei Gigabit-Verkehr.
+suricata_af_packet_buffer_size: Setzen Sie diesen Wert auf 128MB oder mehr für stark belastete Systeme.
+Regelauswahl und Filterung:
 
-af-packet.use-mmap: Auf "yes" setzen für bessere Paketverarbeitung
-af-packet.tpacket-v3: Aktivieren für verbesserte Paket-Erfassung
-af-packet.block-size: Erhöhen auf 65536 oder höher bei Gigabit-Verkehr
-af-packet.buffer-size: 128MB oder mehr für stark belastete Systeme
-
-Regelauswahl und Filterung
-
-Nur notwendige Regel-Sets aktivieren
-Regeln nach Netzwerkanforderungen filtern (z.B. keine Linux-Regeln für Windows-Netzwerke)
-ET-Open Rules mit kritischen und hohen Alarmen priorisieren
-Regex-basierte Regeln reduzieren, da sie CPU-intensiv sind
-
-OPNsense-spezifische Einstellungen
-
-Aktivieren Sie "Run In IPS Mode" für inline-Schutz
-Deaktivieren Sie die Blockierung bei Regelfehlern
-Verwenden Sie "Pattern Matcher" wie "Hyperscan" wenn verfügbar
-Passen Sie die Interface-Cluster-Einstellungen für Multiple-Interfaces an
-
-Diese Parameter sollten in der Suricata-Konfiguration in OPNsense unter Services > Intrusion Detection > Administration angepasst werden. Starten Sie nach Änderungen Suricata neu und überwachen Sie die Systemleistung, um die optimale Konfiguration zu ermitteln.RetryClaude can make mistakes. Please double-check responses. 3.7 Sonnet
+Aktivieren Sie nur notwendige Regel-Sets.
+Filtern Sie Regeln nach Netzwerkanforderungen (z.B. keine Linux-Regeln für Windows-Netzwerke).
+Priorisieren Sie ET-Open Rules mit kritischen und hohen Alarmen.
+Reduzieren Sie Regex-basierte Regeln, da sie CPU-intensiv sind.
+Diese Variablen sollten in der OPNsense-Oberfläche unter "System" -> "Settings" -> "Tunables" hinzugefügt werden. Stellen Sie sicher, dass Sie die Änderungen speichern und Suricata neu starten, damit die Änderungen wirksam werden.
