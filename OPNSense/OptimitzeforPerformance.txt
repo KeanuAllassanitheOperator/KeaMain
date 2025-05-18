@@ -83,3 +83,51 @@ Beispiel: vfs.zfs.zil_slog_limit="10000000"
 vfs.zfs.prefetch_disable: Deaktiviert das Prefetching, was in einigen Fällen die Performance verbessern kann.
 
 Beispiel: vfs.zfs.prefetch_disable="1"
+
+
+Claude 
+Suricata OPNsense Tuning-Parameter für optimale Performance
+Hier sind die wichtigsten Tuning-Parameter für Suricata in OPNsense, um die Performance zu optimieren:
+Hardware-bezogene Parameter
+
+max-pending-packets: Standard ist 1024, erhöhen Sie auf 4096-8192 für stärkere Hardware
+runmode: Wählen Sie "workers" für Multicore-Systeme
+detect-thread-ratio: Optimaler Wert zwischen 1.0 und 1.5 für Balance
+cpu-affinity: Aktivieren und konfigurieren für dedizierte CPU-Kerne
+
+Speicher-Optimierung
+
+memcap: Erhöhen Sie für Stream- und Flow-Reconstruktion (z.B. 1GB oder mehr)
+memory-profile: "medium" oder "high" je nach verfügbarem RAM
+stream.memcap: Erhöhen für bessere Paketverarbeitung (z.B. 256MB)
+flow.memcap: Für Hochgeschwindigkeitsnetze erhöhen (z.B. 512MB)
+
+Paket-Verarbeitung
+
+mpm-algo: Wählen Sie "hyperscan" für beste Performance (wenn Hardware unterstützt)
+defrag.memcap: 32MB oder mehr für Netzwerke mit fragmentierten Paketen
+detect.profile: "medium", "high" oder "custom" basierend auf Systemleistung
+detect.sgh-mpm-context: "full" für maximale Genauigkeit oder "auto" für Balance
+
+Regeloptimierung
+
+af-packet.use-mmap: Auf "yes" setzen für bessere Paketverarbeitung
+af-packet.tpacket-v3: Aktivieren für verbesserte Paket-Erfassung
+af-packet.block-size: Erhöhen auf 65536 oder höher bei Gigabit-Verkehr
+af-packet.buffer-size: 128MB oder mehr für stark belastete Systeme
+
+Regelauswahl und Filterung
+
+Nur notwendige Regel-Sets aktivieren
+Regeln nach Netzwerkanforderungen filtern (z.B. keine Linux-Regeln für Windows-Netzwerke)
+ET-Open Rules mit kritischen und hohen Alarmen priorisieren
+Regex-basierte Regeln reduzieren, da sie CPU-intensiv sind
+
+OPNsense-spezifische Einstellungen
+
+Aktivieren Sie "Run In IPS Mode" für inline-Schutz
+Deaktivieren Sie die Blockierung bei Regelfehlern
+Verwenden Sie "Pattern Matcher" wie "Hyperscan" wenn verfügbar
+Passen Sie die Interface-Cluster-Einstellungen für Multiple-Interfaces an
+
+Diese Parameter sollten in der Suricata-Konfiguration in OPNsense unter Services > Intrusion Detection > Administration angepasst werden. Starten Sie nach Änderungen Suricata neu und überwachen Sie die Systemleistung, um die optimale Konfiguration zu ermitteln.RetryClaude can make mistakes. Please double-check responses. 3.7 Sonnet
