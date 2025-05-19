@@ -1,6 +1,13 @@
+Wie man OPNSense tu einer NGFW Nextgen Firewall umfunktioniert
+Clamav Virenscanner
+Rspamd Gateway + Postfix Relay SSL
+Redis als Optimierung
+Suricata als Inline Realtime NIPS und Crowsec als log based N/HIPS
+
+
+Zenarmor generell hat gute OPNSense Guides
 https://www.zenarmor.com/docs/network-security-tutorials/opnsense-security-and-hardening-best-practice-guide
 https://www.zenarmor.com/docs/network-security-tutorials/how-to-configure-opnsense-firewall-rules
-Zenarmor generell hat gute OPNSense Guides
 
 Suricata Detection Algorithm
 ​Hier ist eine tabellarische Übersicht der fünf Musterprüfer-Algorithmen (Pattern Matcher) in OPNsense IPS (Suricata), bewertet nach Netzwerkbandbreite, Eignung für SOHO- oder große Netzwerke, Speicherverbrauch, Performance und einer kurzen Erklärung des Algorithmus:​
