@@ -25,13 +25,13 @@ services:
     environment:
       - INDEXER_URL=https://wazuh-indexer1:9200
       - INDEXER_USERNAME=admin
-      - INDEXER_PASSWORD=cEt*8J8S#bdQHihVjypYM#eQt
+      - INDEXER_PASSWORD=admin
       - FILEBEAT_SSL_VERIFICATION_MODE=full
       - SSL_CERTIFICATE_AUTHORITIES=/etc/ssl/root-ca.pem
       - SSL_CERTIFICATE=/etc/ssl/filebeat.pem
       - SSL_KEY=/etc/ssl/filebeat.key
       - API_USERNAME=wazuh-wui
-      - API_PASSWORD=bYGJGL*d2n%nP6weh0i*bsWyxnqI&uAw
+      - API_PASSWORD=admin
       - TZ=Europe/Berlin
     volumes:
       - wazuh_api_configuration:/var/ossec/api/configuration
@@ -91,12 +91,12 @@ services:
       - 443:5601
     environment:
       - INDEXER_USERNAME=admin
-      - INDEXER_PASSWORD=cEt*8J8S#bdQHihVjypYM#eQt
+      - INDEXER_PASSWORD=admin
       - WAZUH_API_URL=https://wazuh.manager
       - DASHBOARD_USERNAME=kibanaserver
-      - DASHBOARD_PASSWORD=7#FwHKjmK4yvy2*g6iNt4Vl!V
+      - DASHBOARD_PASSWORD=admin
       - API_USERNAME=wazuh-wui
-      - API_PASSWORD=bYGJGL*d2n%nP6weh0i*bsWyxnqI&uAw
+      - API_PASSWORD=admin
       - TZ=Europe/Berlin
     volumes:
       - ./config/wazuh_indexer_ssl_certs/wazuh.dashboard.pem:/usr/share/wazuh-dashboard/certs/wazuh-dashboard.pem
