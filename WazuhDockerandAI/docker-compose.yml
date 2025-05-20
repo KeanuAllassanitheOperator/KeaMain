@@ -5,6 +5,9 @@
 #docker exec single-node-wazuh.indexer-1 /usr/share/wazuh-indexer/plugins/opensearch-security/tools/securityadmin.sh \-cacert /usr/share/wazuh-indexer/certs/root-ca.pem \-cert /usr/share/wazuh-indexer/certs/admin.pem \-key /usr/share/wazuh-indexer/certs/admin-key.pem
 # SecAdmin.sh da keine envs erkannt werden
 #docker exec -u 0 -it single-node-wazuh.indexer-1 bash für opensearch plugins im wazuh-indexer container
+#File has insecure file permissions
+#docker exec -it wazuh-indexer /bin/bash
+#chmod 0600 /usr/share/wazuh-indexer/jdk/lib im container
 services:
   wazuh.manager:
     image: wazuh/wazuh-manager:4.12.0
