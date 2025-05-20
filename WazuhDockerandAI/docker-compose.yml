@@ -1,4 +1,5 @@
 #https://documentation.wazuh.com/current/deployment-options/docker/wazuh-container.html
+#https://documentation.wazuh.com/current/deployment-options/docker/upgrading-wazuh-docker.html
 #chmod 644 on private keys Key Rights beachten, Passwörter auch
 #docker exec single-node-wazuh.indexer-1 ls -la /usr/share/wazuh-indexer/certs/ Cert Directory check
 #docker exec single-node-wazuh.indexer-1 /usr/share/wazuh-indexer/plugins/opensearch-security/tools/securityadmin.sh \-cacert /usr/share/wazuh-indexer/certs/root-ca.pem \-cert /usr/share/wazuh-indexer/certs/admin.pem \-key /usr/share/wazuh-indexer/certs/admin-key.pem
