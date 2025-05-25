@@ -18,9 +18,7 @@ openssl x509 -text -noout -in server.crt
 openssl dhparam -out /etc/nginx/ssl/dhparam.pem 4096
 
 Für ECC CA (Ellipitic Curve Cryptography):
-Generate Private Key für Cert für hostname
-openssl req -new -newkey ec -pkeyopt ec_paramgen_curve:secp384r1 -nodes -keyout xxx.key -out xx.csr -subj "/C=DE/CN=xxx" -addext "subjectAltName=DNS:xx"
-dann in v3_ext.conf eintragen
- openssl x509 -req -days 3600 -in xxx.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out xxx.crt -sha512 -extensions v3_req -extfile v3_ext.conf
-
-
+Generate CSR and Priv Key
+openssl req -new -newkey ec -pkeyopt ec_paramgen_curve:secp384r1 -nodes -keyout adg.key -out adg.csr -subj "/C=DE/CN=adg.homekea.de" -addext "subjectAltName=DNS:adg.homekea.de"
+Generate Certificate
+openssl x509 -req -days 3600 -in adg.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out adg.crt -sha512 -extensions v3_req -extfile v3_ext.conf
