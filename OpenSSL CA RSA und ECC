@@ -19,11 +19,8 @@ openssl dhparam -out /etc/nginx/ssl/dhparam.pem 4096
 
 Für ECC CA (Ellipitic Curve Cryptography):
 Generate Private Key für Cert für hostname
-openssl req -new -newkey ec -pkeyopt ec_paramgen_curve:secp384r1 -nodes -keyout private.key -out request.csr
-openssl ecparam -name secp384r1 -genkey -out server.key
-Generate CSR for HomeLab Service
-openssl req -new -key server.key -out server.pem
-Generate Certificate for hostname in KeaHomeLab and sign with root ca key
-sudo openssl x509 -req -in server.pem -signkey ca.key -out server.crt -days 3600
+openssl req -new -newkey ec -pkeyopt ec_paramgen_curve:secp384r1 -nodes -keyout xxx.key -out xx.csr -subj "/C=DE/CN=xxx" -addext "subjectAltName=DNS:xx"
+dann in v3_ext.conf eintragen
+ openssl x509 -req -days 3600 -in xxx.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out xxx.crt -sha512 -extensions v3_req -extfile v3_ext.conf
 
 
