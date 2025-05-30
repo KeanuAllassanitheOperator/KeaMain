@@ -1,0 +1,4 @@
+mysqldump -h localhost -u root --databases xxx > /root/xxxsql
+         mysql -u root -e "CREATE DATABASE xxx;"
+         mysql -u root -p xxxx < dump.sql
+         mysql -u root -p -e "USE xxxx; SHOW TABLES;"
