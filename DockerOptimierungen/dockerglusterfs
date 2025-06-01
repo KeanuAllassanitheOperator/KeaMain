@@ -1,2 +1,4 @@
 https://medium.com/running-a-software-factory/setup-3-node-high-availability-cluster-with-glusterfs-and-docker-swarm-b4ff80c6b5c3
 https://autoize.com/glusterfs-for-persistent-docker-volumes/
+https://hub.docker.com/r/mochoa/glusterfs-volume-plugin Newest GlusterFS Plugin
+
