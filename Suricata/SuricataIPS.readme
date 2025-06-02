@@ -7,6 +7,8 @@ https://letsdefend.io/blog/how-to-install-and-configure-suricata-on-windows
 All Suricata Rules
 https://rules.emergingthreats.net/open/suricata/rules/
 
+Suricata TLS Inspection folgt noch, weil kann sehr langsam die Decryption
+
 Suricata Docs:
 https://docs.suricata.io/en/latest/what-is-suricata.html
 
@@ -28,7 +30,7 @@ suricata-version: "7.0"
 ## Network settings
 vars:
   address-groups:
-    HOME_NET: "[192.168.178.0/24]"
+    HOME_NET: "[0.0.0.0/0]"
     EXTERNAL_NET: "!$HOME_NET"
     HTTP_SERVERS: "$HOME_NET"
     SMTP_SERVERS: "$HOME_NET"
@@ -145,4 +147,6 @@ spm-algo: auto
 default-rule-path: /var/lib/suricata/rules
 rule-files:
   - suricata.rules
+
+
 
