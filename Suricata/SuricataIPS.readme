@@ -1,0 +1,148 @@
+Suricata ist eine Network Intrusion Prevention Lösung, die anhand komplexer Rulesets Angriffe und Anomalien erkennt im Netzwerk und diese alarmiert oder die schädlichen Pakete verwirft.
+https://suricata.io/
+
+Suricata for Windows:
+https://letsdefend.io/blog/how-to-install-and-configure-suricata-on-windows
+
+All Suricata Rules
+https://rules.emergingthreats.net/open/suricata/rules/
+
+Suricata Docs:
+https://docs.suricata.io/en/latest/what-is-suricata.html
+
+Suricata IPS Mode:
+af-packet:
+  - interface: eth0
+    cluster-id: 99
+    cluster-type: cluster_flow
+    defrag: yes
+    use-mmap: yes
+    copy-mode: ips
+    copy-iface: enp2s0
+%YAML 1.1
+---
+# Suricata configuration file
+
+suricata-version: "7.0"
+
+## Network settings
+vars:
+  address-groups:
+    HOME_NET: "[192.168.178.0/24]"
+    EXTERNAL_NET: "!$HOME_NET"
+    HTTP_SERVERS: "$HOME_NET"
+    SMTP_SERVERS: "$HOME_NET"
+    SQL_SERVERS: "$HOME_NET"
+    DNS_SERVERS: "$HOME_NET"
+    TELNET_SERVERS: "$HOME_NET"
+    AIM_SERVERS: "$EXTERNAL_NET"
+    DC_SERVERS: "$HOME_NET"
+    DNP3_SERVER: "$HOME_NET"
+    DNP3_CLIENT: "$HOME_NET"
+    MODBUS_CLIENT: "$HOME_NET"
+    MODBUS_SERVER: "$HOME_NET"
+    ENIP_CLIENT: "$HOME_NET"
+    ENIP_SERVER: "$HOME_NET"
+
+  port-groups:
+    HTTP_PORTS: "80"
+    SHELLCODE_PORTS: "!80"
+    ORACLE_PORTS: 1521
+    SSH_PORTS: 22
+    DNP3_PORTS: 20000
+    MODBUS_PORTS: 502
+    FILE_DATA_PORTS: "[$HTTP_PORTS,110,143]"
+    FTP_PORTS: 21
+    GENEVE_PORTS: 6081
+    VXLAN_PORTS: 4789
+    TEREDO_PORTS: 3544
+
+## Logging settings
+default-log-dir: /var/log/suricata
+
+outputs:
+  - fast:
+      enabled: yes
+      filename: fast.log
+      append: yes
+  - eve-log:
+      enabled: yes
+      filetype: regular
+      filename: eve.json
+
+## Capture settings
+af-packet:
+  - interface: enp1s0
+    cluster-id: 99
+    cluster-type: cluster_flow
+    defrag: yes
+    use-mmap: yes
+    tpacket-v3: no
+    ring-size: 2048
+    block-size: 32768
+    block-timeout: 10
+    use-emergency-flush: yes
+    checksum-checks: kernel
+
+## App Layer settings
+app-layer:
+  protocols:
+    tls:
+      enabled: yes
+      detection-ports:
+        dp: 443
+    http:
+      enabled: yes
+    dns:
+      tcp:
+        enabled: yes
+      udp:
+        enabled: yes
+
+## Flow settings
+flow:
+  memcap: 128mb
+  hash-size: 65536
+  prealloc: 10000
+  emergency-recovery: 30
+
+## Stream settings
+stream:
+  memcap: 64mb
+  checksum-validation: yes
+  inline: auto
+  reassembly:
+    memcap: 256mb
+    depth: 1mb
+    toserver-chunk-size: 2560
+    toclient-chunk-size: 2560
+
+## Threading settings
+threading:
+  set-cpu-affinity: yes
+  cpu-affinity:
+    - management-cpu-set:
+        cpu: [0]
+    - receive-cpu-set:
+        cpu: [0]
+    - worker-cpu-set:
+        cpu: ["all"]
+        mode: "exclusive"
+  detect-thread-ratio: 1.0
+
+## Detection settings
+detect:
+  profile: medium
+  custom-values:
+    toclient-groups: 3
+    toserver-groups: 25
+  sgh-mpm-context: auto
+
+mpm-algo: auto
+spm-algo: auto
+
+## Rule settings
+default-rule-path: /var/lib/suricata/rules
+rule-files:
+  - suricata.rules
+
