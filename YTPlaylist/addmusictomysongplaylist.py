@@ -5,7 +5,7 @@ import googleapiclient.discovery
 import googleapiclient.errors
 
 # API key for the YouTube Data API
-API_KEY = "AIzaSyAN9H7weCao0Fv9g81iJCnwmIIGH-wEwQo"  # Replace with your actual API key
+API_KEY = "xxxx"  # Replace with your actual API key
 # Scopes for the API
 scopes = ["https://www.googleapis.com/auth/youtube.force-ssl"]
 
@@ -89,8 +89,8 @@ def add_videos_to_playlist(youtube, playlist_id, video_ids_titles, limit):
 def main():
     try:
         youtube = get_authenticated_service()
-        source_playlist_id = "PLEriNQTcrTqbmu2uwv6JjI8fsFmCDmOxB"
-        target_playlist_id = "PLG0oGAcU-2wDNs-o_z2_SWAaMus0TTHJh"
+        source_playlist_id = "xxxxx"
+        target_playlist_id = "xxxxx"
         max_videos_to_add = 10  # Set the limit for the number of videos to add
 
         print("Fetching source playlist videos...")
